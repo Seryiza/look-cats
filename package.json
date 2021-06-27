@@ -1,0 +1,21 @@
+{
+  "name": "look-cats",
+  "version": "0.0.0",
+  "description": "Infinity feed with photos of cats and facts about them",
+  "scripts": {
+    "build": "parcel build ./src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Seryiza/look-cats.git"
+  },
+  "author": "Sergey \"Seryiza\" Zaborovsky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Seryiza/look-cats/issues"
+  },
+  "homepage": "https://seryiza.xyz/look-cats",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.3.1"
+  }
+}
