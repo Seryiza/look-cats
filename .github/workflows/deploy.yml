@@ -18,6 +18,7 @@ jobs:
           node-version: '15'
 
       - run: npm ci
+      - run: npm run lint
       - run: npm run build
 
       - name: Deploy
