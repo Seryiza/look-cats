@@ -19,6 +19,12 @@ jobs:
 
       - run: npm ci
       - run: npm run lint
+      
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start
+      
       - run: npm run build
 
       - name: Deploy
