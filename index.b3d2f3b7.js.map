@@ -1,1 +1,0 @@
-{"mappings":"AACAA,OAAOC,MADG","sources":["src/index.jsx"],"sourcesContent":["const a = 1\nwindow.alert(a)\n"],"names":["window","alert"],"version":3,"file":"index.b3d2f3b7.js.map"}
