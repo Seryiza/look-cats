@@ -23,7 +23,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          start: npm serve
+          start: npm run serve
       
       - run: npm run build
 
