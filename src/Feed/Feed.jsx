@@ -8,6 +8,8 @@ import { fetchBlock } from './Page/MediaBlockSlice'
  * Feed of blocks with photos and facts.
  */
 export default () => {
+  // TODO: Export it
+  const isLoading = useSelector(state => state.mediaBlock.loadingState === 'pending')
   const blocks = useSelector(state => state.mediaBlock.blocks)
   const dispatch = useDispatch()
 
@@ -19,6 +21,9 @@ export default () => {
   return (
     <div>
       {blocks.map((block, i) => <MediaBlock block={block} key={i} />)}
+
+      {isLoading && <h2>Loading...</h2>}
+      <button onClick={() => dispatch(fetchBlock({ photosCount: 3 }))}>Load more</button>
     </div>
   )
 }

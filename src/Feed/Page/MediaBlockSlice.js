@@ -13,13 +13,18 @@ export const fetchBlock = createAsyncThunk(
 export const mediaBlockSlice = createSlice({
   name: 'mediaBlock',
   initialState: {
-    blocks: []
+    blocks: [],
+    loadingState: 'idle'
   },
 
   extraReducers (builder) {
     // TODO: Add error handle
+    builder.addCase(fetchBlock.pending, (state) => {
+      state.loadingState = 'pending'
+    })
     builder.addCase(fetchBlock.fulfilled, (state, { payload }) => {
       state.blocks.push({ photos: payload.photos })
+      state.loadingState = 'idle'
     })
   }
 })
