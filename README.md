@@ -10,4 +10,13 @@
 - Кнопка, чтобы загрузить больше кошек! :)
 
 ## Как запустить
-TODO
+```sh
+npm run serve  # hosted on localhost:1234
+npm run test   # run tests
+```
+
+Деплой происходит через GitHub Actions с публикацией на GitHub Pages (ветка `gh-pages`).
+
+## Источники данных
+- Фото: [Random.Cat](http://random.cat/), [Cataas](https://cataas.com/)
+- Факты: [Cat Facts](https://alexwohlbruck.github.io/cat-facts/)

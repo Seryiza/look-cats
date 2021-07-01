@@ -4,6 +4,7 @@
   "description": "Infinity feed with photos of cats and facts about them",
   "scripts": {
     "lint": "standard src/",
+    "test": "cypress run",
     "serve": "parcel serve ./src/index.html",
     "build": "parcel build --public-url /look-cats ./src/index.html"
   },
