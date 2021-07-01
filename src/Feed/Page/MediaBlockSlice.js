@@ -3,7 +3,7 @@ import { getCatPhotos } from '../api/photos'
 
 export const fetchBlock = createAsyncThunk(
   'mediaBlock/fetchBlock',
-  async ({ photosCount }, thunkAPI) => {
+  async ({ photosCount }) => {
     // TODO: Add facts
     const photos = await getCatPhotos(photosCount)
     return { photos }
@@ -14,12 +14,6 @@ export const mediaBlockSlice = createSlice({
   name: 'mediaBlock',
   initialState: {
     blocks: []
-  },
-
-  reducers: {
-    increment (state) {
-      state.value += 1
-    }
   },
 
   extraReducers (builder) {
