@@ -23943,6 +23943,9 @@ var _mediaBlockSlice = require("./Page/MediaBlockSlice");
 var _s = $RefreshSig$();
 exports.default = _s(()=>{
     _s();
+    // TODO: Export it
+    const isLoading = _reactRedux.useSelector((state)=>state.mediaBlock.loadingState === 'pending'
+    );
     const blocks = _reactRedux.useSelector((state)=>state.mediaBlock.blocks
     );
     const dispatch = _reactRedux.useDispatch();
@@ -23955,7 +23958,7 @@ exports.default = _s(()=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Feed.jsx",
-            lineNumber: 20
+            lineNumber: 22
         },
         __self: undefined
     }, blocks.map((block, i)=>/*#__PURE__*/ _reactDefault.default.createElement(_mediaBlockDefault.default, {
@@ -23963,13 +23966,29 @@ exports.default = _s(()=>{
             key: i,
             __source: {
                 fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Feed.jsx",
-                lineNumber: 21
+                lineNumber: 23
             },
             __self: undefined
         })
-    )));
-}, "7DfXGBBrE+VS97tPOcQZ8Nzw77I=", false, function() {
-    return [_reactRedux.useSelector, _reactRedux.useDispatch];
+    ), isLoading && /*#__PURE__*/ _reactDefault.default.createElement("h2", {
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Feed.jsx",
+            lineNumber: 25
+        },
+        __self: undefined
+    }, "Loading..."), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        onClick: ()=>dispatch(_mediaBlockSlice.fetchBlock({
+                photosCount: 3
+            }))
+        ,
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Feed.jsx",
+            lineNumber: 26
+        },
+        __self: undefined
+    }, "Load more")));
+}, "OnrVHjHwFKj4ea2VMgNJ/Rhncp0=", false, function() {
+    return [_reactRedux.useSelector, _reactRedux.useSelector, _reactRedux.useDispatch];
 });
 
   helpers.postlude(module);
@@ -24144,7 +24163,7 @@ parcelHelpers.export(exports, "increment", ()=>increment
 );
 var _toolkit = require("@reduxjs/toolkit");
 var _photos = require("../api/photos");
-const fetchBlock = _toolkit.createAsyncThunk('mediaBlock/fetchBlock', async ({ photosCount  }, thunkAPI)=>{
+const fetchBlock = _toolkit.createAsyncThunk('mediaBlock/fetchBlock', async ({ photosCount  })=>{
     // TODO: Add facts
     const photos = await _photos.getCatPhotos(photosCount);
     return {
@@ -24154,19 +24173,19 @@ const fetchBlock = _toolkit.createAsyncThunk('mediaBlock/fetchBlock', async ({ p
 const mediaBlockSlice = _toolkit.createSlice({
     name: 'mediaBlock',
     initialState: {
-        blocks: []
-    },
-    reducers: {
-        increment (state) {
-            state.value += 1;
-        }
+        blocks: [],
+        loadingState: 'idle'
     },
     extraReducers (builder) {
         // TODO: Add error handle
+        builder.addCase(fetchBlock.pending, (state)=>{
+            state.loadingState = 'pending';
+        });
         builder.addCase(fetchBlock.fulfilled, (state, { payload  })=>{
             state.blocks.push({
                 photos: payload.photos
             });
+            state.loadingState = 'idle';
         });
     }
 });
