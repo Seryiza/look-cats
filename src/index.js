@@ -1,9 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
-import MainComponent from './Main'
+import App from './App'
+import store from './app/store'
 
 ReactDOM.render(
-  <MainComponent />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.querySelector('#app')
 )
