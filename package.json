@@ -6,7 +6,8 @@
     "lint": "standard src/",
     "test": "cypress run",
     "serve": "parcel serve ./src/index.html",
-    "build": "parcel build --public-url /look-cats ./src/index.html"
+    "build": "parcel build --public-url /look-cats ./src/index.html",
+    "cypress:open": "cypress open"
   },
   "standard": {
     "globals": [
