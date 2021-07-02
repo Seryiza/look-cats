@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getCatPhotos } from '../api/photos'
+import { getCatPhotos } from './PhotosAPI'
 
 export const fetchBlock = createAsyncThunk(
   'mediaBlock/fetchBlock',

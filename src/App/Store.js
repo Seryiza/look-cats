@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import MediaBlockReducer from '../Feed/Page/MediaBlockSlice'
+import MediaBlockReducer from '../Feed/MediaBlock/MediaBlockSlice'
 
 export default configureStore({
   reducer: {

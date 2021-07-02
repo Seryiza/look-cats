@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import MediaBlock from './Page/MediaBlock'
-import { fetchBlock } from './Page/MediaBlockSlice'
+import MediaBlock from './MediaBlock/MediaBlock'
+import { fetchBlock } from './MediaBlock/MediaBlockSlice'
 
 /**
  * Feed of blocks with photos and facts.
