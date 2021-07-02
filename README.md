@@ -1,6 +1,7 @@
 # Look, Cats!
 
 [![GitHub Pages Deploy](https://github.com/Seryiza/look-cats/actions/workflows/deploy.yml/badge.svg)](https://github.com/Seryiza/look-cats/actions/workflows/deploy.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fd1bff98d92252dd6fbe/maintainability)](https://codeclimate.com/github/Seryiza/look-cats/maintainability)
 
 Бесконечная лента с фотографиями кошечек и фактов о них. Помогает отвлечься и расслабиться.
 
