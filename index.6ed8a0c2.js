@@ -23884,37 +23884,26 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _feed = require("../Feed/Feed");
 var _feedDefault = parcelHelpers.interopDefault(_feed);
+var _topBar = require("../TopBar");
+var _topBarDefault = parcelHelpers.interopDefault(_topBar);
 exports.default = ()=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-        __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
-            lineNumber: 6
-        },
-        __self: undefined
-    }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
-        className: "text-6xl font-extrabold text-gray-900",
-        __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
-            lineNumber: 7
-        },
-        __self: undefined
-    }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
+        className: "container mx-auto",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
             lineNumber: 8
         },
         __self: undefined
-    }, "Hello, "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
-        className: "text-indigo-600",
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_topBarDefault.default, {
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
             lineNumber: 9
         },
         __self: undefined
-    }, "World!")), /*#__PURE__*/ _reactDefault.default.createElement(_feedDefault.default, {
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_feedDefault.default, {
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
-            lineNumber: 12
+            lineNumber: 10
         },
         __self: undefined
     })));
@@ -23925,7 +23914,7 @@ exports.default = ()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"jUjz4","../Feed/Feed":"icbd7","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"icbd7":[function(require,module,exports) {
+},{"react":"jUjz4","../Feed/Feed":"icbd7","../TopBar":"kc9u0","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"icbd7":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -23937,8 +23926,10 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRedux = require("react-redux");
-var _mediaBlock = require("./MediaBlock/MediaBlock");
+var _mediaBlock = require("./MediaBlock");
 var _mediaBlockDefault = parcelHelpers.interopDefault(_mediaBlock);
+var _loadMoreButton = require("./LoadMoreButton");
+var _loadMoreButtonDefault = parcelHelpers.interopDefault(_loadMoreButton);
 var _mediaBlockSlice = require("./MediaBlock/MediaBlockSlice");
 var _s = $RefreshSig$();
 exports.default = _s(()=>{
@@ -23952,13 +23943,13 @@ exports.default = _s(()=>{
     // Load first block with photos and some fact.
     _react.useEffect(()=>{
         dispatch(_mediaBlockSlice.fetchBlock({
-            photosCount: 3
+            photosCount: 4
         }));
     }, []);
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Feed.jsx",
-            lineNumber: 22
+            lineNumber: 23
         },
         __self: undefined
     }, blocks.map((block, i)=>/*#__PURE__*/ _reactDefault.default.createElement(_mediaBlockDefault.default, {
@@ -23966,27 +23957,34 @@ exports.default = _s(()=>{
             key: i,
             __source: {
                 fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Feed.jsx",
-                lineNumber: 23
+                lineNumber: 24
             },
             __self: undefined
         })
     ), isLoading && /*#__PURE__*/ _reactDefault.default.createElement("h2", {
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Feed.jsx",
-            lineNumber: 25
+            lineNumber: 26
         },
         __self: undefined
-    }, "Loading..."), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+    }, "Loading..."), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        className: "p-2 flex justify-center",
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Feed.jsx",
+            lineNumber: 28
+        },
+        __self: undefined
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_loadMoreButtonDefault.default, {
         onClick: ()=>dispatch(_mediaBlockSlice.fetchBlock({
-                photosCount: 3
+                photosCount: 4
             }))
         ,
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Feed.jsx",
-            lineNumber: 26
+            lineNumber: 29
         },
         __self: undefined
-    }, "Load more")));
+    }))));
 }, "OnrVHjHwFKj4ea2VMgNJ/Rhncp0=", false, function() {
     return [_reactRedux.useSelector, _reactRedux.useSelector, _reactRedux.useDispatch];
 });
@@ -23996,7 +23994,7 @@ exports.default = _s(()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"jUjz4","react-redux":"8d9Q1","./MediaBlock/MediaBlock":"5Ki0u","./MediaBlock/MediaBlockSlice":"4BTI7","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"5Ki0u":[function(require,module,exports) {
+},{"react":"jUjz4","react-redux":"8d9Q1","./MediaBlock":"7Bgft","./LoadMoreButton":"ibfPD","./MediaBlock/MediaBlockSlice":"4BTI7","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"7Bgft":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -24009,17 +24007,19 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 exports.default = ({ block  })=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+        className: "grid grid-cols-2 gap-4 p-2",
         __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/MediaBlock.jsx",
+            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
             lineNumber: 8
         },
         __self: undefined
     }, block.photos.map((photo)=>/*#__PURE__*/ _reactDefault.default.createElement("img", {
+            className: "rounded-xl",
             src: photo,
             key: photo,
             crossOrigin: "anonymous",
             __source: {
-                fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/MediaBlock.jsx",
+                fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
                 lineNumber: 10
             },
             __self: undefined
@@ -24152,7 +24152,36 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"gcL93"}],"4BTI7":[function(require,module,exports) {
+},{"react-refresh/runtime":"gcL93"}],"ibfPD":[function(require,module,exports) {
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+exports.default = ({ onClick , children  })=>{
+    return(/*#__PURE__*/ _reactDefault.default.createElement("button", {
+        className: "p-4 px-16 text-lg text-yellow-600 border-2 border-yellow-600 rounded-full transition-colors hover:text-white hover:bg-yellow-600",
+        onClick: (event)=>onClick(event)
+        ,
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/LoadMoreButton/index.jsx",
+            lineNumber: 5
+        },
+        __self: undefined
+    }, "Load More"));
+};
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"jUjz4","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"4BTI7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "fetchBlock", ()=>fetchBlock
@@ -41978,7 +42007,56 @@ var global = arguments[3];
     root._ = _;
 }).call(this);
 
-},{}],"7yO85":[function(require,module,exports) {
+},{}],"kc9u0":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+exports.default = ()=>{
+    return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+        className: "flex content-center my-4 p-4 border-2 border-yellow-600 shadow-md rounded-full",
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/TopBar/index.jsx",
+            lineNumber: 5
+        },
+        __self: undefined
+    }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
+        className: "flex-1 text-xl tracking-wider text-yellow-600 font-bold",
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/TopBar/index.jsx",
+            lineNumber: 6
+        },
+        __self: undefined
+    }, "Look, Cats!"), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        className: "flex items-center",
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/TopBar/index.jsx",
+            lineNumber: 10
+        },
+        __self: undefined
+    }, /*#__PURE__*/ _reactDefault.default.createElement("a", {
+        className: "text-yellow-600 hover:underline",
+        href: "https://github.com/Seryiza/look-cats",
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/TopBar/index.jsx",
+            lineNumber: 11
+        },
+        __self: undefined
+    }, "GitHub"))));
+};
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"jUjz4","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"7yO85":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _toolkit = require("@reduxjs/toolkit");
