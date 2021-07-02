@@ -872,9 +872,9 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactDom = require("react-dom");
 var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
 var _reactRedux = require("react-redux");
-var _app = require("./App");
+var _app = require("./App/App");
 var _appDefault = parcelHelpers.interopDefault(_app);
-var _store = require("./app/store");
+var _store = require("./App/Store");
 var _storeDefault = parcelHelpers.interopDefault(_store);
 _reactDomDefault.default.render(/*#__PURE__*/ _reactDefault.default.createElement(_reactRedux.Provider, {
     store: _storeDefault.default,
@@ -896,7 +896,7 @@ _reactDomDefault.default.render(/*#__PURE__*/ _reactDefault.default.createElemen
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"jUjz4","react-dom":"bNP5z","react-redux":"8d9Q1","./App":"ct5qR","./app/store":"2JGy0","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"jUjz4":[function(require,module,exports) {
+},{"react":"jUjz4","react-dom":"bNP5z","react-redux":"8d9Q1","./App/App":"8PnWh","./App/Store":"7yO85","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"jUjz4":[function(require,module,exports) {
 'use strict';
 module.exports = require('./cjs/react.development.js');
 
@@ -23871,8 +23871,8 @@ parcelHelpers.defineInteropFlag(exports);
 );
 var _reactDom = require("react-dom");
 
-},{"react-dom":"bNP5z","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"ct5qR":[function(require,module,exports) {
-var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react-dom":"bNP5z","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"8PnWh":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
 helpers.prelude(module);
@@ -23882,38 +23882,38 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _feed = require("./Feed/Feed");
+var _feed = require("../Feed/Feed");
 var _feedDefault = parcelHelpers.interopDefault(_feed);
 exports.default = ()=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
         __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/App.jsx",
+            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
             lineNumber: 6
         },
         __self: undefined
     }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
         className: "text-6xl font-extrabold text-gray-900",
         __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/App.jsx",
+            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
             lineNumber: 7
         },
         __self: undefined
     }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
         __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/App.jsx",
+            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
             lineNumber: 8
         },
         __self: undefined
     }, "Hello, "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
         className: "text-indigo-600",
         __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/App.jsx",
+            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
             lineNumber: 9
         },
         __self: undefined
     }, "World!")), /*#__PURE__*/ _reactDefault.default.createElement(_feedDefault.default, {
         __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/App.jsx",
+            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
             lineNumber: 12
         },
         __self: undefined
@@ -23925,7 +23925,7 @@ exports.default = ()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"jUjz4","./Feed/Feed":"icbd7","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"icbd7":[function(require,module,exports) {
+},{"react":"jUjz4","../Feed/Feed":"icbd7","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"icbd7":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -23937,9 +23937,9 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRedux = require("react-redux");
-var _mediaBlock = require("./Page/MediaBlock");
+var _mediaBlock = require("./MediaBlock/MediaBlock");
 var _mediaBlockDefault = parcelHelpers.interopDefault(_mediaBlock);
-var _mediaBlockSlice = require("./Page/MediaBlockSlice");
+var _mediaBlockSlice = require("./MediaBlock/MediaBlockSlice");
 var _s = $RefreshSig$();
 exports.default = _s(()=>{
     _s();
@@ -23996,7 +23996,7 @@ exports.default = _s(()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"jUjz4","react-redux":"8d9Q1","./Page/MediaBlock":"9P6Zy","./Page/MediaBlockSlice":"ji1XG","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"9P6Zy":[function(require,module,exports) {
+},{"react":"jUjz4","react-redux":"8d9Q1","./MediaBlock/MediaBlock":"5Ki0u","./MediaBlock/MediaBlockSlice":"4BTI7","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"5Ki0u":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -24010,7 +24010,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 exports.default = ({ block  })=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
         __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Page/MediaBlock.jsx",
+            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/MediaBlock.jsx",
             lineNumber: 8
         },
         __self: undefined
@@ -24019,7 +24019,7 @@ exports.default = ({ block  })=>{
             key: photo,
             crossOrigin: "anonymous",
             __source: {
-                fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Page/MediaBlock.jsx",
+                fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/MediaBlock.jsx",
                 lineNumber: 10
             },
             __self: undefined
@@ -24152,7 +24152,7 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"gcL93"}],"ji1XG":[function(require,module,exports) {
+},{"react-refresh/runtime":"gcL93"}],"4BTI7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "fetchBlock", ()=>fetchBlock
@@ -24162,10 +24162,10 @@ parcelHelpers.export(exports, "mediaBlockSlice", ()=>mediaBlockSlice
 parcelHelpers.export(exports, "increment", ()=>increment
 );
 var _toolkit = require("@reduxjs/toolkit");
-var _photos = require("../api/photos");
+var _photosAPI = require("./PhotosAPI");
 const fetchBlock = _toolkit.createAsyncThunk('mediaBlock/fetchBlock', async ({ photosCount  })=>{
     // TODO: Add facts
-    const photos = await _photos.getCatPhotos(photosCount);
+    const photos = await _photosAPI.getCatPhotos(photosCount);
     return {
         photos
     };
@@ -24192,7 +24192,7 @@ const mediaBlockSlice = _toolkit.createSlice({
 const { increment  } = mediaBlockSlice.actions;
 exports.default = mediaBlockSlice.reducer;
 
-},{"@reduxjs/toolkit":"diJsx","../api/photos":"9bPbV","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"diJsx":[function(require,module,exports) {
+},{"@reduxjs/toolkit":"diJsx","./PhotosAPI":"flrvd","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"diJsx":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MiddlewareArray", ()=>MiddlewareArray1
@@ -27245,7 +27245,7 @@ var thunk = createThunkMiddleware();
 thunk.withExtraArgument = createThunkMiddleware;
 exports.default = thunk;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"9bPbV":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"flrvd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getCatPhoto", ()=>getCatPhoto
@@ -41978,11 +41978,11 @@ var global = arguments[3];
     root._ = _;
 }).call(this);
 
-},{}],"2JGy0":[function(require,module,exports) {
+},{}],"7yO85":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _toolkit = require("@reduxjs/toolkit");
-var _mediaBlockSlice = require("../Feed/Page/MediaBlockSlice");
+var _mediaBlockSlice = require("../Feed/MediaBlock/MediaBlockSlice");
 var _mediaBlockSliceDefault = parcelHelpers.interopDefault(_mediaBlockSlice);
 exports.default = _toolkit.configureStore({
     reducer: {
@@ -41990,6 +41990,6 @@ exports.default = _toolkit.configureStore({
     }
 });
 
-},{"@reduxjs/toolkit":"diJsx","../Feed/Page/MediaBlockSlice":"ji1XG","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}]},["72tF7","iyk8B","8dZPq"], "8dZPq", "parcelRequire6645")
+},{"@reduxjs/toolkit":"diJsx","../Feed/MediaBlock/MediaBlockSlice":"4BTI7","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}]},["72tF7","iyk8B","8dZPq"], "8dZPq", "parcelRequire6645")
 
 //# sourceMappingURL=index.6ed8a0c2.js.map
