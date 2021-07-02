@@ -9,11 +9,12 @@ export default () => {
 
       <div className='flex items-center'>
         <a
-        className='text-yellow-600 hover:underline'
-        href="https://github.com/Seryiza/look-cats">
+          className='text-yellow-600 hover:underline'
+          href='https://github.com/Seryiza/look-cats'
+        >
           GitHub
         </a>
       </div>
     </div>
-  );
+  )
 }
