@@ -18,5 +18,5 @@ npm run test   # run tests
 Деплой происходит через GitHub Actions с публикацией на GitHub Pages (ветка `gh-pages`).
 
 ## Источники данных
-- Фото: [Random.Cat](http://random.cat/), [Cataas](https://cataas.com/)
+- Фото: [Cataas](https://cataas.com/)
 - Факты: [Cat Facts](https://alexwohlbruck.github.io/cat-facts/)
