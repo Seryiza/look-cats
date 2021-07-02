@@ -1,14 +1,12 @@
 import React from 'react'
+
 import Feed from '../Feed/Feed'
+import TopBar from '../TopBar'
 
 export default () => {
   return (
-    <div>
-      <h1 className='text-6xl font-extrabold text-gray-900'>
-        <span>Hello, </span>
-        <span className='text-indigo-600'>World!</span>
-      </h1>
-
+    <div className='container mx-auto'>
+      <TopBar />
       <Feed />
     </div>
   )

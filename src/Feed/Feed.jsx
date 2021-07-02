@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import MediaBlock from './MediaBlock/MediaBlock'
+import MediaBlock from './MediaBlock'
+import LoadMoreButton from './LoadMoreButton'
 import { fetchBlock } from './MediaBlock/MediaBlockSlice'
 
 /**
@@ -15,7 +16,7 @@ export default () => {
 
   // Load first block with photos and some fact.
   useEffect(() => {
-    dispatch(fetchBlock({ photosCount: 3 }))
+    dispatch(fetchBlock({ photosCount: 4 }))
   }, [])
 
   return (
@@ -23,7 +24,10 @@ export default () => {
       {blocks.map((block, i) => <MediaBlock block={block} key={i} />)}
 
       {isLoading && <h2>Loading...</h2>}
-      <button onClick={() => dispatch(fetchBlock({ photosCount: 3 }))}>Load more</button>
+
+      <div className='p-2 flex justify-center'>
+        <LoadMoreButton onClick={() => dispatch(fetchBlock({ photosCount: 4 }))} />
+      </div>
     </div>
   )
 }
