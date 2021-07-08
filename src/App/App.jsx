@@ -6,7 +6,7 @@ import Footer from '../Footer'
 
 export default () => {
   return (
-    <div className='container mx-auto p-8'>
+    <div className='container mx-auto p-4'>
       <TopBar />
       <Feed />
       <Footer />
