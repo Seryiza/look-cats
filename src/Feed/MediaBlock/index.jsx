@@ -8,11 +8,11 @@ const PHOTOS_PER_COLUMN = 2
  */
 export default ({ block }) => {
   return (
-    <div className='min-h-screen flex flex-col md:flex-row justify-center md:space-x-8 space-y-8 md:space-y-0 p-4'>
+    <div className='min-h-screen flex flex-col md:flex-row justify-center md:space-x-4 space-y-4 md:space-y-0 p-2'>
       {chunk(block.photos, PHOTOS_PER_COLUMN)
         .map((photos, index) => (
           <div
-            className='space-y-8'
+            className='space-y-4'
             key={index}
           >
             {photos.map(photo => (
