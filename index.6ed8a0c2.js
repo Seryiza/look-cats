@@ -23890,7 +23890,7 @@ var _footer = require("../Footer");
 var _footerDefault = parcelHelpers.interopDefault(_footer);
 exports.default = ()=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-        className: "container mx-auto p-8",
+        className: "container mx-auto p-4",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
             lineNumber: 9
@@ -42039,7 +42039,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 exports.default = ()=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-        className: "flex content-center my-4 p-4 border-2 border-yellow-600",
+        className: "flex content-center mb-4 p-4 border-2 border-yellow-600",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/TopBar/index.jsx",
             lineNumber: 5
