@@ -23886,24 +23886,32 @@ var _feed = require("../Feed/Feed");
 var _feedDefault = parcelHelpers.interopDefault(_feed);
 var _topBar = require("../TopBar");
 var _topBarDefault = parcelHelpers.interopDefault(_topBar);
+var _footer = require("../Footer");
+var _footerDefault = parcelHelpers.interopDefault(_footer);
 exports.default = ()=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-        className: "container mx-auto",
-        __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
-            lineNumber: 8
-        },
-        __self: undefined
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_topBarDefault.default, {
+        className: "container mx-auto p-8",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
             lineNumber: 9
         },
         __self: undefined
-    }), /*#__PURE__*/ _reactDefault.default.createElement(_feedDefault.default, {
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_topBarDefault.default, {
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
             lineNumber: 10
+        },
+        __self: undefined
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_feedDefault.default, {
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
+            lineNumber: 11
+        },
+        __self: undefined
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_footerDefault.default, {
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
+            lineNumber: 12
         },
         __self: undefined
     })));
@@ -23914,7 +23922,7 @@ exports.default = ()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"jUjz4","../Feed/Feed":"icbd7","../TopBar":"kc9u0","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"icbd7":[function(require,module,exports) {
+},{"react":"jUjz4","../Feed/Feed":"icbd7","../TopBar":"kc9u0","../Footer":"4G701","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"icbd7":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -23967,8 +23975,8 @@ exports.default = _s(()=>{
             lineNumber: 26
         },
         __self: undefined
-    }, "Loading..."), /*#__PURE__*/ _reactDefault.default.createElement("div", {
-        className: "p-2 flex justify-center",
+    }, "Loading..."), !isLoading && /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        className: "p-8 flex justify-center",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/Feed/Feed.jsx",
             lineNumber: 28
@@ -24005,25 +24013,36 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _lodash = require("lodash");
+const PHOTOS_PER_COLUMN = 2;
 exports.default = ({ block  })=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-        className: "grid grid-cols-2 gap-4 p-2",
+        className: "min-h-screen flex flex-col md:flex-row justify-center md:space-x-8 space-y-8 md:space-y-0 p-4",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
-            lineNumber: 8
+            lineNumber: 11
         },
         __self: undefined
-    }, block.photos.map((photo)=>/*#__PURE__*/ _reactDefault.default.createElement("img", {
-            className: "rounded-xl",
-            src: photo,
-            key: photo,
-            crossOrigin: "anonymous",
+    }, _lodash.chunk(block.photos, PHOTOS_PER_COLUMN).map((photos, index)=>/*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "space-y-8",
+            key: index,
             __source: {
                 fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
-                lineNumber: 10
+                lineNumber: 14
             },
             __self: undefined
-        })
+        }, photos.map((photo)=>/*#__PURE__*/ _reactDefault.default.createElement("img", {
+                className: "rounded-xl",
+                src: photo,
+                key: photo,
+                crossOrigin: "anonymous",
+                __source: {
+                    fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
+                    lineNumber: 19
+                },
+                __self: undefined
+            })
+        ))
     )));
 };
 
@@ -24032,3717 +24051,7 @@ exports.default = ({ block  })=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"jUjz4","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"dzy2P":[function(require,module,exports) {
-"use strict";
-var Refresh = require('react-refresh/runtime');
-function debounce(func, delay) {
-    var args;
-    var timeout = undefined;
-    return function(args1) {
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-            timeout = undefined;
-            func.call(null, args1);
-        }, delay);
-    };
-}
-var enqueueUpdate = debounce(function() {
-    Refresh.performReactRefresh();
-}, 30); // Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-module.exports.prelude = function(module) {
-    window.$RefreshReg$ = function(type, id) {
-        Refresh.register(type, module.id + ' ' + id);
-    };
-    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-module.exports.postlude = function(module) {
-    if (isReactRefreshBoundary(module.exports)) {
-        registerExportsForReactRefresh(module);
-        if (module.hot) {
-            module.hot.dispose(function(data) {
-                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
-                data.prevExports = module.exports;
-            });
-            module.hot.accept(function(getParents) {
-                var prevExports = module.hot.data.prevExports;
-                var nextExports = module.exports; // Since we just executed the code for it, it's possible
-                // that the new exports make it ineligible for being a boundary.
-                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
-                // with the previous exports.
-                // For example, if you add/remove/change exports, we'll want
-                // to re-execute the importing modules, and force those components
-                // to re-render. Similarly, if you convert a class component
-                // to a function, we want to invalidate the boundary.
-                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-                if (isNoLongerABoundary || didInvalidate) {
-                    // We'll be conservative. The only case in which we won't do a full
-                    // reload is if all parent modules are also refresh boundaries.
-                    // In that case we'll add them to the current queue.
-                    var parents = getParents();
-                    if (parents.length === 0) {
-                        // Looks like we bubbled to the root. Can't recover from that.
-                        window.location.reload();
-                        return;
-                    }
-                    return parents;
-                }
-                enqueueUpdate();
-            });
-        }
-    }
-};
-function isReactRefreshBoundary(exports) {
-    if (Refresh.isLikelyComponentType(exports)) return true;
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    return false;
-    var hasExports = false;
-    var areAllExportsComponents = true;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        hasExports = true;
-        if (key === '__esModule') continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
-        return false;
-        var exportValue = exports[key];
-        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
-    }
-    return hasExports && areAllExportsComponents;
-}
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-    var prevSignature = getRefreshBoundarySignature(prevExports);
-    var nextSignature = getRefreshBoundarySignature(nextExports);
-    if (prevSignature.length !== nextSignature.length) return true;
-    for(var i = 0; i < nextSignature.length; i++){
-        if (prevSignature[i] !== nextSignature[i]) return true;
-    }
-    return false;
-} // When this signature changes, it's unsafe to stop at this refresh boundary.
-function getRefreshBoundarySignature(exports) {
-    var signature = [];
-    signature.push(Refresh.getFamilyByType(exports));
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        if (key === '__esModule') continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        signature.push(key);
-        signature.push(Refresh.getFamilyByType(exportValue));
-    }
-    return signature;
-}
-function registerExportsForReactRefresh(module) {
-    var exports = module.exports, id = module.id;
-    Refresh.register(exports, id + ' %exports%');
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        Refresh.register(exportValue, id + ' %exports% ' + key);
-    }
-}
-
-},{"react-refresh/runtime":"gcL93"}],"ibfPD":[function(require,module,exports) {
-var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-exports.default = ({ onClick , children  })=>{
-    return(/*#__PURE__*/ _reactDefault.default.createElement("button", {
-        className: "p-4 px-16 text-lg text-yellow-600 border-2 border-yellow-600 rounded-full transition-colors hover:text-white hover:bg-yellow-600",
-        onClick: (event)=>onClick(event)
-        ,
-        __source: {
-            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/LoadMoreButton/index.jsx",
-            lineNumber: 5
-        },
-        __self: undefined
-    }, "Load More"));
-};
-
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"jUjz4","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"4BTI7":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "fetchBlock", ()=>fetchBlock
-);
-parcelHelpers.export(exports, "mediaBlockSlice", ()=>mediaBlockSlice
-);
-parcelHelpers.export(exports, "increment", ()=>increment
-);
-var _toolkit = require("@reduxjs/toolkit");
-var _photosAPI = require("./PhotosAPI");
-const fetchBlock = _toolkit.createAsyncThunk('mediaBlock/fetchBlock', async ({ photosCount  })=>{
-    // TODO: Add facts
-    const photos = await _photosAPI.getCatPhotos(photosCount);
-    return {
-        photos
-    };
-});
-const mediaBlockSlice = _toolkit.createSlice({
-    name: 'mediaBlock',
-    initialState: {
-        blocks: [],
-        loadingState: 'idle'
-    },
-    extraReducers (builder) {
-        // TODO: Add error handle
-        builder.addCase(fetchBlock.pending, (state)=>{
-            state.loadingState = 'pending';
-        });
-        builder.addCase(fetchBlock.fulfilled, (state, { payload  })=>{
-            state.blocks.push({
-                photos: payload.photos
-            });
-            state.loadingState = 'idle';
-        });
-    }
-});
-const { increment  } = mediaBlockSlice.actions;
-exports.default = mediaBlockSlice.reducer;
-
-},{"@reduxjs/toolkit":"diJsx","./PhotosAPI":"flrvd","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"diJsx":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MiddlewareArray", ()=>MiddlewareArray1
-); //# sourceMappingURL=module.js.map
-parcelHelpers.export(exports, "configureStore", ()=>configureStore
-);
-parcelHelpers.export(exports, "createAction", ()=>createAction
-);
-parcelHelpers.export(exports, "createAsyncThunk", ()=>createAsyncThunk
-);
-parcelHelpers.export(exports, "createDraftSafeSelector", ()=>createDraftSafeSelector
-);
-parcelHelpers.export(exports, "createEntityAdapter", ()=>createEntityAdapter
-);
-parcelHelpers.export(exports, "createImmutableStateInvariantMiddleware", ()=>createImmutableStateInvariantMiddleware
-);
-parcelHelpers.export(exports, "createNextState", ()=>_immerDefault.default
-);
-parcelHelpers.export(exports, "createReducer", ()=>createReducer
-);
-parcelHelpers.export(exports, "createSelector", ()=>_reselect.createSelector
-);
-parcelHelpers.export(exports, "createSerializableStateInvariantMiddleware", ()=>createSerializableStateInvariantMiddleware
-);
-parcelHelpers.export(exports, "createSlice", ()=>createSlice
-);
-parcelHelpers.export(exports, "current", ()=>_immer.current
-);
-parcelHelpers.export(exports, "findNonSerializableValue", ()=>findNonSerializableValue
-);
-parcelHelpers.export(exports, "freeze", ()=>_immer.freeze
-);
-parcelHelpers.export(exports, "getDefaultMiddleware", ()=>getDefaultMiddleware
-);
-parcelHelpers.export(exports, "getType", ()=>getType
-);
-parcelHelpers.export(exports, "isAllOf", ()=>isAllOf
-);
-parcelHelpers.export(exports, "isAnyOf", ()=>isAnyOf
-);
-parcelHelpers.export(exports, "isAsyncThunkAction", ()=>isAsyncThunkAction
-);
-parcelHelpers.export(exports, "isDraft", ()=>_immer.isDraft
-);
-parcelHelpers.export(exports, "isFulfilled", ()=>isFulfilled
-);
-parcelHelpers.export(exports, "isImmutableDefault", ()=>isImmutableDefault
-);
-parcelHelpers.export(exports, "isPending", ()=>isPending
-);
-parcelHelpers.export(exports, "isPlain", ()=>isPlain
-);
-parcelHelpers.export(exports, "isPlainObject", ()=>isPlainObject
-);
-parcelHelpers.export(exports, "isRejected", ()=>isRejected
-);
-parcelHelpers.export(exports, "isRejectedWithValue", ()=>isRejectedWithValue
-);
-parcelHelpers.export(exports, "miniSerializeError", ()=>miniSerializeError
-);
-parcelHelpers.export(exports, "nanoid", ()=>nanoid
-);
-parcelHelpers.export(exports, "original", ()=>_immer.original
-);
-parcelHelpers.export(exports, "unwrapResult", ()=>unwrapResult
-);
-var _immer = require("immer");
-var _immerDefault = parcelHelpers.interopDefault(_immer);
-var _reselect = require("reselect");
-// src/configureStore.ts
-var _redux = require("redux");
-// src/getDefaultMiddleware.ts
-var _reduxThunk = require("redux-thunk");
-var _reduxThunkDefault = parcelHelpers.interopDefault(_reduxThunk);
-// src/index.ts
-parcelHelpers.exportAll(_redux, exports);
-var __extends = undefined && undefined.__extends || function() {
-    var extendStatics = function(d, b) {
-        extendStatics = Object.setPrototypeOf || ({
-            __proto__: []
-        }) instanceof Array && function(d1, b1) {
-            d1.__proto__ = b1;
-        } || function(d1, b1) {
-            for(var p in b1)if (Object.prototype.hasOwnProperty.call(b1, p)) d1[p] = b1[p];
-        };
-        return extendStatics(d, b);
-    };
-    return function(d, b) {
-        if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-var __generator = undefined && undefined.__generator || function(thisArg, body) {
-    var _ = {
-        label: 0,
-        sent: function() {
-            if (t[0] & 1) throw t[1];
-            return t[1];
-        },
-        trys: [],
-        ops: []
-    }, f, y, t, g;
-    function verb(n) {
-        return function(v) {
-            return step([
-                n,
-                v
-            ]);
-        };
-    }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while(_)try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [
-                op[0] & 2,
-                t.value
-            ];
-            switch(op[0]){
-                case 0:
-                case 1:
-                    t = op;
-                    break;
-                case 4:
-                    _.label++;
-                    return {
-                        value: op[1],
-                        done: false
-                    };
-                case 5:
-                    _.label++;
-                    y = op[1];
-                    op = [
-                        0
-                    ];
-                    continue;
-                case 7:
-                    op = _.ops.pop();
-                    _.trys.pop();
-                    continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-                        _ = 0;
-                        continue;
-                    }
-                    if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-                        _.label = op[1];
-                        break;
-                    }
-                    if (op[0] === 6 && _.label < t[1]) {
-                        _.label = t[1];
-                        t = op;
-                        break;
-                    }
-                    if (t && _.label < t[2]) {
-                        _.label = t[2];
-                        _.ops.push(op);
-                        break;
-                    }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop();
-                    continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) {
-            op = [
-                6,
-                e
-            ];
-            y = 0;
-        } finally{
-            f = t = 0;
-        }
-        if (op[0] & 5) throw op[1];
-        return {
-            value: op[0] ? op[1] : void 0,
-            done: true
-        };
-    }
-    return g = {
-        next: verb(0),
-        "throw": verb(1),
-        "return": verb(2)
-    }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
-        return this;
-    }), g;
-};
-var __spreadArray = undefined && undefined.__spreadArray || function(to, from) {
-    for(var i = 0, il = from.length, j = to.length; i < il; i++, j++)to[j] = from[i];
-    return to;
-};
-var __defProp = Object.defineProperty;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = function(obj, key, value) {
-    return key in obj ? __defProp(obj, key, {
-        enumerable: true,
-        configurable: true,
-        writable: true,
-        value: value
-    }) : obj[key] = value;
-};
-var __objSpread = function(a, b) {
-    for(var prop in b || (b = {
-    }))if (__hasOwnProp.call(b, prop)) __defNormalProp(a, prop, b[prop]);
-    if (__getOwnPropSymbols) for(var _i = 0, _b = __getOwnPropSymbols(b); _i < _b.length; _i++){
-        var prop = _b[_i];
-        if (__propIsEnum.call(b, prop)) __defNormalProp(a, prop, b[prop]);
-    }
-    return a;
-};
-var __async = function(__this, __arguments, generator) {
-    return new Promise(function(resolve, reject) {
-        var fulfilled = function(value) {
-            try {
-                step(generator.next(value));
-            } catch (e) {
-                reject(e);
-            }
-        };
-        var rejected = function(value) {
-            try {
-                step(generator.throw(value));
-            } catch (e) {
-                reject(e);
-            }
-        };
-        var step = function(x) {
-            return x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
-        };
-        step((generator = generator.apply(__this, __arguments)).next());
-    });
-};
-var createDraftSafeSelector = function() {
-    var args = [];
-    for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
-    var selector = _reselect.createSelector.apply(void 0, args);
-    var wrappedSelector = function(value) {
-        var rest = [];
-        for(var _i1 = 1; _i1 < arguments.length; _i1++)rest[_i1 - 1] = arguments[_i1];
-        return selector.apply(void 0, __spreadArray([
-            _immer.isDraft(value) ? _immer.current(value) : value
-        ], rest));
-    };
-    return wrappedSelector;
-};
-var composeWithDevTools = typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : function() {
-    if (arguments.length === 0) return void 0;
-    if (typeof arguments[0] === "object") return _redux.compose;
-    return _redux.compose.apply(null, arguments);
-};
-var devToolsEnhancer = typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__ : function() {
-    return function(noop) {
-        return noop;
-    };
-};
-// src/isPlainObject.ts
-function isPlainObject(value) {
-    if (typeof value !== "object" || value === null) return false;
-    var proto = value;
-    while(Object.getPrototypeOf(proto) !== null)proto = Object.getPrototypeOf(proto);
-    return Object.getPrototypeOf(value) === proto;
-}
-// src/utils.ts
-function getTimeMeasureUtils(maxDelay, fnName) {
-    var elapsed = 0;
-    return {
-        measureTime: function(fn) {
-            var started = Date.now();
-            try {
-                return fn();
-            } finally{
-                var finished = Date.now();
-                elapsed += finished - started;
-            }
-        },
-        warnIfExceeded: function() {
-            if (elapsed > maxDelay) console.warn(fnName + " took " + elapsed + "ms, which is more than the warning threshold of " + maxDelay + "ms. \nIf your state or actions are very large, you may want to disable the middleware as it might cause too much of a slowdown in development mode. See https://redux-toolkit.js.org/api/getDefaultMiddleware for instructions.\nIt is disabled in production builds, so you don't need to worry about that.");
-        }
-    };
-}
-var MiddlewareArray1 = function(_super) {
-    __extends(MiddlewareArray2, _super);
-    function MiddlewareArray2() {
-        var args = [];
-        for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
-        var _this = _super.apply(this, args) || this;
-        Object.setPrototypeOf(_this, MiddlewareArray2.prototype);
-        return _this;
-    }
-    Object.defineProperty(MiddlewareArray2, Symbol.species, {
-        get: function() {
-            return MiddlewareArray2;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    MiddlewareArray2.prototype.concat = function() {
-        var arr = [];
-        for(var _i = 0; _i < arguments.length; _i++)arr[_i] = arguments[_i];
-        return _super.prototype.concat.apply(this, arr);
-    };
-    MiddlewareArray2.prototype.prepend = function() {
-        var arr = [];
-        for(var _i = 0; _i < arguments.length; _i++)arr[_i] = arguments[_i];
-        if (arr.length === 1 && Array.isArray(arr[0])) return new (MiddlewareArray2.bind.apply(MiddlewareArray2, __spreadArray([
-            void 0
-        ], arr[0].concat(this))))();
-        return new (MiddlewareArray2.bind.apply(MiddlewareArray2, __spreadArray([
-            void 0
-        ], arr.concat(this))))();
-    };
-    return MiddlewareArray2;
-}(Array);
-// src/immutableStateInvariantMiddleware.ts
-var isProduction = false;
-var prefix = "Invariant failed";
-function invariant(condition, message) {
-    if (condition) return;
-    if (isProduction) throw new Error(prefix);
-    throw new Error(prefix + ": " + (message || ""));
-}
-function stringify(obj, serializer, indent, decycler) {
-    return JSON.stringify(obj, getSerialize(serializer, decycler), indent);
-}
-function getSerialize(serializer, decycler) {
-    var stack = [], keys = [];
-    if (!decycler) decycler = function(_, value) {
-        if (stack[0] === value) return "[Circular ~]";
-        return "[Circular ~." + keys.slice(0, stack.indexOf(value)).join(".") + "]";
-    };
-    return function(key, value) {
-        if (stack.length > 0) {
-            var thisPos = stack.indexOf(this);
-            ~thisPos ? stack.splice(thisPos + 1) : stack.push(this);
-            ~thisPos ? keys.splice(thisPos, Infinity, key) : keys.push(key);
-            if (~stack.indexOf(value)) value = decycler.call(this, key, value);
-        } else stack.push(value);
-        return serializer == null ? value : serializer.call(this, key, value);
-    };
-}
-function isImmutableDefault(value) {
-    return typeof value !== "object" || value === null || typeof value === "undefined" || Object.isFrozen(value);
-}
-function trackForMutations(isImmutable, ignorePaths, obj) {
-    var trackedProperties = trackProperties(isImmutable, ignorePaths, obj);
-    return {
-        detectMutations: function() {
-            return detectMutations(isImmutable, ignorePaths, trackedProperties, obj);
-        }
-    };
-}
-function trackProperties(isImmutable, ignorePaths, obj, path) {
-    if (ignorePaths === void 0) ignorePaths = [];
-    if (path === void 0) path = "";
-    var tracked = {
-        value: obj
-    };
-    if (!isImmutable(obj)) {
-        tracked.children = {
-        };
-        for(var key in obj){
-            var childPath = path ? path + "." + key : key;
-            if (ignorePaths.length && ignorePaths.indexOf(childPath) !== -1) continue;
-            tracked.children[key] = trackProperties(isImmutable, ignorePaths, obj[key], childPath);
-        }
-    }
-    return tracked;
-}
-function detectMutations(isImmutable, ignorePaths, trackedProperty, obj, sameParentRef, path) {
-    if (ignorePaths === void 0) ignorePaths = [];
-    if (sameParentRef === void 0) sameParentRef = false;
-    if (path === void 0) path = "";
-    var prevObj = trackedProperty ? trackedProperty.value : void 0;
-    var sameRef = prevObj === obj;
-    if (sameParentRef && !sameRef && !Number.isNaN(obj)) return {
-        wasMutated: true,
-        path: path
-    };
-    if (isImmutable(prevObj) || isImmutable(obj)) return {
-        wasMutated: false
-    };
-    var keysToDetect = {
-    };
-    for(var key in trackedProperty.children)keysToDetect[key] = true;
-    for(var key in obj)keysToDetect[key] = true;
-    for(var key in keysToDetect){
-        var childPath = path ? path + "." + key : key;
-        if (ignorePaths.length && ignorePaths.indexOf(childPath) !== -1) continue;
-        var result = detectMutations(isImmutable, ignorePaths, trackedProperty.children[key], obj[key], sameRef, childPath);
-        if (result.wasMutated) return result;
-    }
-    return {
-        wasMutated: false
-    };
-}
-function createImmutableStateInvariantMiddleware(options) {
-    if (options === void 0) options = {
-    };
-    var next, action;
-    var _b = options.isImmutable, isImmutable = _b === void 0 ? isImmutableDefault : _b, ignoredPaths = options.ignoredPaths, _c = options.warnAfter, warnAfter = _c === void 0 ? 32 : _c, ignore = options.ignore;
-    ignoredPaths = ignoredPaths || ignore;
-    var track = trackForMutations.bind(null, isImmutable, ignoredPaths);
-    return function(_b1) {
-        var getState = _b1.getState;
-        var state = getState();
-        var tracker = track(state);
-        var result;
-        return function(next1) {
-            return function(action1) {
-                var measureUtils = getTimeMeasureUtils(warnAfter, "ImmutableStateInvariantMiddleware");
-                measureUtils.measureTime(function() {
-                    state = getState();
-                    result = tracker.detectMutations();
-                    tracker = track(state);
-                    invariant(!result.wasMutated, "A state mutation was detected between dispatches, in the path '" + (result.path || "") + "'.  This may cause incorrect behavior. (https://redux.js.org/style-guide/style-guide#do-not-mutate-state)");
-                });
-                var dispatchedAction = next1(action1);
-                measureUtils.measureTime(function() {
-                    state = getState();
-                    result = tracker.detectMutations();
-                    tracker = track(state);
-                    result.wasMutated && invariant(!result.wasMutated, "A state mutation was detected inside a dispatch, in the path: " + (result.path || "") + ". Take a look at the reducer(s) handling the action " + stringify(action1) + ". (https://redux.js.org/style-guide/style-guide#do-not-mutate-state)");
-                });
-                measureUtils.warnIfExceeded();
-                return dispatchedAction;
-            };
-        };
-    };
-}
-// src/serializableStateInvariantMiddleware.ts
-function isPlain(val) {
-    var type = typeof val;
-    return type === "undefined" || val === null || type === "string" || type === "boolean" || type === "number" || Array.isArray(val) || isPlainObject(val);
-}
-function findNonSerializableValue(value, path, isSerializable, getEntries, ignoredPaths) {
-    if (path === void 0) path = "";
-    if (isSerializable === void 0) isSerializable = isPlain;
-    if (ignoredPaths === void 0) ignoredPaths = [];
-    var foundNestedSerializable;
-    if (!isSerializable(value)) return {
-        keyPath: path || "<root>",
-        value: value
-    };
-    if (typeof value !== "object" || value === null) return false;
-    var entries = getEntries != null ? getEntries(value) : Object.entries(value);
-    var hasIgnoredPaths = ignoredPaths.length > 0;
-    for(var _i = 0, entries_1 = entries; _i < entries_1.length; _i++){
-        var _b = entries_1[_i], key = _b[0], nestedValue = _b[1];
-        var nestedPath = path ? path + "." + key : key;
-        if (hasIgnoredPaths && ignoredPaths.indexOf(nestedPath) >= 0) continue;
-        if (!isSerializable(nestedValue)) return {
-            keyPath: nestedPath,
-            value: nestedValue
-        };
-        if (typeof nestedValue === "object") {
-            foundNestedSerializable = findNonSerializableValue(nestedValue, nestedPath, isSerializable, getEntries, ignoredPaths);
-            if (foundNestedSerializable) return foundNestedSerializable;
-        }
-    }
-    return false;
-}
-function createSerializableStateInvariantMiddleware(options) {
-    if (options === void 0) options = {
-    };
-    var next, action;
-    var _b = options.isSerializable, isSerializable = _b === void 0 ? isPlain : _b, getEntries = options.getEntries, _c = options.ignoredActions, ignoredActions = _c === void 0 ? [] : _c, _d = options.ignoredActionPaths, ignoredActionPaths = _d === void 0 ? [
-        "meta.arg",
-        "meta.baseQueryMeta"
-    ] : _d, _e = options.ignoredPaths, ignoredPaths = _e === void 0 ? [] : _e, _f = options.warnAfter, warnAfter = _f === void 0 ? 32 : _f, _g = options.ignoreState, ignoreState = _g === void 0 ? false : _g;
-    return function(storeAPI) {
-        return function(next1) {
-            return function(action1) {
-                if (ignoredActions.length && ignoredActions.indexOf(action1.type) !== -1) return next1(action1);
-                var measureUtils = getTimeMeasureUtils(warnAfter, "SerializableStateInvariantMiddleware");
-                measureUtils.measureTime(function() {
-                    var foundActionNonSerializableValue = findNonSerializableValue(action1, "", isSerializable, getEntries, ignoredActionPaths);
-                    if (foundActionNonSerializableValue) {
-                        var keyPath = foundActionNonSerializableValue.keyPath, value = foundActionNonSerializableValue.value;
-                        console.error("A non-serializable value was detected in an action, in the path: `" + keyPath + "`. Value:", value, "\nTake a look at the logic that dispatched this action: ", action1, "\n(See https://redux.js.org/faq/actions#why-should-type-be-a-string-or-at-least-serializable-why-should-my-action-types-be-constants)", "\n(To allow non-serializable values see: https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data)");
-                    }
-                });
-                var result = next1(action1);
-                if (!ignoreState) {
-                    measureUtils.measureTime(function() {
-                        var state = storeAPI.getState();
-                        var foundStateNonSerializableValue = findNonSerializableValue(state, "", isSerializable, getEntries, ignoredPaths);
-                        if (foundStateNonSerializableValue) {
-                            var keyPath = foundStateNonSerializableValue.keyPath, value = foundStateNonSerializableValue.value;
-                            console.error("A non-serializable value was detected in the state, in the path: `" + keyPath + "`. Value:", value, "\nTake a look at the reducer(s) handling this action type: " + action1.type + ".\n(See https://redux.js.org/faq/organizing-state#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state)");
-                        }
-                    });
-                    measureUtils.warnIfExceeded();
-                }
-                return result;
-            };
-        };
-    };
-}
-// src/getDefaultMiddleware.ts
-function isBoolean(x) {
-    return typeof x === "boolean";
-}
-function curryGetDefaultMiddleware() {
-    return function curriedGetDefaultMiddleware(options) {
-        return getDefaultMiddleware(options);
-    };
-}
-function getDefaultMiddleware(options) {
-    if (options === void 0) options = {
-    };
-    var _b = options.thunk, thunk = _b === void 0 ? true : _b, _c = options.immutableCheck, immutableCheck = _c === void 0 ? true : _c, _d = options.serializableCheck, serializableCheck = _d === void 0 ? true : _d;
-    var middlewareArray = new MiddlewareArray1();
-    if (thunk) {
-        if (isBoolean(thunk)) middlewareArray.push(_reduxThunkDefault.default);
-        else middlewareArray.push(_reduxThunkDefault.default.withExtraArgument(thunk.extraArgument));
-    }
-    if (immutableCheck) {
-        var immutableOptions = {
-        };
-        if (!isBoolean(immutableCheck)) immutableOptions = immutableCheck;
-        middlewareArray.unshift(createImmutableStateInvariantMiddleware(immutableOptions));
-    }
-    if (serializableCheck) {
-        var serializableOptions = {
-        };
-        if (!isBoolean(serializableCheck)) serializableOptions = serializableCheck;
-        middlewareArray.push(createSerializableStateInvariantMiddleware(serializableOptions));
-    }
-    return middlewareArray;
-}
-// src/configureStore.ts
-var IS_PRODUCTION = false;
-function configureStore(options) {
-    var curriedGetDefaultMiddleware = curryGetDefaultMiddleware();
-    var _b = options || {
-    }, _c = _b.reducer, reducer = _c === void 0 ? void 0 : _c, _d = _b.middleware, middleware = _d === void 0 ? curriedGetDefaultMiddleware() : _d, _e = _b.devTools, devTools = _e === void 0 ? true : _e, _f = _b.preloadedState, preloadedState = _f === void 0 ? void 0 : _f, _g = _b.enhancers, enhancers = _g === void 0 ? void 0 : _g;
-    var rootReducer;
-    if (typeof reducer === "function") rootReducer = reducer;
-    else if (isPlainObject(reducer)) rootReducer = _redux.combineReducers(reducer);
-    else throw new Error('"reducer" is a required argument, and must be a function or an object of functions that can be passed to combineReducers');
-    var finalMiddleware = middleware;
-    if (typeof finalMiddleware === "function") {
-        finalMiddleware = finalMiddleware(curriedGetDefaultMiddleware);
-        if (!IS_PRODUCTION && !Array.isArray(finalMiddleware)) throw new Error("when using a middleware builder function, an array of middleware must be returned");
-    }
-    if (!IS_PRODUCTION && finalMiddleware.some(function(item) {
-        return typeof item !== "function";
-    })) throw new Error("each middleware provided to configureStore must be a function");
-    var middlewareEnhancer = _redux.applyMiddleware.apply(void 0, finalMiddleware);
-    var finalCompose = _redux.compose;
-    if (devTools) finalCompose = composeWithDevTools(__objSpread({
-        trace: !IS_PRODUCTION
-    }, typeof devTools === "object" && devTools));
-    var storeEnhancers = [
-        middlewareEnhancer
-    ];
-    if (Array.isArray(enhancers)) storeEnhancers = __spreadArray([
-        middlewareEnhancer
-    ], enhancers);
-    else if (typeof enhancers === "function") storeEnhancers = enhancers(storeEnhancers);
-    var composedEnhancer = finalCompose.apply(void 0, storeEnhancers);
-    return _redux.createStore(rootReducer, preloadedState, composedEnhancer);
-}
-// src/createAction.ts
-function createAction(type, prepareAction) {
-    function actionCreator() {
-        var args = [];
-        for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
-        if (prepareAction) {
-            var prepared = prepareAction.apply(void 0, args);
-            if (!prepared) throw new Error("prepareAction did not return an object");
-            return __objSpread(__objSpread({
-                type: type,
-                payload: prepared.payload
-            }, "meta" in prepared && {
-                meta: prepared.meta
-            }), "error" in prepared && {
-                error: prepared.error
-            });
-        }
-        return {
-            type: type,
-            payload: args[0]
-        };
-    }
-    actionCreator.toString = function() {
-        return "" + type;
-    };
-    actionCreator.type = type;
-    actionCreator.match = function(action) {
-        return action.type === type;
-    };
-    return actionCreator;
-}
-function isFSA(action) {
-    return isPlainObject(action) && typeof action.type === "string" && Object.keys(action).every(isValidKey);
-}
-function isValidKey(key) {
-    return [
-        "type",
-        "payload",
-        "error",
-        "meta"
-    ].indexOf(key) > -1;
-}
-function getType(actionCreator) {
-    return "" + actionCreator;
-}
-// src/mapBuilders.ts
-function executeReducerBuilderCallback(builderCallback) {
-    var actionsMap = {
-    };
-    var actionMatchers = [];
-    var defaultCaseReducer;
-    var builder = {
-        addCase: function(typeOrActionCreator, reducer) {
-            if (actionMatchers.length > 0) throw new Error("`builder.addCase` should only be called before calling `builder.addMatcher`");
-            if (defaultCaseReducer) throw new Error("`builder.addCase` should only be called before calling `builder.addDefaultCase`");
-            var type = typeof typeOrActionCreator === "string" ? typeOrActionCreator : typeOrActionCreator.type;
-            if (type in actionsMap) throw new Error("addCase cannot be called with two reducers for the same action type");
-            actionsMap[type] = reducer;
-            return builder;
-        },
-        addMatcher: function(matcher, reducer) {
-            if (defaultCaseReducer) throw new Error("`builder.addMatcher` should only be called before calling `builder.addDefaultCase`");
-            actionMatchers.push({
-                matcher: matcher,
-                reducer: reducer
-            });
-            return builder;
-        },
-        addDefaultCase: function(reducer) {
-            if (defaultCaseReducer) throw new Error("`builder.addDefaultCase` can only be called once");
-            defaultCaseReducer = reducer;
-            return builder;
-        }
-    };
-    builderCallback(builder);
-    return [
-        actionsMap,
-        actionMatchers,
-        defaultCaseReducer
-    ];
-}
-// src/createReducer.ts
-function createReducer(initialState, mapOrBuilderCallback, actionMatchers, defaultCaseReducer) {
-    if (actionMatchers === void 0) actionMatchers = [];
-    _immer.enableES5();
-    var _b = typeof mapOrBuilderCallback === "function" ? executeReducerBuilderCallback(mapOrBuilderCallback) : [
-        mapOrBuilderCallback,
-        actionMatchers,
-        defaultCaseReducer
-    ], actionsMap = _b[0], finalActionMatchers = _b[1], finalDefaultCaseReducer = _b[2];
-    var frozenInitialState = _immerDefault.default(initialState, function() {
-    });
-    return function(state, action) {
-        if (state === void 0) state = frozenInitialState;
-        var caseReducers = __spreadArray([
-            actionsMap[action.type]
-        ], finalActionMatchers.filter(function(_b1) {
-            var matcher = _b1.matcher;
-            return matcher(action);
-        }).map(function(_b1) {
-            var reducer = _b1.reducer;
-            return reducer;
-        }));
-        if (caseReducers.filter(function(cr) {
-            return !!cr;
-        }).length === 0) caseReducers = [
-            finalDefaultCaseReducer
-        ];
-        return caseReducers.reduce(function(previousState, caseReducer) {
-            if (caseReducer) {
-                if (_immer.isDraft(previousState)) {
-                    var draft = previousState;
-                    var result = caseReducer(draft, action);
-                    if (typeof result === "undefined") return previousState;
-                    return result;
-                } else if (!_immer.isDraftable(previousState)) {
-                    var result = caseReducer(previousState, action);
-                    if (typeof result === "undefined") {
-                        if (previousState === null) return previousState;
-                        throw Error("A case reducer on a non-draftable value must not return undefined");
-                    }
-                    return result;
-                } else return _immerDefault.default(previousState, function(draft) {
-                    return caseReducer(draft, action);
-                });
-            }
-            return previousState;
-        }, state);
-    };
-}
-// src/createSlice.ts
-function getType2(slice, actionKey) {
-    return slice + "/" + actionKey;
-}
-function createSlice(options) {
-    var name = options.name, initialState = options.initialState;
-    if (!name) throw new Error("`name` is a required option for createSlice");
-    var reducers = options.reducers || {
-    };
-    var _b = typeof options.extraReducers === "function" ? executeReducerBuilderCallback(options.extraReducers) : [
-        options.extraReducers
-    ], _c = _b[0], extraReducers = _c === void 0 ? {
-    } : _c, _d = _b[1], actionMatchers = _d === void 0 ? [] : _d, _e = _b[2], defaultCaseReducer = _e === void 0 ? void 0 : _e;
-    var reducerNames = Object.keys(reducers);
-    var sliceCaseReducersByName = {
-    };
-    var sliceCaseReducersByType = {
-    };
-    var actionCreators = {
-    };
-    reducerNames.forEach(function(reducerName) {
-        var maybeReducerWithPrepare = reducers[reducerName];
-        var type = getType2(name, reducerName);
-        var caseReducer;
-        var prepareCallback;
-        if ("reducer" in maybeReducerWithPrepare) {
-            caseReducer = maybeReducerWithPrepare.reducer;
-            prepareCallback = maybeReducerWithPrepare.prepare;
-        } else caseReducer = maybeReducerWithPrepare;
-        sliceCaseReducersByName[reducerName] = caseReducer;
-        sliceCaseReducersByType[type] = caseReducer;
-        actionCreators[reducerName] = prepareCallback ? createAction(type, prepareCallback) : createAction(type);
-    });
-    var finalCaseReducers = __objSpread(__objSpread({
-    }, extraReducers), sliceCaseReducersByType);
-    var reducer = createReducer(initialState, finalCaseReducers, actionMatchers, defaultCaseReducer);
-    return {
-        name: name,
-        reducer: reducer,
-        actions: actionCreators,
-        caseReducers: sliceCaseReducersByName
-    };
-}
-// src/entities/entity_state.ts
-function getInitialEntityState() {
-    return {
-        ids: [],
-        entities: {
-        }
-    };
-}
-function createInitialStateFactory() {
-    function getInitialState(additionalState) {
-        if (additionalState === void 0) additionalState = {
-        };
-        return Object.assign(getInitialEntityState(), additionalState);
-    }
-    return {
-        getInitialState: getInitialState
-    };
-}
-// src/entities/state_selectors.ts
-function createSelectorsFactory() {
-    function getSelectors(selectState) {
-        var selectIds = function(state) {
-            return state.ids;
-        };
-        var selectEntities = function(state) {
-            return state.entities;
-        };
-        var selectAll = createDraftSafeSelector(selectIds, selectEntities, function(ids, entities) {
-            return ids.map(function(id) {
-                return entities[id];
-            });
-        });
-        var selectId = function(_, id) {
-            return id;
-        };
-        var selectById = function(entities, id) {
-            return entities[id];
-        };
-        var selectTotal = createDraftSafeSelector(selectIds, function(ids) {
-            return ids.length;
-        });
-        if (!selectState) return {
-            selectIds: selectIds,
-            selectEntities: selectEntities,
-            selectAll: selectAll,
-            selectTotal: selectTotal,
-            selectById: createDraftSafeSelector(selectEntities, selectId, selectById)
-        };
-        var selectGlobalizedEntities = createDraftSafeSelector(selectState, selectEntities);
-        return {
-            selectIds: createDraftSafeSelector(selectState, selectIds),
-            selectEntities: selectGlobalizedEntities,
-            selectAll: createDraftSafeSelector(selectState, selectAll),
-            selectTotal: createDraftSafeSelector(selectState, selectTotal),
-            selectById: createDraftSafeSelector(selectGlobalizedEntities, selectId, selectById)
-        };
-    }
-    return {
-        getSelectors: getSelectors
-    };
-}
-function createSingleArgumentStateOperator(mutator) {
-    var operator = createStateOperator(function(_, state) {
-        return mutator(state);
-    });
-    return function operation(state) {
-        return operator(state, void 0);
-    };
-}
-function createStateOperator(mutator) {
-    return function operation(state, arg) {
-        function isPayloadActionArgument(arg2) {
-            return isFSA(arg2);
-        }
-        var runMutator = function(draft) {
-            if (isPayloadActionArgument(arg)) mutator(arg.payload, draft);
-            else mutator(arg, draft);
-        };
-        if (_immer.isDraft(state)) {
-            runMutator(state);
-            return state;
-        } else return _immerDefault.default(state, runMutator);
-    };
-}
-// src/entities/utils.ts
-function selectIdValue(entity, selectId) {
-    var key = selectId(entity);
-    if (key === void 0) console.warn("The entity passed to the `selectId` implementation returned undefined.", "You should probably provide your own `selectId` implementation.", "The entity that was passed:", entity, "The `selectId` implementation:", selectId.toString());
-    return key;
-}
-function ensureEntitiesArray(entities) {
-    if (!Array.isArray(entities)) entities = Object.values(entities);
-    return entities;
-}
-function splitAddedUpdatedEntities(newEntities, selectId, state) {
-    newEntities = ensureEntitiesArray(newEntities);
-    var added = [];
-    var updated = [];
-    for(var _i = 0, newEntities_1 = newEntities; _i < newEntities_1.length; _i++){
-        var entity = newEntities_1[_i];
-        var id = selectIdValue(entity, selectId);
-        if (id in state.entities) updated.push({
-            id: id,
-            changes: entity
-        });
-        else added.push(entity);
-    }
-    return [
-        added,
-        updated
-    ];
-}
-// src/entities/unsorted_state_adapter.ts
-function createUnsortedStateAdapter(selectId) {
-    function addOneMutably(entity, state) {
-        var key = selectIdValue(entity, selectId);
-        if (key in state.entities) return;
-        state.ids.push(key);
-        state.entities[key] = entity;
-    }
-    function addManyMutably(newEntities, state) {
-        newEntities = ensureEntitiesArray(newEntities);
-        for(var _i = 0, newEntities_2 = newEntities; _i < newEntities_2.length; _i++){
-            var entity = newEntities_2[_i];
-            addOneMutably(entity, state);
-        }
-    }
-    function setOneMutably(entity, state) {
-        var key = selectIdValue(entity, selectId);
-        if (!(key in state.entities)) state.ids.push(key);
-        state.entities[key] = entity;
-    }
-    function setManyMutably(newEntities, state) {
-        newEntities = ensureEntitiesArray(newEntities);
-        for(var _i = 0, newEntities_3 = newEntities; _i < newEntities_3.length; _i++){
-            var entity = newEntities_3[_i];
-            setOneMutably(entity, state);
-        }
-    }
-    function setAllMutably(newEntities, state) {
-        newEntities = ensureEntitiesArray(newEntities);
-        state.ids = [];
-        state.entities = {
-        };
-        addManyMutably(newEntities, state);
-    }
-    function removeOneMutably(key, state) {
-        return removeManyMutably([
-            key
-        ], state);
-    }
-    function removeManyMutably(keys, state) {
-        var didMutate = false;
-        keys.forEach(function(key) {
-            if (key in state.entities) {
-                delete state.entities[key];
-                didMutate = true;
-            }
-        });
-        if (didMutate) state.ids = state.ids.filter(function(id) {
-            return id in state.entities;
-        });
-    }
-    function removeAllMutably(state) {
-        Object.assign(state, {
-            ids: [],
-            entities: {
-            }
-        });
-    }
-    function takeNewKey(keys, update, state) {
-        var original2 = state.entities[update.id];
-        var updated = Object.assign({
-        }, original2, update.changes);
-        var newKey = selectIdValue(updated, selectId);
-        var hasNewKey = newKey !== update.id;
-        if (hasNewKey) {
-            keys[update.id] = newKey;
-            delete state.entities[update.id];
-        }
-        state.entities[newKey] = updated;
-        return hasNewKey;
-    }
-    function updateOneMutably(update, state) {
-        return updateManyMutably([
-            update
-        ], state);
-    }
-    function updateManyMutably(updates, state) {
-        var newKeys = {
-        };
-        var updatesPerEntity = {
-        };
-        updates.forEach(function(update) {
-            if (update.id in state.entities) updatesPerEntity[update.id] = {
-                id: update.id,
-                changes: __objSpread(__objSpread({
-                }, updatesPerEntity[update.id] ? updatesPerEntity[update.id].changes : null), update.changes)
-            };
-        });
-        updates = Object.values(updatesPerEntity);
-        var didMutateEntities = updates.length > 0;
-        if (didMutateEntities) {
-            var didMutateIds = updates.filter(function(update) {
-                return takeNewKey(newKeys, update, state);
-            }).length > 0;
-            if (didMutateIds) state.ids = state.ids.map(function(id) {
-                return newKeys[id] || id;
-            });
-        }
-    }
-    function upsertOneMutably(entity, state) {
-        return upsertManyMutably([
-            entity
-        ], state);
-    }
-    function upsertManyMutably(newEntities, state) {
-        var _b = splitAddedUpdatedEntities(newEntities, selectId, state), added = _b[0], updated = _b[1];
-        updateManyMutably(updated, state);
-        addManyMutably(added, state);
-    }
-    return {
-        removeAll: createSingleArgumentStateOperator(removeAllMutably),
-        addOne: createStateOperator(addOneMutably),
-        addMany: createStateOperator(addManyMutably),
-        setOne: createStateOperator(setOneMutably),
-        setMany: createStateOperator(setManyMutably),
-        setAll: createStateOperator(setAllMutably),
-        updateOne: createStateOperator(updateOneMutably),
-        updateMany: createStateOperator(updateManyMutably),
-        upsertOne: createStateOperator(upsertOneMutably),
-        upsertMany: createStateOperator(upsertManyMutably),
-        removeOne: createStateOperator(removeOneMutably),
-        removeMany: createStateOperator(removeManyMutably)
-    };
-}
-// src/entities/sorted_state_adapter.ts
-function createSortedStateAdapter(selectId, sort) {
-    var _b = createUnsortedStateAdapter(selectId), removeOne = _b.removeOne, removeMany = _b.removeMany, removeAll = _b.removeAll;
-    function addOneMutably(entity, state) {
-        return addManyMutably([
-            entity
-        ], state);
-    }
-    function addManyMutably(newEntities, state) {
-        newEntities = ensureEntitiesArray(newEntities);
-        var models = newEntities.filter(function(model) {
-            return !(selectIdValue(model, selectId) in state.entities);
-        });
-        if (models.length !== 0) merge(models, state);
-    }
-    function setOneMutably(entity, state) {
-        return setManyMutably([
-            entity
-        ], state);
-    }
-    function setManyMutably(newEntities, state) {
-        newEntities = ensureEntitiesArray(newEntities);
-        if (newEntities.length !== 0) merge(newEntities, state);
-    }
-    function setAllMutably(newEntities, state) {
-        newEntities = ensureEntitiesArray(newEntities);
-        state.entities = {
-        };
-        state.ids = [];
-        addManyMutably(newEntities, state);
-    }
-    function updateOneMutably(update, state) {
-        return updateManyMutably([
-            update
-        ], state);
-    }
-    function takeUpdatedModel(models, update, state) {
-        if (!(update.id in state.entities)) return false;
-        var original2 = state.entities[update.id];
-        var updated = Object.assign({
-        }, original2, update.changes);
-        var newKey = selectIdValue(updated, selectId);
-        delete state.entities[update.id];
-        models.push(updated);
-        return newKey !== update.id;
-    }
-    function updateManyMutably(updates, state) {
-        var models = [];
-        updates.forEach(function(update) {
-            return takeUpdatedModel(models, update, state);
-        });
-        if (models.length !== 0) merge(models, state);
-    }
-    function upsertOneMutably(entity, state) {
-        return upsertManyMutably([
-            entity
-        ], state);
-    }
-    function upsertManyMutably(newEntities, state) {
-        var _b1 = splitAddedUpdatedEntities(newEntities, selectId, state), added = _b1[0], updated = _b1[1];
-        updateManyMutably(updated, state);
-        addManyMutably(added, state);
-    }
-    function areArraysEqual(a, b) {
-        if (a.length !== b.length) return false;
-        for(var i = 0; i < a.length && i < b.length; i++){
-            if (a[i] === b[i]) continue;
-            return false;
-        }
-        return true;
-    }
-    function merge(models, state) {
-        models.forEach(function(model) {
-            state.entities[selectId(model)] = model;
-        });
-        var allEntities = Object.values(state.entities);
-        allEntities.sort(sort);
-        var newSortedIds = allEntities.map(selectId);
-        var ids = state.ids;
-        if (!areArraysEqual(ids, newSortedIds)) state.ids = newSortedIds;
-    }
-    return {
-        removeOne: removeOne,
-        removeMany: removeMany,
-        removeAll: removeAll,
-        addOne: createStateOperator(addOneMutably),
-        updateOne: createStateOperator(updateOneMutably),
-        upsertOne: createStateOperator(upsertOneMutably),
-        setOne: createStateOperator(setOneMutably),
-        setMany: createStateOperator(setManyMutably),
-        setAll: createStateOperator(setAllMutably),
-        addMany: createStateOperator(addManyMutably),
-        updateMany: createStateOperator(updateManyMutably),
-        upsertMany: createStateOperator(upsertManyMutably)
-    };
-}
-// src/entities/create_adapter.ts
-function createEntityAdapter(options) {
-    if (options === void 0) options = {
-    };
-    var _b = __objSpread({
-        sortComparer: false,
-        selectId: function(instance) {
-            return instance.id;
-        }
-    }, options), selectId = _b.selectId, sortComparer = _b.sortComparer;
-    var stateFactory = createInitialStateFactory();
-    var selectorsFactory = createSelectorsFactory();
-    var stateAdapter = sortComparer ? createSortedStateAdapter(selectId, sortComparer) : createUnsortedStateAdapter(selectId);
-    return __objSpread(__objSpread(__objSpread({
-        selectId: selectId,
-        sortComparer: sortComparer
-    }, stateFactory), selectorsFactory), stateAdapter);
-}
-// src/nanoid.ts
-var urlAlphabet = "ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW";
-var nanoid = function(size) {
-    if (size === void 0) size = 21;
-    var id = "";
-    var i = size;
-    while(i--)id += urlAlphabet[Math.random() * 64 | 0];
-    return id;
-};
-// src/createAsyncThunk.ts
-var commonProperties = [
-    "name",
-    "message",
-    "stack",
-    "code"
-];
-var RejectWithValue = function() {
-    function RejectWithValue1(payload, meta) {
-        this.payload = payload;
-        this.meta = meta;
-    }
-    return RejectWithValue1;
-}();
-var FulfillWithMeta = function() {
-    function FulfillWithMeta1(payload, meta) {
-        this.payload = payload;
-        this.meta = meta;
-    }
-    return FulfillWithMeta1;
-}();
-var miniSerializeError = function(value) {
-    if (typeof value === "object" && value !== null) {
-        var simpleError = {
-        };
-        for(var _i = 0, commonProperties_1 = commonProperties; _i < commonProperties_1.length; _i++){
-            var property = commonProperties_1[_i];
-            if (typeof value[property] === "string") simpleError[property] = value[property];
-        }
-        return simpleError;
-    }
-    return {
-        message: String(value)
-    };
-};
-function createAsyncThunk(typePrefix, payloadCreator, options) {
-    var fulfilled = createAction(typePrefix + "/fulfilled", function(payload, requestId, arg, meta) {
-        return {
-            payload: payload,
-            meta: __objSpread(__objSpread({
-            }, meta || {
-            }), {
-                arg: arg,
-                requestId: requestId,
-                requestStatus: "fulfilled"
-            })
-        };
-    });
-    var pending = createAction(typePrefix + "/pending", function(requestId, arg, meta) {
-        return {
-            payload: void 0,
-            meta: __objSpread(__objSpread({
-            }, meta || {
-            }), {
-                arg: arg,
-                requestId: requestId,
-                requestStatus: "pending"
-            })
-        };
-    });
-    var rejected = createAction(typePrefix + "/rejected", function(error, requestId, arg, payload, meta) {
-        return {
-            payload: payload,
-            error: (options && options.serializeError || miniSerializeError)(error || "Rejected"),
-            meta: __objSpread(__objSpread({
-            }, meta || {
-            }), {
-                arg: arg,
-                requestId: requestId,
-                rejectedWithValue: !!payload,
-                requestStatus: "rejected",
-                aborted: (error == null ? void 0 : error.name) === "AbortError",
-                condition: (error == null ? void 0 : error.name) === "ConditionError"
-            })
-        };
-    });
-    var displayedWarning = false;
-    var AC = typeof AbortController !== "undefined" ? AbortController : function() {
-        function class_1() {
-            this.signal = {
-                aborted: false,
-                addEventListener: function() {
-                },
-                dispatchEvent: function() {
-                    return false;
-                },
-                onabort: function() {
-                },
-                removeEventListener: function() {
-                }
-            };
-        }
-        class_1.prototype.abort = function() {
-            if (!displayedWarning) {
-                displayedWarning = true;
-                console.info("This platform does not implement AbortController. \nIf you want to use the AbortController to react to `abort` events, please consider importing a polyfill like 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'.");
-            }
-        };
-        return class_1;
-    }();
-    function actionCreator(arg) {
-        return function(dispatch, getState, extra) {
-            var _a;
-            var requestId = ((_a = options == null ? void 0 : options.idGenerator) != null ? _a : nanoid)();
-            var abortController = new AC();
-            var abortReason;
-            var abortedPromise = new Promise(function(_, reject) {
-                return abortController.signal.addEventListener("abort", function() {
-                    return reject({
-                        name: "AbortError",
-                        message: abortReason || "Aborted"
-                    });
-                });
-            });
-            var started = false;
-            function abort(reason) {
-                if (started) {
-                    abortReason = reason;
-                    abortController.abort();
-                }
-            }
-            var promise = function() {
-                return __async(this, null, function() {
-                    var _a2, finalAction, err_1, skipDispatch;
-                    return __generator(this, function(_b) {
-                        switch(_b.label){
-                            case 0:
-                                _b.trys.push([
-                                    0,
-                                    2,
-                                    ,
-                                    3
-                                ]);
-                                if (options && options.condition && options.condition(arg, {
-                                    getState: getState,
-                                    extra: extra
-                                }) === false) throw {
-                                    name: "ConditionError",
-                                    message: "Aborted due to condition callback returning false."
-                                };
-                                started = true;
-                                dispatch(pending(requestId, arg, (_a2 = options == null ? void 0 : options.getPendingMeta) == null ? void 0 : _a2.call(options, {
-                                    requestId: requestId,
-                                    arg: arg
-                                }, {
-                                    getState: getState,
-                                    extra: extra
-                                })));
-                                return [
-                                    4,
-                                    Promise.race([
-                                        abortedPromise,
-                                        Promise.resolve(payloadCreator(arg, {
-                                            dispatch: dispatch,
-                                            getState: getState,
-                                            extra: extra,
-                                            requestId: requestId,
-                                            signal: abortController.signal,
-                                            rejectWithValue: function(value, meta) {
-                                                return new RejectWithValue(value, meta);
-                                            },
-                                            fulfillWithValue: function(value, meta) {
-                                                return new FulfillWithMeta(value, meta);
-                                            }
-                                        })).then(function(result) {
-                                            if (result instanceof RejectWithValue) throw result;
-                                            if (result instanceof FulfillWithMeta) return fulfilled(result.payload, requestId, arg, result.meta);
-                                            return fulfilled(result, requestId, arg);
-                                        })
-                                    ])
-                                ];
-                            case 1:
-                                finalAction = _b.sent();
-                                return [
-                                    3,
-                                    3
-                                ];
-                            case 2:
-                                err_1 = _b.sent();
-                                finalAction = err_1 instanceof RejectWithValue ? rejected(null, requestId, arg, err_1.payload, err_1.meta) : rejected(err_1, requestId, arg);
-                                return [
-                                    3,
-                                    3
-                                ];
-                            case 3:
-                                skipDispatch = options && !options.dispatchConditionRejection && rejected.match(finalAction) && finalAction.meta.condition;
-                                if (!skipDispatch) dispatch(finalAction);
-                                return [
-                                    2,
-                                    finalAction
-                                ];
-                        }
-                    });
-                });
-            }();
-            return Object.assign(promise, {
-                abort: abort,
-                requestId: requestId,
-                arg: arg,
-                unwrap: function() {
-                    return promise.then(unwrapResult);
-                }
-            });
-        };
-    }
-    return Object.assign(actionCreator, {
-        pending: pending,
-        rejected: rejected,
-        fulfilled: fulfilled,
-        typePrefix: typePrefix
-    });
-}
-function unwrapResult(action) {
-    if (action.meta && action.meta.rejectedWithValue) throw action.payload;
-    if (action.error) throw action.error;
-    return action.payload;
-}
-// src/tsHelpers.ts
-var hasMatchFunction = function(v) {
-    return v && typeof v.match === "function";
-};
-// src/matchers.ts
-var matches = function(matcher, action) {
-    if (hasMatchFunction(matcher)) return matcher.match(action);
-    else return matcher(action);
-};
-function isAnyOf() {
-    var matchers = [];
-    for(var _i = 0; _i < arguments.length; _i++)matchers[_i] = arguments[_i];
-    return function(action) {
-        return matchers.some(function(matcher) {
-            return matches(matcher, action);
-        });
-    };
-}
-function isAllOf() {
-    var matchers = [];
-    for(var _i = 0; _i < arguments.length; _i++)matchers[_i] = arguments[_i];
-    return function(action) {
-        return matchers.every(function(matcher) {
-            return matches(matcher, action);
-        });
-    };
-}
-function hasExpectedRequestMetadata(action, validStatus) {
-    if (!action || !action.meta) return false;
-    var hasValidRequestId = typeof action.meta.requestId === "string";
-    var hasValidRequestStatus = validStatus.indexOf(action.meta.requestStatus) > -1;
-    return hasValidRequestId && hasValidRequestStatus;
-}
-function isAsyncThunkArray(a) {
-    return typeof a[0] === "function" && "pending" in a[0] && "fulfilled" in a[0] && "rejected" in a[0];
-}
-function isPending() {
-    var asyncThunks = [];
-    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
-    if (asyncThunks.length === 0) return function(action) {
-        return hasExpectedRequestMetadata(action, [
-            "pending"
-        ]);
-    };
-    if (!isAsyncThunkArray(asyncThunks)) return isPending()(asyncThunks[0]);
-    return function(action) {
-        var matchers = asyncThunks.map(function(asyncThunk) {
-            return asyncThunk.pending;
-        });
-        var combinedMatcher = isAnyOf.apply(void 0, matchers);
-        return combinedMatcher(action);
-    };
-}
-function isRejected() {
-    var asyncThunks = [];
-    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
-    if (asyncThunks.length === 0) return function(action) {
-        return hasExpectedRequestMetadata(action, [
-            "rejected"
-        ]);
-    };
-    if (!isAsyncThunkArray(asyncThunks)) return isRejected()(asyncThunks[0]);
-    return function(action) {
-        var matchers = asyncThunks.map(function(asyncThunk) {
-            return asyncThunk.rejected;
-        });
-        var combinedMatcher = isAnyOf.apply(void 0, matchers);
-        return combinedMatcher(action);
-    };
-}
-function isRejectedWithValue() {
-    var asyncThunks = [];
-    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
-    var hasFlag = function(action) {
-        return action && action.meta && action.meta.rejectedWithValue;
-    };
-    if (asyncThunks.length === 0) return function(action) {
-        var combinedMatcher = isAllOf(isRejected.apply(void 0, asyncThunks), hasFlag);
-        return combinedMatcher(action);
-    };
-    if (!isAsyncThunkArray(asyncThunks)) return isRejectedWithValue()(asyncThunks[0]);
-    return function(action) {
-        var combinedMatcher = isAllOf(isRejected.apply(void 0, asyncThunks), hasFlag);
-        return combinedMatcher(action);
-    };
-}
-function isFulfilled() {
-    var asyncThunks = [];
-    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
-    if (asyncThunks.length === 0) return function(action) {
-        return hasExpectedRequestMetadata(action, [
-            "fulfilled"
-        ]);
-    };
-    if (!isAsyncThunkArray(asyncThunks)) return isFulfilled()(asyncThunks[0]);
-    return function(action) {
-        var matchers = asyncThunks.map(function(asyncThunk) {
-            return asyncThunk.fulfilled;
-        });
-        var combinedMatcher = isAnyOf.apply(void 0, matchers);
-        return combinedMatcher(action);
-    };
-}
-function isAsyncThunkAction() {
-    var asyncThunks = [];
-    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
-    if (asyncThunks.length === 0) return function(action) {
-        return hasExpectedRequestMetadata(action, [
-            "pending",
-            "fulfilled",
-            "rejected"
-        ]);
-    };
-    if (!isAsyncThunkArray(asyncThunks)) return isAsyncThunkAction()(asyncThunks[0]);
-    return function(action) {
-        var matchers = [];
-        for(var _i1 = 0, asyncThunks_1 = asyncThunks; _i1 < asyncThunks_1.length; _i1++){
-            var asyncThunk = asyncThunks_1[_i1];
-            matchers.push(asyncThunk.pending, asyncThunk.rejected, asyncThunk.fulfilled);
-        }
-        var combinedMatcher = isAnyOf.apply(void 0, matchers);
-        return combinedMatcher(action);
-    };
-}
-
-},{"redux":"an2Qp","immer":"bzXDR","reselect":"AwPih","redux-thunk":"kozXV","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"an2Qp":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
-);
-parcelHelpers.export(exports, "applyMiddleware", ()=>applyMiddleware
-);
-parcelHelpers.export(exports, "bindActionCreators", ()=>bindActionCreators
-);
-parcelHelpers.export(exports, "combineReducers", ()=>combineReducers
-);
-parcelHelpers.export(exports, "compose", ()=>compose
-);
-parcelHelpers.export(exports, "createStore", ()=>createStore
-);
-var _objectSpread2 = require("@babel/runtime/helpers/esm/objectSpread2");
-var _objectSpread2Default = parcelHelpers.interopDefault(_objectSpread2);
-/**
- * Adapted from React: https://github.com/facebook/react/blob/master/packages/shared/formatProdErrorMessage.js
- *
- * Do not require this module directly! Use normal throw error calls. These messages will be replaced with error codes
- * during build.
- * @param {number} code
- */ function formatProdErrorMessage(code) {
-    return "Minified Redux error #" + code + "; visit https://redux.js.org/Errors?code=" + code + " for the full message or " + 'use the non-minified dev environment for full errors. ';
-}
-// Inlined version of the `symbol-observable` polyfill
-var $$observable = function() {
-    return typeof Symbol === 'function' && Symbol.observable || '@@observable';
-}();
-/**
- * These are private action types reserved by Redux.
- * For any unknown actions, you must return the current state.
- * If the current state is undefined, you must return the initial state.
- * Do not reference these action types directly in your code.
- */ var randomString = function randomString1() {
-    return Math.random().toString(36).substring(7).split('').join('.');
-};
-var ActionTypes = {
-    INIT: "@@redux/INIT" + randomString(),
-    REPLACE: "@@redux/REPLACE" + randomString(),
-    PROBE_UNKNOWN_ACTION: function PROBE_UNKNOWN_ACTION() {
-        return "@@redux/PROBE_UNKNOWN_ACTION" + randomString();
-    }
-};
-/**
- * @param {any} obj The object to inspect.
- * @returns {boolean} True if the argument appears to be a plain object.
- */ function isPlainObject(obj) {
-    if (typeof obj !== 'object' || obj === null) return false;
-    var proto = obj;
-    while(Object.getPrototypeOf(proto) !== null)proto = Object.getPrototypeOf(proto);
-    return Object.getPrototypeOf(obj) === proto;
-}
-function kindOf(val) {
-    var typeOfVal = typeof val;
-    {
-        // Inlined / shortened version of `kindOf` from https://github.com/jonschlinkert/kind-of
-        function miniKindOf(val1) {
-            if (val1 === void 0) return 'undefined';
-            if (val1 === null) return 'null';
-            var type = typeof val1;
-            switch(type){
-                case 'boolean':
-                case 'string':
-                case 'number':
-                case 'symbol':
-                case 'function':
-                    return type;
-            }
-            if (Array.isArray(val1)) return 'array';
-            if (isDate(val1)) return 'date';
-            if (isError(val1)) return 'error';
-            var constructorName = ctorName(val1);
-            switch(constructorName){
-                case 'Symbol':
-                case 'Promise':
-                case 'WeakMap':
-                case 'WeakSet':
-                case 'Map':
-                case 'Set':
-                    return constructorName;
-            } // other
-            return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
-        }
-        function ctorName(val1) {
-            return typeof val1.constructor === 'function' ? val1.constructor.name : null;
-        }
-        function isError(val1) {
-            return val1 instanceof Error || typeof val1.message === 'string' && val1.constructor && typeof val1.constructor.stackTraceLimit === 'number';
-        }
-        function isDate(val1) {
-            if (val1 instanceof Date) return true;
-            return typeof val1.toDateString === 'function' && typeof val1.getDate === 'function' && typeof val1.setDate === 'function';
-        }
-        typeOfVal = miniKindOf(val);
-    }
-    return typeOfVal;
-}
-/**
- * Creates a Redux store that holds the state tree.
- * The only way to change the data in the store is to call `dispatch()` on it.
- *
- * There should only be a single store in your app. To specify how different
- * parts of the state tree respond to actions, you may combine several reducers
- * into a single reducer function by using `combineReducers`.
- *
- * @param {Function} reducer A function that returns the next state tree, given
- * the current state tree and the action to handle.
- *
- * @param {any} [preloadedState] The initial state. You may optionally specify it
- * to hydrate the state from the server in universal apps, or to restore a
- * previously serialized user session.
- * If you use `combineReducers` to produce the root reducer function, this must be
- * an object with the same shape as `combineReducers` keys.
- *
- * @param {Function} [enhancer] The store enhancer. You may optionally specify it
- * to enhance the store with third-party capabilities such as middleware,
- * time travel, persistence, etc. The only store enhancer that ships with Redux
- * is `applyMiddleware()`.
- *
- * @returns {Store} A Redux store that lets you read the state, dispatch actions
- * and subscribe to changes.
- */ function createStore(reducer, preloadedState, enhancer) {
-    var _ref2;
-    if (typeof preloadedState === 'function' && typeof enhancer === 'function' || typeof enhancer === 'function' && typeof arguments[3] === 'function') throw new Error("It looks like you are passing several store enhancers to createStore(). This is not supported. Instead, compose them together to a single function. See https://redux.js.org/tutorials/fundamentals/part-4-store#creating-a-store-with-enhancers for an example.");
-    if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
-        enhancer = preloadedState;
-        preloadedState = undefined;
-    }
-    if (typeof enhancer !== 'undefined') {
-        if (typeof enhancer !== 'function') throw new Error("Expected the enhancer to be a function. Instead, received: '" + kindOf(enhancer) + "'");
-        return enhancer(createStore)(reducer, preloadedState);
-    }
-    if (typeof reducer !== 'function') throw new Error("Expected the root reducer to be a function. Instead, received: '" + kindOf(reducer) + "'");
-    var currentReducer = reducer;
-    var currentState = preloadedState;
-    var currentListeners = [];
-    var nextListeners = currentListeners;
-    var isDispatching = false;
-    /**
-   * This makes a shallow copy of currentListeners so we can use
-   * nextListeners as a temporary list while dispatching.
-   *
-   * This prevents any bugs around consumers calling
-   * subscribe/unsubscribe in the middle of a dispatch.
-   */ function ensureCanMutateNextListeners() {
-        if (nextListeners === currentListeners) nextListeners = currentListeners.slice();
-    }
-    /**
-   * Reads the state tree managed by the store.
-   *
-   * @returns {any} The current state tree of your application.
-   */ function getState() {
-        if (isDispatching) throw new Error("You may not call store.getState() while the reducer is executing. The reducer has already received the state as an argument. Pass it down from the top reducer instead of reading it from the store.");
-        return currentState;
-    }
-    /**
-   * Adds a change listener. It will be called any time an action is dispatched,
-   * and some part of the state tree may potentially have changed. You may then
-   * call `getState()` to read the current state tree inside the callback.
-   *
-   * You may call `dispatch()` from a change listener, with the following
-   * caveats:
-   *
-   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
-   * If you subscribe or unsubscribe while the listeners are being invoked, this
-   * will not have any effect on the `dispatch()` that is currently in progress.
-   * However, the next `dispatch()` call, whether nested or not, will use a more
-   * recent snapshot of the subscription list.
-   *
-   * 2. The listener should not expect to see all state changes, as the state
-   * might have been updated multiple times during a nested `dispatch()` before
-   * the listener is called. It is, however, guaranteed that all subscribers
-   * registered before the `dispatch()` started will be called with the latest
-   * state by the time it exits.
-   *
-   * @param {Function} listener A callback to be invoked on every dispatch.
-   * @returns {Function} A function to remove this change listener.
-   */ function subscribe(listener) {
-        if (typeof listener !== 'function') throw new Error("Expected the listener to be a function. Instead, received: '" + kindOf(listener) + "'");
-        if (isDispatching) throw new Error("You may not call store.subscribe() while the reducer is executing. If you would like to be notified after the store has been updated, subscribe from a component and invoke store.getState() in the callback to access the latest state. See https://redux.js.org/api/store#subscribelistener for more details.");
-        var isSubscribed = true;
-        ensureCanMutateNextListeners();
-        nextListeners.push(listener);
-        return function unsubscribe() {
-            if (!isSubscribed) return;
-            if (isDispatching) throw new Error("You may not unsubscribe from a store listener while the reducer is executing. See https://redux.js.org/api/store#subscribelistener for more details.");
-            isSubscribed = false;
-            ensureCanMutateNextListeners();
-            var index = nextListeners.indexOf(listener);
-            nextListeners.splice(index, 1);
-            currentListeners = null;
-        };
-    }
-    /**
-   * Dispatches an action. It is the only way to trigger a state change.
-   *
-   * The `reducer` function, used to create the store, will be called with the
-   * current state tree and the given `action`. Its return value will
-   * be considered the **next** state of the tree, and the change listeners
-   * will be notified.
-   *
-   * The base implementation only supports plain object actions. If you want to
-   * dispatch a Promise, an Observable, a thunk, or something else, you need to
-   * wrap your store creating function into the corresponding middleware. For
-   * example, see the documentation for the `redux-thunk` package. Even the
-   * middleware will eventually dispatch plain object actions using this method.
-   *
-   * @param {Object} action A plain object representing “what changed”. It is
-   * a good idea to keep actions serializable so you can record and replay user
-   * sessions, or use the time travelling `redux-devtools`. An action must have
-   * a `type` property which may not be `undefined`. It is a good idea to use
-   * string constants for action types.
-   *
-   * @returns {Object} For convenience, the same action object you dispatched.
-   *
-   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
-   * return something else (for example, a Promise you can await).
-   */ function dispatch(action) {
-        if (!isPlainObject(action)) throw new Error("Actions must be plain objects. Instead, the actual type was: '" + kindOf(action) + "'. You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk' to handle dispatching functions. See https://redux.js.org/tutorials/fundamentals/part-4-store#middleware and https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware for examples.");
-        if (typeof action.type === 'undefined') throw new Error('Actions may not have an undefined "type" property. You may have misspelled an action type string constant.');
-        if (isDispatching) throw new Error('Reducers may not dispatch actions.');
-        try {
-            isDispatching = true;
-            currentState = currentReducer(currentState, action);
-        } finally{
-            isDispatching = false;
-        }
-        var listeners = currentListeners = nextListeners;
-        for(var i = 0; i < listeners.length; i++){
-            var listener = listeners[i];
-            listener();
-        }
-        return action;
-    }
-    /**
-   * Replaces the reducer currently used by the store to calculate the state.
-   *
-   * You might need this if your app implements code splitting and you want to
-   * load some of the reducers dynamically. You might also need this if you
-   * implement a hot reloading mechanism for Redux.
-   *
-   * @param {Function} nextReducer The reducer for the store to use instead.
-   * @returns {void}
-   */ function replaceReducer(nextReducer) {
-        if (typeof nextReducer !== 'function') throw new Error("Expected the nextReducer to be a function. Instead, received: '" + kindOf(nextReducer));
-        currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
-        // Any reducers that existed in both the new and old rootReducer
-        // will receive the previous state. This effectively populates
-        // the new state tree with any relevant data from the old one.
-        dispatch({
-            type: ActionTypes.REPLACE
-        });
-    }
-    /**
-   * Interoperability point for observable/reactive libraries.
-   * @returns {observable} A minimal observable of state changes.
-   * For more information, see the observable proposal:
-   * https://github.com/tc39/proposal-observable
-   */ function observable() {
-        var _ref;
-        var outerSubscribe = subscribe;
-        return _ref = {
-            /**
-       * The minimal observable subscription method.
-       * @param {Object} observer Any object that can be used as an observer.
-       * The observer object should have a `next` method.
-       * @returns {subscription} An object with an `unsubscribe` method that can
-       * be used to unsubscribe the observable from the store, and prevent further
-       * emission of values from the observable.
-       */ subscribe: function subscribe1(observer) {
-                if (typeof observer !== 'object' || observer === null) throw new Error("Expected the observer to be an object. Instead, received: '" + kindOf(observer) + "'");
-                function observeState() {
-                    if (observer.next) observer.next(getState());
-                }
-                observeState();
-                var unsubscribe = outerSubscribe(observeState);
-                return {
-                    unsubscribe: unsubscribe
-                };
-            }
-        }, _ref[$$observable] = function() {
-            return this;
-        }, _ref;
-    } // When a store is created, an "INIT" action is dispatched so that every
-    // reducer returns their initial state. This effectively populates
-    // the initial state tree.
-    dispatch({
-        type: ActionTypes.INIT
-    });
-    return _ref2 = {
-        dispatch: dispatch,
-        subscribe: subscribe,
-        getState: getState,
-        replaceReducer: replaceReducer
-    }, _ref2[$$observable] = observable, _ref2;
-}
-/**
- * Prints a warning in the console if it exists.
- *
- * @param {String} message The warning message.
- * @returns {void}
- */ function warning(message) {
-    /* eslint-disable no-console */ if (typeof console !== 'undefined' && typeof console.error === 'function') console.error(message);
-    /* eslint-enable no-console */ try {
-        // This error was thrown as a convenience so that if you enable
-        // "break on all exceptions" in your console,
-        // it would pause the execution at this line.
-        throw new Error(message);
-    } catch (e) {
-    } // eslint-disable-line no-empty
-}
-function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
-    var reducerKeys = Object.keys(reducers);
-    var argumentName = action && action.type === ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
-    if (reducerKeys.length === 0) return "Store does not have a valid reducer. Make sure the argument passed to combineReducers is an object whose values are reducers.";
-    if (!isPlainObject(inputState)) return "The " + argumentName + " has unexpected type of \"" + kindOf(inputState) + "\". Expected argument to be an object with the following " + ("keys: \"" + reducerKeys.join('", "') + "\"");
-    var unexpectedKeys = Object.keys(inputState).filter(function(key) {
-        return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
-    });
-    unexpectedKeys.forEach(function(key) {
-        unexpectedKeyCache[key] = true;
-    });
-    if (action && action.type === ActionTypes.REPLACE) return;
-    if (unexpectedKeys.length > 0) return "Unexpected " + (unexpectedKeys.length > 1 ? 'keys' : 'key') + " " + ("\"" + unexpectedKeys.join('", "') + "\" found in " + argumentName + ". ") + "Expected to find one of the known reducer keys instead: " + ("\"" + reducerKeys.join('", "') + "\". Unexpected keys will be ignored.");
-}
-function assertReducerShape(reducers) {
-    Object.keys(reducers).forEach(function(key) {
-        var reducer = reducers[key];
-        var initialState = reducer(undefined, {
-            type: ActionTypes.INIT
-        });
-        if (typeof initialState === 'undefined') throw new Error("The slice reducer for key \"" + key + "\" returned undefined during initialization. " + "If the state passed to the reducer is undefined, you must " + "explicitly return the initial state. The initial state may " + "not be undefined. If you don't want to set a value for this reducer, " + "you can use null instead of undefined.");
-        if (typeof reducer(undefined, {
-            type: ActionTypes.PROBE_UNKNOWN_ACTION()
-        }) === 'undefined') throw new Error("The slice reducer for key \"" + key + "\" returned undefined when probed with a random type. " + ("Don't try to handle '" + ActionTypes.INIT + "' or other actions in \"redux/*\" ") + "namespace. They are considered private. Instead, you must return the " + "current state for any unknown actions, unless it is undefined, " + "in which case you must return the initial state, regardless of the " + "action type. The initial state may not be undefined, but can be null.");
-    });
-}
-/**
- * Turns an object whose values are different reducer functions, into a single
- * reducer function. It will call every child reducer, and gather their results
- * into a single state object, whose keys correspond to the keys of the passed
- * reducer functions.
- *
- * @param {Object} reducers An object whose values correspond to different
- * reducer functions that need to be combined into one. One handy way to obtain
- * it is to use ES6 `import * as reducers` syntax. The reducers may never return
- * undefined for any action. Instead, they should return their initial state
- * if the state passed to them was undefined, and the current state for any
- * unrecognized action.
- *
- * @returns {Function} A reducer function that invokes every reducer inside the
- * passed object, and builds a state object with the same shape.
- */ function combineReducers(reducers) {
-    var reducerKeys = Object.keys(reducers);
-    var finalReducers = {
-    };
-    for(var i = 0; i < reducerKeys.length; i++){
-        var key = reducerKeys[i];
-        if (typeof reducers[key] === 'undefined') warning("No reducer provided for key \"" + key + "\"");
-        if (typeof reducers[key] === 'function') finalReducers[key] = reducers[key];
-    }
-    var finalReducerKeys = Object.keys(finalReducers); // This is used to make sure we don't warn about the same
-    // keys multiple times.
-    var unexpectedKeyCache;
-    unexpectedKeyCache = {
-    };
-    var shapeAssertionError;
-    try {
-        assertReducerShape(finalReducers);
-    } catch (e) {
-        shapeAssertionError = e;
-    }
-    return function combination(state, action) {
-        if (state === void 0) state = {
-        };
-        if (shapeAssertionError) throw shapeAssertionError;
-        var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
-        if (warningMessage) warning(warningMessage);
-        var hasChanged = false;
-        var nextState = {
-        };
-        for(var _i = 0; _i < finalReducerKeys.length; _i++){
-            var _key = finalReducerKeys[_i];
-            var reducer = finalReducers[_key];
-            var previousStateForKey = state[_key];
-            var nextStateForKey = reducer(previousStateForKey, action);
-            if (typeof nextStateForKey === 'undefined') {
-                var actionType = action && action.type;
-                throw new Error("When called with an action of type " + (actionType ? "\"" + String(actionType) + "\"" : '(unknown type)') + ", the slice reducer for key \"" + _key + "\" returned undefined. " + "To ignore an action, you must explicitly return the previous state. " + "If you want this reducer to hold no value, you can return null instead of undefined.");
-            }
-            nextState[_key] = nextStateForKey;
-            hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
-        }
-        hasChanged = hasChanged || finalReducerKeys.length !== Object.keys(state).length;
-        return hasChanged ? nextState : state;
-    };
-}
-function bindActionCreator(actionCreator, dispatch) {
-    return function() {
-        return dispatch(actionCreator.apply(this, arguments));
-    };
-}
-/**
- * Turns an object whose values are action creators, into an object with the
- * same keys, but with every function wrapped into a `dispatch` call so they
- * may be invoked directly. This is just a convenience method, as you can call
- * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
- *
- * For convenience, you can also pass an action creator as the first argument,
- * and get a dispatch wrapped function in return.
- *
- * @param {Function|Object} actionCreators An object whose values are action
- * creator functions. One handy way to obtain it is to use ES6 `import * as`
- * syntax. You may also pass a single function.
- *
- * @param {Function} dispatch The `dispatch` function available on your Redux
- * store.
- *
- * @returns {Function|Object} The object mimicking the original object, but with
- * every action creator wrapped into the `dispatch` call. If you passed a
- * function as `actionCreators`, the return value will also be a single
- * function.
- */ function bindActionCreators(actionCreators, dispatch) {
-    if (typeof actionCreators === 'function') return bindActionCreator(actionCreators, dispatch);
-    if (typeof actionCreators !== 'object' || actionCreators === null) throw new Error("bindActionCreators expected an object or a function, but instead received: '" + kindOf(actionCreators) + "'. " + "Did you write \"import ActionCreators from\" instead of \"import * as ActionCreators from\"?");
-    var boundActionCreators = {
-    };
-    for(var key in actionCreators){
-        var actionCreator = actionCreators[key];
-        if (typeof actionCreator === 'function') boundActionCreators[key] = bindActionCreator(actionCreator, dispatch);
-    }
-    return boundActionCreators;
-}
-/**
- * Composes single-argument functions from right to left. The rightmost
- * function can take multiple arguments as it provides the signature for
- * the resulting composite function.
- *
- * @param {...Function} funcs The functions to compose.
- * @returns {Function} A function obtained by composing the argument functions
- * from right to left. For example, compose(f, g, h) is identical to doing
- * (...args) => f(g(h(...args))).
- */ function compose() {
-    for(var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++)funcs[_key] = arguments[_key];
-    if (funcs.length === 0) return function(arg) {
-        return arg;
-    };
-    if (funcs.length === 1) return funcs[0];
-    return funcs.reduce(function(a, b) {
-        return function() {
-            return a(b.apply(void 0, arguments));
-        };
-    });
-}
-/**
- * Creates a store enhancer that applies middleware to the dispatch method
- * of the Redux store. This is handy for a variety of tasks, such as expressing
- * asynchronous actions in a concise manner, or logging every action payload.
- *
- * See `redux-thunk` package as an example of the Redux middleware.
- *
- * Because middleware is potentially asynchronous, this should be the first
- * store enhancer in the composition chain.
- *
- * Note that each middleware will be given the `dispatch` and `getState` functions
- * as named arguments.
- *
- * @param {...Function} middlewares The middleware chain to be applied.
- * @returns {Function} A store enhancer applying the middleware.
- */ function applyMiddleware() {
-    for(var _len = arguments.length, middlewares = new Array(_len), _key = 0; _key < _len; _key++)middlewares[_key] = arguments[_key];
-    return function(createStore1) {
-        return function() {
-            var store = createStore1.apply(void 0, arguments);
-            var _dispatch = function dispatch() {
-                throw new Error("Dispatching while constructing your middleware is not allowed. Other middleware would not be applied to this dispatch.");
-            };
-            var middlewareAPI = {
-                getState: store.getState,
-                dispatch: function dispatch1() {
-                    return _dispatch.apply(void 0, arguments);
-                }
-            };
-            var chain = middlewares.map(function(middleware) {
-                return middleware(middlewareAPI);
-            });
-            _dispatch = compose.apply(void 0, chain)(store.dispatch);
-            return _objectSpread2Default.default(_objectSpread2Default.default({
-            }, store), {
-            }, {
-                dispatch: _dispatch
-            });
-        };
-    };
-}
-/*
- * This is a dummy function to check if the function name has been altered by minification.
- * If the function has been minified and NODE_ENV !== 'production', warn the user.
- */ function isCrushed() {
-}
-if (typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') warning("You are currently using minified code outside of NODE_ENV === \"production\". This means that you are running a slower development build of Redux. You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) to ensure you have the correct code for your production build.");
-
-},{"@babel/runtime/helpers/esm/objectSpread2":"hqyYS","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"hqyYS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _definePropertyJs = require("./defineProperty.js");
-var _definePropertyJsDefault = parcelHelpers.interopDefault(_definePropertyJs);
-function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-    if (Object.getOwnPropertySymbols) {
-        var symbols = Object.getOwnPropertySymbols(object);
-        if (enumerableOnly) symbols = symbols.filter(function(sym) {
-            return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-        });
-        keys.push.apply(keys, symbols);
-    }
-    return keys;
-}
-function _objectSpread2(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = arguments[i] != null ? arguments[i] : {
-        };
-        if (i % 2) ownKeys(Object(source), true).forEach(function(key) {
-            _definePropertyJsDefault.default(target, key, source[key]);
-        });
-        else if (Object.getOwnPropertyDescriptors) Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-        else ownKeys(Object(source)).forEach(function(key) {
-            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-    }
-    return target;
-}
-exports.default = _objectSpread2;
-
-},{"./defineProperty.js":"5luKg","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"5luKg":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function _defineProperty(obj, key, value) {
-    if (key in obj) Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-    });
-    else obj[key] = value;
-    return obj;
-}
-exports.default = _defineProperty;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"bzXDR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Immer", ()=>un
-);
-parcelHelpers.export(exports, "applyPatches", ()=>pn
-);
-parcelHelpers.export(exports, "castDraft", ()=>K
-);
-parcelHelpers.export(exports, "castImmutable", ()=>$
-);
-parcelHelpers.export(exports, "createDraft", ()=>ln
-);
-parcelHelpers.export(exports, "current", ()=>D
-);
-parcelHelpers.export(exports, "enableAllPlugins", ()=>J
-);
-parcelHelpers.export(exports, "enableES5", ()=>N
-);
-parcelHelpers.export(exports, "enableMapSet", ()=>C
-);
-parcelHelpers.export(exports, "enablePatches", ()=>T
-);
-parcelHelpers.export(exports, "finishDraft", ()=>dn
-);
-parcelHelpers.export(exports, "freeze", ()=>d
-);
-parcelHelpers.export(exports, "immerable", ()=>L
-);
-parcelHelpers.export(exports, "isDraft", ()=>t
-);
-parcelHelpers.export(exports, "isDraftable", ()=>r
-);
-parcelHelpers.export(exports, "nothing", ()=>H
-);
-parcelHelpers.export(exports, "original", ()=>e
-);
-parcelHelpers.export(exports, "produce", ()=>fn
-);
-parcelHelpers.export(exports, "produceWithPatches", ()=>cn
-);
-parcelHelpers.export(exports, "setAutoFreeze", ()=>sn
-);
-parcelHelpers.export(exports, "setUseProxies", ()=>vn
-);
-function n(n1) {
-    for(var t = arguments.length, r = Array(t > 1 ? t - 1 : 0), e = 1; e < t; e++)r[e - 1] = arguments[e];
-    var i = Y[n1], o = i ? "function" == typeof i ? i.apply(null, r) : i : "unknown error nr: " + n1;
-    throw Error("[Immer] " + o);
-    throw Error("[Immer] minified error nr: " + n1 + (r.length ? " " + r.map(function(n2) {
-        return "'" + n2 + "'";
-    }).join(",") : "") + ". Find the full error at: https://bit.ly/3cXEKWf");
-}
-function t(n1) {
-    return !!n1 && !!n1[Q];
-}
-function r(n1) {
-    return !!n1 && ((function(n2) {
-        if (!n2 || "object" != typeof n2) return !1;
-        var t1 = Object.getPrototypeOf(n2);
-        if (null === t1) return !0;
-        var r1 = Object.hasOwnProperty.call(t1, "constructor") && t1.constructor;
-        return r1 === Object || "function" == typeof r1 && Function.toString.call(r1) === Z;
-    })(n1) || Array.isArray(n1) || !!n1[L] || !!n1.constructor[L] || s1(n1) || v(n1));
-}
-function e(r1) {
-    return t(r1) || n(23, r1), r1[Q].t;
-}
-function i(n1, t1, r1) {
-    (void 0) === r1 && (r1 = !1), 0 === o3(n1) ? (r1 ? Object.keys : nn)(n1).forEach(function(e1) {
-        r1 && "symbol" == typeof e1 || t1(e1, n1[e1], n1);
-    }) : n1.forEach(function(r2, e1) {
-        return t1(e1, r2, n1);
-    });
-}
-function o3(n1) {
-    var t1 = n1[Q];
-    return t1 ? t1.i > 3 ? t1.i - 4 : t1.i : Array.isArray(n1) ? 1 : s1(n1) ? 2 : v(n1) ? 3 : 0;
-}
-function u(n1, t1) {
-    return 2 === o3(n1) ? n1.has(t1) : Object.prototype.hasOwnProperty.call(n1, t1);
-}
-function a1(n1, t1) {
-    return 2 === o3(n1) ? n1.get(t1) : n1[t1];
-}
-function f1(n1, t1, r1) {
-    var e1 = o3(n1);
-    2 === e1 ? n1.set(t1, r1) : 3 === e1 ? (n1.delete(t1), n1.add(r1)) : n1[t1] = r1;
-}
-function c(n1, t1) {
-    return n1 === t1 ? 0 !== n1 || 1 / n1 == 1 / t1 : n1 != n1 && t1 != t1;
-}
-function s1(n1) {
-    return X && n1 instanceof Map;
-}
-function v(n1) {
-    return q && n1 instanceof Set;
-}
-function p(n1) {
-    return n1.o || n1.t;
-}
-function l(n1) {
-    if (Array.isArray(n1)) return Array.prototype.slice.call(n1);
-    var t1 = tn(n1);
-    delete t1[Q];
-    for(var r1 = nn(t1), e1 = 0; e1 < r1.length; e1++){
-        var i1 = r1[e1], o1 = t1[i1];
-        !1 === o1.writable && (o1.writable = !0, o1.configurable = !0), (o1.get || o1.set) && (t1[i1] = {
-            configurable: !0,
-            writable: !0,
-            enumerable: o1.enumerable,
-            value: n1[i1]
-        });
-    }
-    return Object.create(Object.getPrototypeOf(n1), t1);
-}
-function d(n1, e1) {
-    return (void 0) === e1 && (e1 = !1), y(n1) || t(n1) || !r(n1) ? n1 : (o3(n1) > 1 && (n1.set = n1.add = n1.clear = n1.delete = h), Object.freeze(n1), e1 && i(n1, function(n2, t1) {
-        return d(t1, !0);
-    }, !0), n1);
-}
-function h() {
-    n(2);
-}
-function y(n1) {
-    return null == n1 || "object" != typeof n1 || Object.isFrozen(n1);
-}
-function b(t1) {
-    var r1 = rn[t1];
-    return r1 || n(18, t1), r1;
-}
-function m(n1, t1) {
-    rn[n1] || (rn[n1] = t1);
-}
-function _() {
-    return U || n(0), U;
-}
-function j(n1, t1) {
-    t1 && (b("Patches"), n1.u = [], n1.s = [], n1.v = t1);
-}
-function O(n1) {
-    g(n1), n1.p.forEach(S), n1.p = null;
-}
-function g(n1) {
-    n1 === U && (U = n1.l);
-}
-function w(n1) {
-    return U = {
-        p: [],
-        l: U,
-        h: n1,
-        m: !0,
-        _: 0
-    };
-}
-function S(n1) {
-    var t1 = n1[Q];
-    0 === t1.i || 1 === t1.i ? t1.j() : t1.O = !0;
-}
-function P(t1, e1) {
-    e1._ = e1.p.length;
-    var i2 = e1.p[0], o2 = (void 0) !== t1 && t1 !== i2;
-    return e1.h.g || b("ES5").S(e1, t1, o2), o2 ? (i2[Q].P && (O(e1), n(4)), r(t1) && (t1 = M(e1, t1), e1.l || x(e1, t1)), e1.u && b("Patches").M(i2[Q], t1, e1.u, e1.s)) : t1 = M(e1, i2, []), O(e1), e1.u && e1.v(e1.u, e1.s), t1 !== H ? t1 : void 0;
-}
-function M(n1, t1, r1) {
-    if (y(t1)) return t1;
-    var e1 = t1[Q];
-    if (!e1) return i(t1, function(i2, o2) {
-        return A(n1, e1, t1, i2, o2, r1);
-    }, !0), t1;
-    if (e1.A !== n1) return t1;
-    if (!e1.P) return x(n1, e1.t, !0), e1.t;
-    if (!e1.I) {
-        e1.I = !0, e1.A._--;
-        var o2 = 4 === e1.i || 5 === e1.i ? e1.o = l(e1.k) : e1.o;
-        i(3 === e1.i ? new Set(o2) : o2, function(t2, i2) {
-            return A(n1, e1, o2, t2, i2, r1);
-        }), x(n1, o2, !1), r1 && n1.u && b("Patches").R(e1, r1, n1.u, n1.s);
-    }
-    return e1.o;
-}
-function A(e1, i2, o3, a1, c1, s1) {
-    if (c1 === o3 && n(5), t(c1)) {
-        var v1 = M(e1, c1, s1 && i2 && 3 !== i2.i && !u(i2.D, a1) ? s1.concat(a1) : void 0);
-        if (f1(o3, a1, v1), !t(v1)) return;
-        e1.m = !1;
-    }
-    if (r(c1) && !y(c1)) {
-        if (!e1.h.F && e1._ < 1) return;
-        M(e1, c1), i2 && i2.A.l || x(e1, c1);
-    }
-}
-function x(n1, t1, r1) {
-    (void 0) === r1 && (r1 = !1), n1.h.F && n1.m && d(t1, r1);
-}
-function z(n1, t1) {
-    var r1 = n1[Q];
-    return (r1 ? p(r1) : n1)[t1];
-}
-function I(n1, t1) {
-    if (t1 in n1) for(var r1 = Object.getPrototypeOf(n1); r1;){
-        var e1 = Object.getOwnPropertyDescriptor(r1, t1);
-        if (e1) return e1;
-        r1 = Object.getPrototypeOf(r1);
-    }
-}
-function k(n1) {
-    n1.P || (n1.P = !0, n1.l && k(n1.l));
-}
-function E(n1) {
-    n1.o || (n1.o = l(n1.t));
-}
-function R(n1, t1, r1) {
-    var e2 = s1(t1) ? b("MapSet").N(t1, r1) : v(t1) ? b("MapSet").T(t1, r1) : n1.g ? function(n2, t2) {
-        var r2 = Array.isArray(n2), e3 = {
-            i: r2 ? 1 : 0,
-            A: t2 ? t2.A : _(),
-            P: !1,
-            I: !1,
-            D: {
-            },
-            l: t2,
-            t: n2,
-            k: null,
-            o: null,
-            j: null,
-            C: !1
-        }, i2 = e3, o3 = en;
-        r2 && (i2 = [
-            e3
-        ], o3 = on);
-        var u1 = Proxy.revocable(i2, o3), a1 = u1.revoke, f1 = u1.proxy;
-        return e3.k = f1, e3.j = a1, f1;
-    }(t1, r1) : b("ES5").J(t1, r1);
-    return (r1 ? r1.A : _()).p.push(e2), e2;
-}
-function D(e2) {
-    return t(e2) || n(22, e2), (function n1(t1) {
-        if (!r(t1)) return t1;
-        var e3, u1 = t1[Q], c1 = o3(t1);
-        if (u1) {
-            if (!u1.P && (u1.i < 4 || !b("ES5").K(u1))) return u1.t;
-            u1.I = !0, e3 = F(t1, c1), u1.I = !1;
-        } else e3 = F(t1, c1);
-        return i(e3, function(t2, r1) {
-            u1 && a1(u1.t, t2) === r1 || f1(e3, t2, n1(r1));
-        }), 3 === c1 ? new Set(e3) : e3;
-    })(e2);
-}
-function F(n1, t1) {
-    switch(t1){
-        case 2:
-            return new Map(n1);
-        case 3:
-            return Array.from(n1);
-    }
-    return l(n1);
-}
-function N() {
-    function r1(n1, t1) {
-        var r2 = s3[n1];
-        return r2 ? r2.enumerable = t1 : s3[n1] = r2 = {
-            configurable: !0,
-            enumerable: t1,
-            get: function() {
-                var t2 = this[Q];
-                return f3(t2), en.get(t2, n1);
-            },
-            set: function(t2) {
-                var r3 = this[Q];
-                f3(r3), en.set(r3, n1, t2);
-            }
-        }, r2;
-    }
-    function e2(n1) {
-        for(var t1 = n1.length - 1; t1 >= 0; t1--){
-            var r2 = n1[t1][Q];
-            if (!r2.P) switch(r2.i){
-                case 5:
-                    a3(r2) && k(r2);
-                    break;
-                case 4:
-                    o4(r2) && k(r2);
-            }
-        }
-    }
-    function o4(n1) {
-        for(var t1 = n1.t, r3 = n1.k, e3 = nn(r3), i2 = e3.length - 1; i2 >= 0; i2--){
-            var o5 = e3[i2];
-            if (o5 !== Q) {
-                var a2 = t1[o5];
-                if ((void 0) === a2 && !u(t1, o5)) return !0;
-                var f2 = r3[o5], s2 = f2 && f2[Q];
-                if (s2 ? s2.t !== a2 : !c(f2, a2)) return !0;
-            }
-        }
-        var v2 = !!t1[Q];
-        return e3.length !== nn(t1).length + (v2 ? 0 : 1);
-    }
-    function a3(n1) {
-        var t1 = n1.k;
-        if (t1.length !== n1.t.length) return !0;
-        var r3 = Object.getOwnPropertyDescriptor(t1, t1.length - 1);
-        return !(!r3 || r3.get);
-    }
-    function f3(t1) {
-        t1.O && n(3, JSON.stringify(p(t1)));
-    }
-    var s3 = {
-    };
-    m("ES5", {
-        J: function(n1, t1) {
-            var e3 = Array.isArray(n1), i2 = function(n2, t2) {
-                if (n2) {
-                    for(var e4 = Array(t2.length), i3 = 0; i3 < t2.length; i3++)Object.defineProperty(e4, "" + i3, r1(i3, !0));
-                    return e4;
-                }
-                var o6 = tn(t2);
-                delete o6[Q];
-                for(var u1 = nn(o6), a4 = 0; a4 < u1.length; a4++){
-                    var f4 = u1[a4];
-                    o6[f4] = r1(f4, n2 || !!o6[f4].enumerable);
-                }
-                return Object.create(Object.getPrototypeOf(t2), o6);
-            }(e3, n1), o6 = {
-                i: e3 ? 5 : 4,
-                A: t1 ? t1.A : _(),
-                P: !1,
-                I: !1,
-                D: {
-                },
-                l: t1,
-                t: n1,
-                k: i2,
-                o: null,
-                O: !1,
-                C: !1
-            };
-            return Object.defineProperty(i2, Q, {
-                value: o6,
-                writable: !0
-            }), i2;
-        },
-        S: function(n1, r3, o6) {
-            o6 ? t(r3) && r3[Q].A === n1 && e2(n1.p) : (n1.u && (function n2(t1) {
-                if (t1 && "object" == typeof t1) {
-                    var r4 = t1[Q];
-                    if (r4) {
-                        var e3 = r4.t, o7 = r4.k, f5 = r4.D, c1 = r4.i;
-                        if (4 === c1) i(o7, function(t2) {
-                            t2 !== Q && ((void 0) !== e3[t2] || u(e3, t2) ? f5[t2] || n2(o7[t2]) : (f5[t2] = !0, k(r4)));
-                        }), i(e3, function(n3) {
-                            (void 0) !== o7[n3] || u(o7, n3) || (f5[n3] = !1, k(r4));
-                        });
-                        else if (5 === c1) {
-                            if (a3(r4) && (k(r4), f5.length = !0), o7.length < e3.length) for(var s4 = o7.length; s4 < e3.length; s4++)f5[s4] = !1;
-                            else for(var v2 = e3.length; v2 < o7.length; v2++)f5[v2] = !0;
-                            for(var p1 = Math.min(o7.length, e3.length), l1 = 0; l1 < p1; l1++)(void 0) === f5[l1] && n2(o7[l1]);
-                        }
-                    }
-                }
-            })(n1.p[0]), e2(n1.p));
-        },
-        K: function(n1) {
-            return 4 === n1.i ? o4(n1) : a3(n1);
-        }
-    });
-}
-function T() {
-    function e2(n1) {
-        if (!r(n1)) return n1;
-        if (Array.isArray(n1)) return n1.map(e2);
-        if (s1(n1)) return new Map(Array.from(n1.entries()).map(function(n2) {
-            return [
-                n2[0],
-                e2(n2[1])
-            ];
-        }));
-        if (v(n1)) return new Set(Array.from(n1).map(e2));
-        var t1 = Object.create(Object.getPrototypeOf(n1));
-        for(var i2 in n1)t1[i2] = e2(n1[i2]);
-        return u(n1, L) && (t1[L] = n1[L]), t1;
-    }
-    function f3(n1) {
-        return t(n1) ? e2(n1) : n1;
-    }
-    var c2 = "add";
-    m("Patches", {
-        $: function(t1, r1) {
-            return r1.forEach(function(r3) {
-                for(var i2 = r3.path, u1 = r3.op, f6 = t1, s3 = 0; s3 < i2.length - 1; s3++){
-                    var v3 = o3(f6), p2 = i2[s3];
-                    0 !== v3 && 1 !== v3 || "__proto__" !== p2 && "constructor" !== p2 || n(24), "function" == typeof f6 && "prototype" === p2 && n(24), "object" != typeof (f6 = a1(f6, p2)) && n(15, i2.join("/"));
-                }
-                var l2 = o3(f6), d1 = e2(r3.value), h1 = i2[i2.length - 1];
-                switch(u1){
-                    case "replace":
-                        switch(l2){
-                            case 2:
-                                return f6.set(h1, d1);
-                            case 3:
-                                n(16);
-                            default:
-                                return f6[h1] = d1;
-                        }
-                    case c2:
-                        switch(l2){
-                            case 1:
-                                return f6.splice(h1, 0, d1);
-                            case 2:
-                                return f6.set(h1, d1);
-                            case 3:
-                                return f6.add(d1);
-                            default:
-                                return f6[h1] = d1;
-                        }
-                    case "remove":
-                        switch(l2){
-                            case 1:
-                                return f6.splice(h1, 1);
-                            case 2:
-                                return f6.delete(h1);
-                            case 3:
-                                return f6.delete(r3.value);
-                            default:
-                                return delete f6[h1];
-                        }
-                    default:
-                        n(17, u1);
-                }
-            }), t1;
-        },
-        R: function(n1, t1, r1, e5) {
-            switch(n1.i){
-                case 0:
-                case 4:
-                case 2:
-                    return (function(n2, t2, r3, e6) {
-                        var o4 = n2.t, s3 = n2.o;
-                        i(n2.D, function(n3, i2) {
-                            var v4 = a1(o4, n3), p3 = a1(s3, n3), l2 = i2 ? u(o4, n3) ? "replace" : c2 : "remove";
-                            if (v4 !== p3 || "replace" !== l2) {
-                                var d1 = t2.concat(n3);
-                                r3.push("remove" === l2 ? {
-                                    op: l2,
-                                    path: d1
-                                } : {
-                                    op: l2,
-                                    path: d1,
-                                    value: p3
-                                }), e6.push(l2 === c2 ? {
-                                    op: "remove",
-                                    path: d1
-                                } : "remove" === l2 ? {
-                                    op: c2,
-                                    path: d1,
-                                    value: f3(v4)
-                                } : {
-                                    op: "replace",
-                                    path: d1,
-                                    value: f3(v4)
-                                });
-                            }
-                        });
-                    })(n1, t1, r1, e5);
-                case 5:
-                case 1:
-                    return (function(n2, t2, r3, e6) {
-                        var i2 = n2.t, o4 = n2.D, u1 = n2.o;
-                        if (u1.length < i2.length) {
-                            var a3 = [
-                                u1,
-                                i2
-                            ];
-                            i2 = a3[0], u1 = a3[1];
-                            var s3 = [
-                                e6,
-                                r3
-                            ];
-                            r3 = s3[0], e6 = s3[1];
-                        }
-                        for(var v4 = 0; v4 < i2.length; v4++)if (o4[v4] && u1[v4] !== i2[v4]) {
-                            var p3 = t2.concat([
-                                v4
-                            ]);
-                            r3.push({
-                                op: "replace",
-                                path: p3,
-                                value: f3(u1[v4])
-                            }), e6.push({
-                                op: "replace",
-                                path: p3,
-                                value: f3(i2[v4])
-                            });
-                        }
-                        for(var l2 = i2.length; l2 < u1.length; l2++){
-                            var d2 = t2.concat([
-                                l2
-                            ]);
-                            r3.push({
-                                op: c2,
-                                path: d2,
-                                value: f3(u1[l2])
-                            });
-                        }
-                        i2.length < u1.length && e6.push({
-                            op: "replace",
-                            path: t2.concat([
-                                "length"
-                            ]),
-                            value: i2.length
-                        });
-                    })(n1, t1, r1, e5);
-                case 3:
-                    return (function(n2, t2, r3, e6) {
-                        var i2 = n2.t, o4 = n2.o, u1 = 0;
-                        i2.forEach(function(n3) {
-                            if (!o4.has(n3)) {
-                                var i4 = t2.concat([
-                                    u1
-                                ]);
-                                r3.push({
-                                    op: "remove",
-                                    path: i4,
-                                    value: n3
-                                }), e6.unshift({
-                                    op: c2,
-                                    path: i4,
-                                    value: n3
-                                });
-                            }
-                            u1++;
-                        }), u1 = 0, o4.forEach(function(n3) {
-                            if (!i2.has(n3)) {
-                                var o6 = t2.concat([
-                                    u1
-                                ]);
-                                r3.push({
-                                    op: c2,
-                                    path: o6,
-                                    value: n3
-                                }), e6.unshift({
-                                    op: "remove",
-                                    path: o6,
-                                    value: n3
-                                });
-                            }
-                            u1++;
-                        });
-                    })(n1, t1, r1, e5);
-            }
-        },
-        M: function(n1, t1, r1, e5) {
-            r1.push({
-                op: "replace",
-                path: [],
-                value: t1
-            }), e5.push({
-                op: "replace",
-                path: [],
-                value: n1.t
-            });
-        }
-    });
-}
-function C() {
-    function t1(n1, t2) {
-        function r1() {
-            this.constructor = n1;
-        }
-        a4(n1, t2), n1.prototype = (r1.prototype = t2.prototype, new r1);
-    }
-    function e2(n1) {
-        n1.o || (n1.D = new Map, n1.o = new Map(n1.t));
-    }
-    function o4(n1) {
-        n1.o || (n1.o = new Set, n1.t.forEach(function(t2) {
-            if (r(t2)) {
-                var e5 = R(n1.A.h, t2, n1);
-                n1.p.set(t2, e5), n1.o.add(e5);
-            } else n1.o.add(t2);
-        }));
-    }
-    function u1(t2) {
-        t2.O && n(3, JSON.stringify(p(t2)));
-    }
-    var a4 = function(n1, t2) {
-        return (a4 = Object.setPrototypeOf || ({
-            __proto__: []
-        }) instanceof Array && function(n2, t3) {
-            n2.__proto__ = t3;
-        } || function(n2, t3) {
-            for(var r1 in t3)t3.hasOwnProperty(r1) && (n2[r1] = t3[r1]);
-        })(n1, t2);
-    }, f3 = function() {
-        function n1(n2, t2) {
-            return this[Q] = {
-                i: 2,
-                l: t2,
-                A: t2 ? t2.A : _(),
-                P: !1,
-                I: !1,
-                o: void 0,
-                D: void 0,
-                t: n2,
-                k: this,
-                C: !1,
-                O: !1
-            }, this;
-        }
-        t1(n1, Map);
-        var o8 = n1.prototype;
-        return Object.defineProperty(o8, "size", {
-            get: function() {
-                return p(this[Q]).size;
-            }
-        }), o8.has = function(n2) {
-            return p(this[Q]).has(n2);
-        }, o8.set = function(n2, t2) {
-            var r1 = this[Q];
-            return u1(r1), p(r1).has(n2) && p(r1).get(n2) === t2 || (e2(r1), k(r1), r1.D.set(n2, !0), r1.o.set(n2, t2), r1.D.set(n2, !0)), this;
-        }, o8.delete = function(n2) {
-            if (!this.has(n2)) return !1;
-            var t2 = this[Q];
-            return u1(t2), e2(t2), k(t2), t2.D.set(n2, !1), t2.o.delete(n2), !0;
-        }, o8.clear = function() {
-            var n2 = this[Q];
-            u1(n2), p(n2).size && (e2(n2), k(n2), n2.D = new Map, i(n2.t, function(t2) {
-                n2.D.set(t2, !1);
-            }), n2.o.clear());
-        }, o8.forEach = function(n2, t2) {
-            var r1 = this;
-            p(this[Q]).forEach(function(e6, i2) {
-                n2.call(t2, r1.get(i2), i2, r1);
-            });
-        }, o8.get = function(n2) {
-            var t2 = this[Q];
-            u1(t2);
-            var i2 = p(t2).get(n2);
-            if (t2.I || !r(i2)) return i2;
-            if (i2 !== t2.t.get(n2)) return i2;
-            var o9 = R(t2.A.h, i2, t2);
-            return e2(t2), t2.o.set(n2, o9), o9;
-        }, o8.keys = function() {
-            return p(this[Q]).keys();
-        }, o8.values = function() {
-            var n2, t2 = this, r1 = this.keys();
-            return (n2 = {
-            })[V] = function() {
-                return t2.values();
-            }, n2.next = function() {
-                var n3 = r1.next();
-                return n3.done ? n3 : {
-                    done: !1,
-                    value: t2.get(n3.value)
-                };
-            }, n2;
-        }, o8.entries = function() {
-            var n2, t2 = this, r1 = this.keys();
-            return (n2 = {
-            })[V] = function() {
-                return t2.entries();
-            }, n2.next = function() {
-                var n3 = r1.next();
-                if (n3.done) return n3;
-                var e6 = t2.get(n3.value);
-                return {
-                    done: !1,
-                    value: [
-                        n3.value,
-                        e6
-                    ]
-                };
-            }, n2;
-        }, o8[V] = function() {
-            return this.entries();
-        }, n1;
-    }(), c2 = function() {
-        function n1(n2, t2) {
-            return this[Q] = {
-                i: 3,
-                l: t2,
-                A: t2 ? t2.A : _(),
-                P: !1,
-                I: !1,
-                o: void 0,
-                t: n2,
-                k: this,
-                p: new Map,
-                O: !1,
-                C: !1
-            }, this;
-        }
-        t1(n1, Set);
-        var r1 = n1.prototype;
-        return Object.defineProperty(r1, "size", {
-            get: function() {
-                return p(this[Q]).size;
-            }
-        }), r1.has = function(n2) {
-            var t2 = this[Q];
-            return u1(t2), t2.o ? !!t2.o.has(n2) || !(!t2.p.has(n2) || !t2.o.has(t2.p.get(n2))) : t2.t.has(n2);
-        }, r1.add = function(n2) {
-            var t2 = this[Q];
-            return u1(t2), this.has(n2) || (o4(t2), k(t2), t2.o.add(n2)), this;
-        }, r1.delete = function(n2) {
-            if (!this.has(n2)) return !1;
-            var t2 = this[Q];
-            return u1(t2), o4(t2), k(t2), t2.o.delete(n2) || !!t2.p.has(n2) && t2.o.delete(t2.p.get(n2));
-        }, r1.clear = function() {
-            var n2 = this[Q];
-            u1(n2), p(n2).size && (o4(n2), k(n2), n2.o.clear());
-        }, r1.values = function() {
-            var n2 = this[Q];
-            return u1(n2), o4(n2), n2.o.values();
-        }, r1.entries = function() {
-            var n2 = this[Q];
-            return u1(n2), o4(n2), n2.o.entries();
-        }, r1.keys = function() {
-            return this.values();
-        }, r1[V] = function() {
-            return this.values();
-        }, r1.forEach = function(n2, t2) {
-            for(var r3 = this.values(), e6 = r3.next(); !e6.done;)n2.call(t2, e6.value, e6.value, this), e6 = r3.next();
-        }, n1;
-    }();
-    m("MapSet", {
-        N: function(n1, t2) {
-            return new f3(n1, t2);
-        },
-        T: function(n1, t2) {
-            return new c2(n1, t2);
-        }
-    });
-}
-function J() {
-    N(), C(), T();
-}
-function K(n1) {
-    return n1;
-}
-function $(n1) {
-    return n1;
-}
-var G, U, W = "undefined" != typeof Symbol && "symbol" == typeof Symbol("x"), X = "undefined" != typeof Map, q = "undefined" != typeof Set, B = "undefined" != typeof Proxy && (void 0) !== Proxy.revocable && "undefined" != typeof Reflect, H = W ? Symbol.for("immer-nothing") : ((G = {
-})["immer-nothing"] = !0, G), L = W ? Symbol.for("immer-draftable") : "__$immer_draftable", Q = W ? Symbol.for("immer-state") : "__$immer_state", V = "undefined" != typeof Symbol && Symbol.iterator || "@@iterator", Y = {
-    0: "Illegal state",
-    1: "Immer drafts cannot have computed properties",
-    2: "This object has been frozen and should not be mutated",
-    3: function(n1) {
-        return "Cannot use a proxy that has been revoked. Did you pass an object from inside an immer function to an async process? " + n1;
-    },
-    4: "An immer producer returned a new value *and* modified its draft. Either return a new value *or* modify the draft.",
-    5: "Immer forbids circular references",
-    6: "The first or second argument to `produce` must be a function",
-    7: "The third argument to `produce` must be a function or undefined",
-    8: "First argument to `createDraft` must be a plain object, an array, or an immerable object",
-    9: "First argument to `finishDraft` must be a draft returned by `createDraft`",
-    10: "The given draft is already finalized",
-    11: "Object.defineProperty() cannot be used on an Immer draft",
-    12: "Object.setPrototypeOf() cannot be used on an Immer draft",
-    13: "Immer only supports deleting array indices",
-    14: "Immer only supports setting array indices and the 'length' property",
-    15: function(n1) {
-        return "Cannot apply patch, path doesn't resolve: " + n1;
-    },
-    16: 'Sets cannot have "replace" patches.',
-    17: function(n1) {
-        return "Unsupported patch operation: " + n1;
-    },
-    18: function(n1) {
-        return "The plugin for '" + n1 + "' has not been loaded into Immer. To enable the plugin, import and call `enable" + n1 + "()` when initializing your application.";
-    },
-    20: "Cannot use proxies if Proxy, Proxy.revocable or Reflect are not available",
-    21: function(n1) {
-        return "produce can only be called on things that are draftable: plain objects, arrays, Map, Set or classes that are marked with '[immerable]: true'. Got '" + n1 + "'";
-    },
-    22: function(n1) {
-        return "'current' expects a draft, got: " + n1;
-    },
-    23: function(n1) {
-        return "'original' expects a draft, got: " + n1;
-    },
-    24: "Patching reserved attributes like __proto__, prototype and constructor is not allowed"
-}, Z = "" + Object.prototype.constructor, nn = "undefined" != typeof Reflect && Reflect.ownKeys ? Reflect.ownKeys : (void 0) !== Object.getOwnPropertySymbols ? function(n1) {
-    return Object.getOwnPropertyNames(n1).concat(Object.getOwnPropertySymbols(n1));
-} : Object.getOwnPropertyNames, tn = Object.getOwnPropertyDescriptors || function(n1) {
-    var t1 = {
-    };
-    return nn(n1).forEach(function(r1) {
-        t1[r1] = Object.getOwnPropertyDescriptor(n1, r1);
-    }), t1;
-}, rn = {
-}, en = {
-    get: function(n1, t1) {
-        if (t1 === Q) return n1;
-        var e2 = p(n1);
-        if (!u(e2, t1)) return (function(n2, t2, r1) {
-            var e6, i2 = I(t2, r1);
-            return i2 ? "value" in i2 ? i2.value : null === (e6 = i2.get) || (void 0) === e6 ? void 0 : e6.call(n2.k) : void 0;
-        })(n1, e2, t1);
-        var i2 = e2[t1];
-        return n1.I || !r(i2) ? i2 : i2 === z(n1.t, t1) ? (E(n1), n1.o[t1] = R(n1.A.h, i2, n1)) : i2;
-    },
-    has: function(n1, t1) {
-        return t1 in p(n1);
-    },
-    ownKeys: function(n1) {
-        return Reflect.ownKeys(p(n1));
-    },
-    set: function(n1, t1, r1) {
-        var e2 = I(p(n1), t1);
-        if (null == e2 ? void 0 : e2.set) return e2.set.call(n1.k, r1), !0;
-        if (!n1.P) {
-            var i2 = z(p(n1), t1), o4 = null == i2 ? void 0 : i2[Q];
-            if (o4 && o4.t === r1) return n1.o[t1] = r1, n1.D[t1] = !1, !0;
-            if (c(r1, i2) && ((void 0) !== r1 || u(n1.t, t1))) return !0;
-            E(n1), k(n1);
-        }
-        return n1.o[t1] === r1 && "number" != typeof r1 || (n1.o[t1] = r1, n1.D[t1] = !0, !0);
-    },
-    deleteProperty: function(n1, t1) {
-        return (void 0) !== z(n1.t, t1) || t1 in n1.t ? (n1.D[t1] = !1, E(n1), k(n1)) : delete n1.D[t1], n1.o && delete n1.o[t1], !0;
-    },
-    getOwnPropertyDescriptor: function(n1, t1) {
-        var r1 = p(n1), e2 = Reflect.getOwnPropertyDescriptor(r1, t1);
-        return e2 ? {
-            writable: !0,
-            configurable: 1 !== n1.i || "length" !== t1,
-            enumerable: e2.enumerable,
-            value: r1[t1]
-        } : e2;
-    },
-    defineProperty: function() {
-        n(11);
-    },
-    getPrototypeOf: function(n1) {
-        return Object.getPrototypeOf(n1.t);
-    },
-    setPrototypeOf: function() {
-        n(12);
-    }
-}, on = {
-};
-i(en, function(n1, t1) {
-    on[n1] = function() {
-        return arguments[0] = arguments[0][0], t1.apply(this, arguments);
-    };
-}), on.deleteProperty = function(t1, r1) {
-    return isNaN(parseInt(r1)) && n(13), en.deleteProperty.call(this, t1[0], r1);
-}, on.set = function(t1, r1, e2) {
-    return "length" !== r1 && isNaN(parseInt(r1)) && n(14), en.set.call(this, t1[0], r1, e2, t1[0]);
-};
-var un = function() {
-    function e2(t1) {
-        var e6 = this;
-        this.g = B, this.F = !0, this.produce = function(t2, i5, o8) {
-            if ("function" == typeof t2 && "function" != typeof i5) {
-                var u1 = i5;
-                i5 = t2;
-                var a4 = e6;
-                return function(n1) {
-                    var t3 = this;
-                    (void 0) === n1 && (n1 = u1);
-                    for(var r1 = arguments.length, e7 = Array(r1 > 1 ? r1 - 1 : 0), o9 = 1; o9 < r1; o9++)e7[o9 - 1] = arguments[o9];
-                    return a4.produce(n1, function(n2) {
-                        var r3;
-                        return (r3 = i5).call.apply(r3, [
-                            t3,
-                            n2
-                        ].concat(e7));
-                    });
-                };
-            }
-            var f3;
-            if ("function" != typeof i5 && n(6), (void 0) !== o8 && "function" != typeof o8 && n(7), r(t2)) {
-                var c2 = w(e6), s5 = R(e6, t2, void 0), v4 = !0;
-                try {
-                    f3 = i5(s5), v4 = !1;
-                } finally{
-                    v4 ? O(c2) : g(c2);
-                }
-                return "undefined" != typeof Promise && f3 instanceof Promise ? f3.then(function(n1) {
-                    return j(c2, o8), P(n1, c2);
-                }, function(n1) {
-                    throw O(c2), n1;
-                }) : (j(c2, o8), P(f3, c2));
-            }
-            if (!t2 || "object" != typeof t2) {
-                if ((f3 = i5(t2)) === H) return;
-                return (void 0) === f3 && (f3 = t2), e6.F && d(f3, !0), f3;
-            }
-            n(21, t2);
-        }, this.produceWithPatches = function(n1, t2) {
-            var r1, i5;
-            return "function" == typeof n1 ? function(t3) {
-                for(var r3 = arguments.length, i6 = Array(r3 > 1 ? r3 - 1 : 0), o8 = 1; o8 < r3; o8++)i6[o8 - 1] = arguments[o8];
-                return e6.produceWithPatches(t3, function(t4) {
-                    return n1.apply(void 0, [
-                        t4
-                    ].concat(i6));
-                });
-            } : [
-                e6.produce(n1, t2, function(n2, t3) {
-                    r1 = n2, i5 = t3;
-                }),
-                r1,
-                i5
-            ];
-        }, "boolean" == typeof (null == t1 ? void 0 : t1.useProxies) && this.setUseProxies(t1.useProxies), "boolean" == typeof (null == t1 ? void 0 : t1.autoFreeze) && this.setAutoFreeze(t1.autoFreeze);
-    }
-    var i5 = e2.prototype;
-    return i5.createDraft = function(e6) {
-        r(e6) || n(8), t(e6) && (e6 = D(e6));
-        var i6 = w(this), o8 = R(this, e6, void 0);
-        return o8[Q].C = !0, g(i6), o8;
-    }, i5.finishDraft = function(t1, r1) {
-        var e6 = t1 && t1[Q];
-        e6 && e6.C || n(9), e6.I && n(10);
-        var i6 = e6.A;
-        return j(i6, r1), P(void 0, i6);
-    }, i5.setAutoFreeze = function(n1) {
-        this.F = n1;
-    }, i5.setUseProxies = function(t1) {
-        t1 && !B && n(20), this.g = t1;
-    }, i5.applyPatches = function(n1, r1) {
-        var e6;
-        for(e6 = r1.length - 1; e6 >= 0; e6--){
-            var i6 = r1[e6];
-            if (0 === i6.path.length && "replace" === i6.op) {
-                n1 = i6.value;
-                break;
-            }
-        }
-        var o8 = b("Patches").$;
-        return t(n1) ? o8(n1, r1) : this.produce(n1, function(n2) {
-            return o8(n2, r1.slice(e6 + 1));
-        });
-    }, e2;
-}(), an = new un, fn = an.produce, cn = an.produceWithPatches.bind(an), sn = an.setAutoFreeze.bind(an), vn = an.setUseProxies.bind(an), pn = an.applyPatches.bind(an), ln = an.createDraft.bind(an), dn = an.finishDraft.bind(an);
-exports.default = fn;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"AwPih":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "defaultMemoize", ()=>defaultMemoize
-);
-parcelHelpers.export(exports, "createSelectorCreator", ()=>createSelectorCreator
-);
-parcelHelpers.export(exports, "createSelector", ()=>createSelector
-);
-parcelHelpers.export(exports, "createStructuredSelector", ()=>createStructuredSelector
-);
-function defaultEqualityCheck(a, b) {
-    return a === b;
-}
-function areArgumentsShallowlyEqual(equalityCheck, prev, next) {
-    if (prev === null || next === null || prev.length !== next.length) return false;
-    // Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
-    var length = prev.length;
-    for(var i = 0; i < length; i++){
-        if (!equalityCheck(prev[i], next[i])) return false;
-    }
-    return true;
-}
-function defaultMemoize(func) {
-    var equalityCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultEqualityCheck;
-    var lastArgs = null;
-    var lastResult = null;
-    // we reference arguments instead of spreading them for performance reasons
-    return function() {
-        if (!areArgumentsShallowlyEqual(equalityCheck, lastArgs, arguments)) // apply arguments instead of spreading for performance.
-        lastResult = func.apply(null, arguments);
-        lastArgs = arguments;
-        return lastResult;
-    };
-}
-function getDependencies(funcs) {
-    var dependencies = Array.isArray(funcs[0]) ? funcs[0] : funcs;
-    if (!dependencies.every(function(dep) {
-        return typeof dep === 'function';
-    })) {
-        var dependencyTypes = dependencies.map(function(dep) {
-            return typeof dep;
-        }).join(', ');
-        throw new Error('Selector creators expect all input-selectors to be functions, ' + ('instead received the following types: [' + dependencyTypes + ']'));
-    }
-    return dependencies;
-}
-function createSelectorCreator(memoize) {
-    for(var _len = arguments.length, memoizeOptions = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++)memoizeOptions[_key - 1] = arguments[_key];
-    return function() {
-        for(var _len2 = arguments.length, funcs = Array(_len2), _key2 = 0; _key2 < _len2; _key2++)funcs[_key2] = arguments[_key2];
-        var recomputations = 0;
-        var resultFunc = funcs.pop();
-        var dependencies = getDependencies(funcs);
-        var memoizedResultFunc = memoize.apply(undefined, [
-            function() {
-                recomputations++;
-                // apply arguments instead of spreading for performance.
-                return resultFunc.apply(null, arguments);
-            }
-        ].concat(memoizeOptions));
-        // If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
-        var selector = memoize(function() {
-            var params = [];
-            var length = dependencies.length;
-            for(var i = 0; i < length; i++)// apply arguments instead of spreading and mutate a local list of params for performance.
-            params.push(dependencies[i].apply(null, arguments));
-            // apply arguments instead of spreading for performance.
-            return memoizedResultFunc.apply(null, params);
-        });
-        selector.resultFunc = resultFunc;
-        selector.dependencies = dependencies;
-        selector.recomputations = function() {
-            return recomputations;
-        };
-        selector.resetRecomputations = function() {
-            return recomputations = 0;
-        };
-        return selector;
-    };
-}
-var createSelector = createSelectorCreator(defaultMemoize);
-function createStructuredSelector(selectors) {
-    var selectorCreator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : createSelector;
-    if (typeof selectors !== 'object') throw new Error('createStructuredSelector expects first argument to be an object ' + ('where each property is a selector, instead received a ' + typeof selectors));
-    var objectKeys = Object.keys(selectors);
-    return selectorCreator(objectKeys.map(function(key) {
-        return selectors[key];
-    }), function() {
-        for(var _len3 = arguments.length, values = Array(_len3), _key3 = 0; _key3 < _len3; _key3++)values[_key3] = arguments[_key3];
-        return values.reduce(function(composition, value, index) {
-            composition[objectKeys[index]] = value;
-            return composition;
-        }, {
-        });
-    });
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"kozXV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function createThunkMiddleware(extraArgument) {
-    return function(_ref) {
-        var dispatch = _ref.dispatch, getState = _ref.getState;
-        return function(next) {
-            return function(action) {
-                if (typeof action === 'function') return action(dispatch, getState, extraArgument);
-                return next(action);
-            };
-        };
-    };
-}
-var thunk = createThunkMiddleware();
-thunk.withExtraArgument = createThunkMiddleware;
-exports.default = thunk;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"flrvd":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getCatPhoto", ()=>getCatPhoto
-);
-parcelHelpers.export(exports, "getCatPhotos", ()=>getCatPhotos
-);
-var _ky = require("ky");
-var _kyDefault = parcelHelpers.interopDefault(_ky);
-var _lodash = require("lodash");
-const getCatPhoto = async ()=>{
-    const { url  } = await _kyDefault.default('https://cataas.com/cat?json=true').json();
-    return `https://cataas.com${url}`;
-};
-const getCatPhotos = async (count)=>{
-    const photos = _lodash.times(count, getCatPhoto);
-    return Promise.all(photos);
-};
-
-},{"ky":"2IjXx","lodash":"lxjic","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"2IjXx":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "HTTPError", ()=>_httperrorJs.HTTPError
-);
-parcelHelpers.export(exports, "TimeoutError", ()=>_timeoutErrorJs.TimeoutError
-);
-/*! MIT License © Sindre Sorhus */ var _kyJs = require("./core/Ky.js");
-var _constantsJs = require("./core/constants.js");
-var _mergeJs = require("./utils/merge.js");
-var _httperrorJs = require("./errors/HTTPError.js");
-var _timeoutErrorJs = require("./errors/TimeoutError.js");
-const createInstance = (defaults)=>{
-    // eslint-disable-next-line @typescript-eslint/promise-function-async
-    const ky = (input, options)=>_kyJs.Ky.create(input, _mergeJs.validateAndMerge(defaults, options))
-    ;
-    for (const method of _constantsJs.requestMethods)// @ts-expect-error not sure how to properly type this!
-    // eslint-disable-next-line @typescript-eslint/promise-function-async
-    ky[method] = (input, options)=>_kyJs.Ky.create(input, _mergeJs.validateAndMerge(defaults, options, {
-            method
-        }))
-    ;
-    ky.create = (newDefaults)=>createInstance(_mergeJs.validateAndMerge(newDefaults))
-    ;
-    ky.extend = (newDefaults)=>createInstance(_mergeJs.validateAndMerge(defaults, newDefaults))
-    ;
-    ky.stop = _constantsJs.stop;
-    return ky;
-};
-const ky = createInstance();
-exports.default = ky;
-
-},{"./core/Ky.js":"aUuHt","./core/constants.js":"hg78M","./utils/merge.js":"hFViu","./errors/HTTPError.js":"6do8h","./errors/TimeoutError.js":"dpM5q","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"aUuHt":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Ky", ()=>Ky
-);
-var _httperrorJs = require("../errors/HTTPError.js");
-var _timeoutErrorJs = require("../errors/TimeoutError.js");
-var _mergeJs = require("../utils/merge.js");
-var _normalizeJs = require("../utils/normalize.js");
-var _timeJs = require("../utils/time.js");
-var _constantsJs = require("./constants.js");
-class Ky {
-    // eslint-disable-next-line complexity
-    constructor(input1, options1 = {
-    }){
-        var _a, _b;
-        this._retryCount = 0;
-        this._input = input1;
-        this._options = {
-            // TODO: credentials can be removed when the spec change is implemented in all browsers. Context: https://www.chromestatus.com/feature/4539473312350208
-            credentials: this._input.credentials || 'same-origin',
-            ...options1,
-            headers: _mergeJs.mergeHeaders(this._input.headers, options1.headers),
-            hooks: _mergeJs.deepMerge({
-                beforeRequest: [],
-                beforeRetry: [],
-                afterResponse: []
-            }, options1.hooks),
-            method: _normalizeJs.normalizeRequestMethod((_a = options1.method) !== null && _a !== void 0 ? _a : this._input.method),
-            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-            prefixUrl: String(options1.prefixUrl || ''),
-            retry: _normalizeJs.normalizeRetryOptions(options1.retry),
-            throwHttpErrors: options1.throwHttpErrors !== false,
-            timeout: typeof options1.timeout === 'undefined' ? 10000 : options1.timeout,
-            fetch: (_b = options1.fetch) !== null && _b !== void 0 ? _b : globalThis.fetch.bind(globalThis)
-        };
-        if (typeof this._input !== 'string' && !(this._input instanceof URL || this._input instanceof globalThis.Request)) throw new TypeError('`input` must be a string, URL, or Request');
-        if (this._options.prefixUrl && typeof this._input === 'string') {
-            if (this._input.startsWith('/')) throw new Error('`input` must not begin with a slash when using `prefixUrl`');
-            if (!this._options.prefixUrl.endsWith('/')) this._options.prefixUrl += '/';
-            this._input = this._options.prefixUrl + this._input;
-        }
-        if (_constantsJs.supportsAbortController) {
-            this.abortController = new globalThis.AbortController();
-            if (this._options.signal) this._options.signal.addEventListener('abort', ()=>{
-                this.abortController.abort();
-            });
-            this._options.signal = this.abortController.signal;
-        }
-        this.request = new globalThis.Request(this._input, this._options);
-        if (this._options.searchParams) {
-            // eslint-disable-next-line unicorn/prevent-abbreviations
-            const textSearchParams = typeof this._options.searchParams === 'string' ? this._options.searchParams.replace(/^\?/, '') : new URLSearchParams(this._options.searchParams).toString();
-            // eslint-disable-next-line unicorn/prevent-abbreviations
-            const searchParams = '?' + textSearchParams;
-            const url = this.request.url.replace(/(?:\?.*?)?(?=#|$)/, searchParams);
-            // To provide correct form boundary, Content-Type header should be deleted each time when new Request instantiated from another one
-            if ((_constantsJs.supportsFormData && this._options.body instanceof globalThis.FormData || this._options.body instanceof URLSearchParams) && !(this._options.headers && this._options.headers['content-type'])) this.request.headers.delete('content-type');
-            this.request = new globalThis.Request(new globalThis.Request(url, this.request), this._options);
-        }
-        if (this._options.json !== undefined) {
-            this._options.body = JSON.stringify(this._options.json);
-            this.request.headers.set('content-type', 'application/json');
-            this.request = new globalThis.Request(this.request, {
-                body: this._options.body
-            });
-        }
-    }
-    // eslint-disable-next-line @typescript-eslint/promise-function-async
-    static create(input, options) {
-        const ky = new Ky(input, options);
-        const fn = async ()=>{
-            if (ky._options.timeout > _constantsJs.maxSafeTimeout) throw new RangeError(`The \`timeout\` option cannot be greater than ${_constantsJs.maxSafeTimeout}`);
-            // Delay the fetch so that body method shortcuts can set the Accept header
-            await Promise.resolve();
-            let response = await ky._fetch();
-            for (const hook of ky._options.hooks.afterResponse){
-                // eslint-disable-next-line no-await-in-loop
-                const modifiedResponse = await hook(ky.request, ky._options, ky._decorateResponse(response.clone()));
-                if (modifiedResponse instanceof globalThis.Response) response = modifiedResponse;
-            }
-            ky._decorateResponse(response);
-            if (!response.ok && ky._options.throwHttpErrors) throw new _httperrorJs.HTTPError(response, ky.request, ky._options);
-            // If `onDownloadProgress` is passed, it uses the stream API internally
-            /* istanbul ignore next */ if (ky._options.onDownloadProgress) {
-                if (typeof ky._options.onDownloadProgress !== 'function') throw new TypeError('The `onDownloadProgress` option must be a function');
-                if (!_constantsJs.supportsStreams) throw new Error('Streams are not supported in your environment. `ReadableStream` is missing.');
-                return ky._stream(response.clone(), ky._options.onDownloadProgress);
-            }
-            return response;
-        };
-        const isRetriableMethod = ky._options.retry.methods.includes(ky.request.method.toLowerCase());
-        const result = isRetriableMethod ? ky._retry(fn) : fn();
-        for (const [type, mimeType] of Object.entries(_constantsJs.responseTypes))// @ts-expect-error not sure how to properly type this!
-        result[type] = async ()=>{
-            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-            ky.request.headers.set('accept', ky.request.headers.get('accept') || mimeType);
-            const response = (await result).clone();
-            if (type === 'json') {
-                if (response.status === 204) return '';
-                if (options.parseJson) return options.parseJson(await response.text());
-            }
-            // @ts-expect-error not sure how to properly type this!
-            return response[type]();
-        };
-        return result;
-    }
-    _calculateRetryDelay(error) {
-        this._retryCount++;
-        if (this._retryCount < this._options.retry.limit && !(error instanceof _timeoutErrorJs.TimeoutError)) {
-            if (error instanceof _httperrorJs.HTTPError) {
-                if (!this._options.retry.statusCodes.includes(error.response.status)) return 0;
-                const retryAfter = error.response.headers.get('Retry-After');
-                if (retryAfter && this._options.retry.afterStatusCodes.includes(error.response.status)) {
-                    let after = Number(retryAfter);
-                    if (Number.isNaN(after)) after = Date.parse(retryAfter) - Date.now();
-                    else after *= 1000;
-                    if (typeof this._options.retry.maxRetryAfter !== 'undefined' && after > this._options.retry.maxRetryAfter) return 0;
-                    return after;
-                }
-                if (error.response.status === 413) return 0;
-            }
-            const BACKOFF_FACTOR = 0.3;
-            return BACKOFF_FACTOR * 2 ** (this._retryCount - 1) * 1000;
-        }
-        return 0;
-    }
-    _decorateResponse(response) {
-        if (this._options.parseJson) response.json = async ()=>{
-            return this._options.parseJson(await response.text());
-        };
-        return response;
-    }
-    async _retry(fn) {
-        try {
-            return await fn();
-        // eslint-disable-next-line @typescript-eslint/no-implicit-any-catch
-        } catch (error) {
-            const ms = Math.min(this._calculateRetryDelay(error), _constantsJs.maxSafeTimeout);
-            if (ms !== 0 && this._retryCount > 0) {
-                await _timeJs.delay(ms);
-                for (const hook of this._options.hooks.beforeRetry){
-                    // @ts-expect-error TODO missing response?
-                    // eslint-disable-next-line no-await-in-loop
-                    const hookResult = await hook({
-                        request: this.request,
-                        options: this._options,
-                        error,
-                        retryCount: this._retryCount
-                    });
-                    // If `stop` is returned from the hook, the retry process is stopped
-                    if (hookResult === _constantsJs.stop) return;
-                }
-                return this._retry(fn);
-            }
-            throw error;
-        }
-    }
-    async _fetch() {
-        for (const hook of this._options.hooks.beforeRequest){
-            // eslint-disable-next-line no-await-in-loop
-            const result = await hook(this.request, this._options);
-            if (result instanceof Request) {
-                this.request = result;
-                break;
-            }
-            if (result instanceof Response) return result;
-        }
-        if (this._options.timeout === false) return this._options.fetch(this.request.clone());
-        return _timeJs.timeout(this.request.clone(), this.abortController, this._options);
-    }
-    /* istanbul ignore next */ _stream(response, onDownloadProgress) {
-        const totalBytes = Number(response.headers.get('content-length')) || 0;
-        let transferredBytes = 0;
-        return new globalThis.Response(new globalThis.ReadableStream({
-            async start (controller) {
-                const reader = response.body.getReader();
-                if (onDownloadProgress) onDownloadProgress({
-                    percent: 0,
-                    transferredBytes: 0,
-                    totalBytes
-                }, new Uint8Array());
-                async function read() {
-                    const { done , value  } = await reader.read();
-                    if (done) {
-                        controller.close();
-                        return;
-                    }
-                    if (onDownloadProgress) {
-                        transferredBytes += value.byteLength;
-                        const percent = totalBytes === 0 ? 0 : transferredBytes / totalBytes;
-                        onDownloadProgress({
-                            percent,
-                            transferredBytes,
-                            totalBytes
-                        }, value);
-                    }
-                    controller.enqueue(value);
-                    await read();
-                }
-                await read();
-            }
-        }));
-    }
-}
-
-},{"../errors/HTTPError.js":"6do8h","../errors/TimeoutError.js":"dpM5q","../utils/merge.js":"hFViu","../utils/normalize.js":"6EuQA","../utils/time.js":"4ulOy","./constants.js":"hg78M","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"6do8h":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "HTTPError", ()=>HTTPError
-);
-class HTTPError extends Error {
-    constructor(response, request, options){
-        const code = response.status || response.status === 0 ? response.status : '';
-        const title = response.statusText || '';
-        const status = `${code} ${title}`.trim();
-        const reason = status ? `status code ${status}` : 'an unknown error';
-        super(`Request failed with ${reason}`);
-        this.name = 'HTTPError';
-        this.response = response;
-        this.request = request;
-        this.options = options;
-    }
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"dpM5q":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TimeoutError", ()=>TimeoutError
-);
-class TimeoutError extends Error {
-    constructor(request){
-        super('Request timed out');
-        this.name = 'TimeoutError';
-        this.request = request;
-    }
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"hFViu":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "validateAndMerge", ()=>validateAndMerge
-);
-parcelHelpers.export(exports, "mergeHeaders", ()=>mergeHeaders
-);
-parcelHelpers.export(exports, "deepMerge", ()=>deepMerge
-);
-var _isJs = require("./is.js");
-const validateAndMerge = (...sources)=>{
-    for (const source of sources){
-        if ((!_isJs.isObject(source) || Array.isArray(source)) && typeof source !== 'undefined') throw new TypeError('The `options` argument must be an object');
-    }
-    return deepMerge({
-    }, ...sources);
-};
-const mergeHeaders = (source1 = {
-}, source2 = {
-})=>{
-    const result = new globalThis.Headers(source1);
-    const isHeadersInstance = source2 instanceof globalThis.Headers;
-    const source = new globalThis.Headers(source2);
-    for (const [key, value] of source.entries())if (isHeadersInstance && value === 'undefined' || value === undefined) result.delete(key);
-    else result.set(key, value);
-    return result;
-};
-const deepMerge = (...sources)=>{
-    let returnValue = {
-    };
-    let headers = {
-    };
-    for (const source of sources){
-        if (Array.isArray(source)) {
-            if (!Array.isArray(returnValue)) returnValue = [];
-            returnValue = [
-                ...returnValue,
-                ...source
-            ];
-        } else if (_isJs.isObject(source)) {
-            for (let [key, value] of Object.entries(source)){
-                if (_isJs.isObject(value) && key in returnValue) value = deepMerge(returnValue[key], value);
-                returnValue = {
-                    ...returnValue,
-                    [key]: value
-                };
-            }
-            if (_isJs.isObject(source.headers)) {
-                headers = mergeHeaders(headers, source.headers);
-                returnValue.headers = headers;
-            }
-        }
-    }
-    return returnValue;
-};
-
-},{"./is.js":"3tAk8","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"3tAk8":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "isObject", ()=>isObject
-);
-const isObject = (value)=>value !== null && typeof value === 'object'
-;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"6EuQA":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "normalizeRequestMethod", ()=>normalizeRequestMethod
-);
-parcelHelpers.export(exports, "normalizeRetryOptions", ()=>normalizeRetryOptions
-);
-var _constantsJs = require("../core/constants.js");
-const normalizeRequestMethod = (input)=>_constantsJs.requestMethods.includes(input) ? input.toUpperCase() : input
-;
-const retryMethods = [
-    'get',
-    'put',
-    'head',
-    'delete',
-    'options',
-    'trace'
-];
-const retryStatusCodes = [
-    408,
-    413,
-    429,
-    500,
-    502,
-    503,
-    504
-];
-const retryAfterStatusCodes = [
-    413,
-    429,
-    503
-];
-const defaultRetryOptions = {
-    limit: 2,
-    methods: retryMethods,
-    statusCodes: retryStatusCodes,
-    afterStatusCodes: retryAfterStatusCodes,
-    maxRetryAfter: Number.POSITIVE_INFINITY
-};
-const normalizeRetryOptions = (retry = {
-})=>{
-    if (typeof retry === 'number') return {
-        ...defaultRetryOptions,
-        limit: retry
-    };
-    if (retry.methods && !Array.isArray(retry.methods)) throw new Error('retry.methods must be an array');
-    if (retry.statusCodes && !Array.isArray(retry.statusCodes)) throw new Error('retry.statusCodes must be an array');
-    return {
-        ...defaultRetryOptions,
-        ...retry,
-        afterStatusCodes: retryAfterStatusCodes
-    };
-};
-
-},{"../core/constants.js":"hg78M","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"hg78M":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "supportsAbortController", ()=>supportsAbortController
-);
-parcelHelpers.export(exports, "supportsStreams", ()=>supportsStreams
-);
-parcelHelpers.export(exports, "supportsFormData", ()=>supportsFormData
-);
-parcelHelpers.export(exports, "requestMethods", ()=>requestMethods
-);
-parcelHelpers.export(exports, "responseTypes", ()=>responseTypes
-);
-parcelHelpers.export(exports, "maxSafeTimeout", ()=>maxSafeTimeout
-);
-parcelHelpers.export(exports, "stop", ()=>stop
-);
-const supportsAbortController = typeof globalThis.AbortController === 'function';
-const supportsStreams = typeof globalThis.ReadableStream === 'function';
-const supportsFormData = typeof globalThis.FormData === 'function';
-const requestMethods = [
-    'get',
-    'post',
-    'put',
-    'patch',
-    'head',
-    'delete'
-];
-const responseTypes = {
-    json: 'application/json',
-    text: 'text/*',
-    formData: 'multipart/form-data',
-    arrayBuffer: '*/*',
-    blob: '*/*'
-};
-const maxSafeTimeout = 2147483647;
-const stop = Symbol('stop');
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"4ulOy":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "timeout", ()=>timeout
-);
-parcelHelpers.export(exports, "delay", ()=>delay
-);
-var _timeoutErrorJs = require("../errors/TimeoutError.js");
-const timeout = async (request, abortController, options)=>new Promise((resolve, reject)=>{
-        const timeoutID = setTimeout(()=>{
-            if (abortController) abortController.abort();
-            reject(new _timeoutErrorJs.TimeoutError(request));
-        }, options.timeout);
-        options.fetch(request).then(resolve).catch(reject).then(()=>{
-            clearTimeout(timeoutID);
-        });
-    /* eslint-enable promise/prefer-await-to-then */ })
-;
-const delay = async (ms)=>new Promise((resolve)=>{
-        setTimeout(resolve, ms);
-    })
-;
-
-},{"../errors/TimeoutError.js":"dpM5q","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"lxjic":[function(require,module,exports) {
+},{"react":"jUjz4","lodash":"lxjic","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"lxjic":[function(require,module,exports) {
 var global = arguments[3];
 (function() {
     /** Used as a safe reference for `undefined` in pre-ES5 environments. */ var undefined;
@@ -42007,7 +38316,3717 @@ var global = arguments[3];
     root._ = _;
 }).call(this);
 
-},{}],"kc9u0":[function(require,module,exports) {
+},{}],"dzy2P":[function(require,module,exports) {
+"use strict";
+var Refresh = require('react-refresh/runtime');
+function debounce(func, delay) {
+    var args;
+    var timeout = undefined;
+    return function(args1) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            timeout = undefined;
+            func.call(null, args1);
+        }, delay);
+    };
+}
+var enqueueUpdate = debounce(function() {
+    Refresh.performReactRefresh();
+}, 30); // Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+module.exports.prelude = function(module) {
+    window.$RefreshReg$ = function(type, id) {
+        Refresh.register(type, module.id + ' ' + id);
+    };
+    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+module.exports.postlude = function(module) {
+    if (isReactRefreshBoundary(module.exports)) {
+        registerExportsForReactRefresh(module);
+        if (module.hot) {
+            module.hot.dispose(function(data) {
+                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
+                data.prevExports = module.exports;
+            });
+            module.hot.accept(function(getParents) {
+                var prevExports = module.hot.data.prevExports;
+                var nextExports = module.exports; // Since we just executed the code for it, it's possible
+                // that the new exports make it ineligible for being a boundary.
+                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
+                // with the previous exports.
+                // For example, if you add/remove/change exports, we'll want
+                // to re-execute the importing modules, and force those components
+                // to re-render. Similarly, if you convert a class component
+                // to a function, we want to invalidate the boundary.
+                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+                if (isNoLongerABoundary || didInvalidate) {
+                    // We'll be conservative. The only case in which we won't do a full
+                    // reload is if all parent modules are also refresh boundaries.
+                    // In that case we'll add them to the current queue.
+                    var parents = getParents();
+                    if (parents.length === 0) {
+                        // Looks like we bubbled to the root. Can't recover from that.
+                        window.location.reload();
+                        return;
+                    }
+                    return parents;
+                }
+                enqueueUpdate();
+            });
+        }
+    }
+};
+function isReactRefreshBoundary(exports) {
+    if (Refresh.isLikelyComponentType(exports)) return true;
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    return false;
+    var hasExports = false;
+    var areAllExportsComponents = true;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        hasExports = true;
+        if (key === '__esModule') continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
+        return false;
+        var exportValue = exports[key];
+        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
+    }
+    return hasExports && areAllExportsComponents;
+}
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+    var prevSignature = getRefreshBoundarySignature(prevExports);
+    var nextSignature = getRefreshBoundarySignature(nextExports);
+    if (prevSignature.length !== nextSignature.length) return true;
+    for(var i = 0; i < nextSignature.length; i++){
+        if (prevSignature[i] !== nextSignature[i]) return true;
+    }
+    return false;
+} // When this signature changes, it's unsafe to stop at this refresh boundary.
+function getRefreshBoundarySignature(exports) {
+    var signature = [];
+    signature.push(Refresh.getFamilyByType(exports));
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        if (key === '__esModule') continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        signature.push(key);
+        signature.push(Refresh.getFamilyByType(exportValue));
+    }
+    return signature;
+}
+function registerExportsForReactRefresh(module) {
+    var exports = module.exports, id = module.id;
+    Refresh.register(exports, id + ' %exports%');
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        Refresh.register(exportValue, id + ' %exports% ' + key);
+    }
+}
+
+},{"react-refresh/runtime":"gcL93"}],"ibfPD":[function(require,module,exports) {
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+exports.default = ({ onClick , children  })=>{
+    return(/*#__PURE__*/ _reactDefault.default.createElement("button", {
+        className: "p-4 px-16 text-lg text-yellow-600 border-2 border-yellow-600 transition-colors hover:text-white hover:bg-yellow-600",
+        onClick: (event)=>onClick(event)
+        ,
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/LoadMoreButton/index.jsx",
+            lineNumber: 5
+        },
+        __self: undefined
+    }, "Load More"));
+};
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"jUjz4","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"4BTI7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "fetchBlock", ()=>fetchBlock
+);
+parcelHelpers.export(exports, "mediaBlockSlice", ()=>mediaBlockSlice
+);
+parcelHelpers.export(exports, "increment", ()=>increment
+);
+var _toolkit = require("@reduxjs/toolkit");
+var _photosAPI = require("./PhotosAPI");
+const fetchBlock = _toolkit.createAsyncThunk('mediaBlock/fetchBlock', async ({ photosCount  })=>{
+    // TODO: Add facts
+    const photos = await _photosAPI.getCatPhotos(photosCount);
+    return {
+        photos
+    };
+});
+const mediaBlockSlice = _toolkit.createSlice({
+    name: 'mediaBlock',
+    initialState: {
+        blocks: [],
+        loadingState: 'idle'
+    },
+    extraReducers (builder) {
+        // TODO: Add error handle
+        builder.addCase(fetchBlock.pending, (state)=>{
+            state.loadingState = 'pending';
+        });
+        builder.addCase(fetchBlock.fulfilled, (state, { payload  })=>{
+            state.blocks.push({
+                photos: payload.photos
+            });
+            state.loadingState = 'idle';
+        });
+    }
+});
+const { increment  } = mediaBlockSlice.actions;
+exports.default = mediaBlockSlice.reducer;
+
+},{"@reduxjs/toolkit":"diJsx","./PhotosAPI":"flrvd","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"diJsx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MiddlewareArray", ()=>MiddlewareArray1
+); //# sourceMappingURL=module.js.map
+parcelHelpers.export(exports, "configureStore", ()=>configureStore
+);
+parcelHelpers.export(exports, "createAction", ()=>createAction
+);
+parcelHelpers.export(exports, "createAsyncThunk", ()=>createAsyncThunk
+);
+parcelHelpers.export(exports, "createDraftSafeSelector", ()=>createDraftSafeSelector
+);
+parcelHelpers.export(exports, "createEntityAdapter", ()=>createEntityAdapter
+);
+parcelHelpers.export(exports, "createImmutableStateInvariantMiddleware", ()=>createImmutableStateInvariantMiddleware
+);
+parcelHelpers.export(exports, "createNextState", ()=>_immerDefault.default
+);
+parcelHelpers.export(exports, "createReducer", ()=>createReducer
+);
+parcelHelpers.export(exports, "createSelector", ()=>_reselect.createSelector
+);
+parcelHelpers.export(exports, "createSerializableStateInvariantMiddleware", ()=>createSerializableStateInvariantMiddleware
+);
+parcelHelpers.export(exports, "createSlice", ()=>createSlice
+);
+parcelHelpers.export(exports, "current", ()=>_immer.current
+);
+parcelHelpers.export(exports, "findNonSerializableValue", ()=>findNonSerializableValue
+);
+parcelHelpers.export(exports, "freeze", ()=>_immer.freeze
+);
+parcelHelpers.export(exports, "getDefaultMiddleware", ()=>getDefaultMiddleware
+);
+parcelHelpers.export(exports, "getType", ()=>getType
+);
+parcelHelpers.export(exports, "isAllOf", ()=>isAllOf
+);
+parcelHelpers.export(exports, "isAnyOf", ()=>isAnyOf
+);
+parcelHelpers.export(exports, "isAsyncThunkAction", ()=>isAsyncThunkAction
+);
+parcelHelpers.export(exports, "isDraft", ()=>_immer.isDraft
+);
+parcelHelpers.export(exports, "isFulfilled", ()=>isFulfilled
+);
+parcelHelpers.export(exports, "isImmutableDefault", ()=>isImmutableDefault
+);
+parcelHelpers.export(exports, "isPending", ()=>isPending
+);
+parcelHelpers.export(exports, "isPlain", ()=>isPlain
+);
+parcelHelpers.export(exports, "isPlainObject", ()=>isPlainObject
+);
+parcelHelpers.export(exports, "isRejected", ()=>isRejected
+);
+parcelHelpers.export(exports, "isRejectedWithValue", ()=>isRejectedWithValue
+);
+parcelHelpers.export(exports, "miniSerializeError", ()=>miniSerializeError
+);
+parcelHelpers.export(exports, "nanoid", ()=>nanoid
+);
+parcelHelpers.export(exports, "original", ()=>_immer.original
+);
+parcelHelpers.export(exports, "unwrapResult", ()=>unwrapResult
+);
+var _immer = require("immer");
+var _immerDefault = parcelHelpers.interopDefault(_immer);
+var _reselect = require("reselect");
+// src/configureStore.ts
+var _redux = require("redux");
+// src/getDefaultMiddleware.ts
+var _reduxThunk = require("redux-thunk");
+var _reduxThunkDefault = parcelHelpers.interopDefault(_reduxThunk);
+// src/index.ts
+parcelHelpers.exportAll(_redux, exports);
+var __extends = undefined && undefined.__extends || function() {
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf || ({
+            __proto__: []
+        }) instanceof Array && function(d1, b1) {
+            d1.__proto__ = b1;
+        } || function(d1, b1) {
+            for(var p in b1)if (Object.prototype.hasOwnProperty.call(b1, p)) d1[p] = b1[p];
+        };
+        return extendStatics(d, b);
+    };
+    return function(d, b) {
+        if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+var __generator = undefined && undefined.__generator || function(thisArg, body) {
+    var _ = {
+        label: 0,
+        sent: function() {
+            if (t[0] & 1) throw t[1];
+            return t[1];
+        },
+        trys: [],
+        ops: []
+    }, f, y, t, g;
+    function verb(n) {
+        return function(v) {
+            return step([
+                n,
+                v
+            ]);
+        };
+    }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while(_)try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [
+                op[0] & 2,
+                t.value
+            ];
+            switch(op[0]){
+                case 0:
+                case 1:
+                    t = op;
+                    break;
+                case 4:
+                    _.label++;
+                    return {
+                        value: op[1],
+                        done: false
+                    };
+                case 5:
+                    _.label++;
+                    y = op[1];
+                    op = [
+                        0
+                    ];
+                    continue;
+                case 7:
+                    op = _.ops.pop();
+                    _.trys.pop();
+                    continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                        _ = 0;
+                        continue;
+                    }
+                    if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+                        _.label = op[1];
+                        break;
+                    }
+                    if (op[0] === 6 && _.label < t[1]) {
+                        _.label = t[1];
+                        t = op;
+                        break;
+                    }
+                    if (t && _.label < t[2]) {
+                        _.label = t[2];
+                        _.ops.push(op);
+                        break;
+                    }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop();
+                    continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) {
+            op = [
+                6,
+                e
+            ];
+            y = 0;
+        } finally{
+            f = t = 0;
+        }
+        if (op[0] & 5) throw op[1];
+        return {
+            value: op[0] ? op[1] : void 0,
+            done: true
+        };
+    }
+    return g = {
+        next: verb(0),
+        "throw": verb(1),
+        "return": verb(2)
+    }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
+        return this;
+    }), g;
+};
+var __spreadArray = undefined && undefined.__spreadArray || function(to, from) {
+    for(var i = 0, il = from.length, j = to.length; i < il; i++, j++)to[j] = from[i];
+    return to;
+};
+var __defProp = Object.defineProperty;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = function(obj, key, value) {
+    return key in obj ? __defProp(obj, key, {
+        enumerable: true,
+        configurable: true,
+        writable: true,
+        value: value
+    }) : obj[key] = value;
+};
+var __objSpread = function(a, b) {
+    for(var prop in b || (b = {
+    }))if (__hasOwnProp.call(b, prop)) __defNormalProp(a, prop, b[prop]);
+    if (__getOwnPropSymbols) for(var _i = 0, _b = __getOwnPropSymbols(b); _i < _b.length; _i++){
+        var prop = _b[_i];
+        if (__propIsEnum.call(b, prop)) __defNormalProp(a, prop, b[prop]);
+    }
+    return a;
+};
+var __async = function(__this, __arguments, generator) {
+    return new Promise(function(resolve, reject) {
+        var fulfilled = function(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        };
+        var rejected = function(value) {
+            try {
+                step(generator.throw(value));
+            } catch (e) {
+                reject(e);
+            }
+        };
+        var step = function(x) {
+            return x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+        };
+        step((generator = generator.apply(__this, __arguments)).next());
+    });
+};
+var createDraftSafeSelector = function() {
+    var args = [];
+    for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
+    var selector = _reselect.createSelector.apply(void 0, args);
+    var wrappedSelector = function(value) {
+        var rest = [];
+        for(var _i1 = 1; _i1 < arguments.length; _i1++)rest[_i1 - 1] = arguments[_i1];
+        return selector.apply(void 0, __spreadArray([
+            _immer.isDraft(value) ? _immer.current(value) : value
+        ], rest));
+    };
+    return wrappedSelector;
+};
+var composeWithDevTools = typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : function() {
+    if (arguments.length === 0) return void 0;
+    if (typeof arguments[0] === "object") return _redux.compose;
+    return _redux.compose.apply(null, arguments);
+};
+var devToolsEnhancer = typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__ : function() {
+    return function(noop) {
+        return noop;
+    };
+};
+// src/isPlainObject.ts
+function isPlainObject(value) {
+    if (typeof value !== "object" || value === null) return false;
+    var proto = value;
+    while(Object.getPrototypeOf(proto) !== null)proto = Object.getPrototypeOf(proto);
+    return Object.getPrototypeOf(value) === proto;
+}
+// src/utils.ts
+function getTimeMeasureUtils(maxDelay, fnName) {
+    var elapsed = 0;
+    return {
+        measureTime: function(fn) {
+            var started = Date.now();
+            try {
+                return fn();
+            } finally{
+                var finished = Date.now();
+                elapsed += finished - started;
+            }
+        },
+        warnIfExceeded: function() {
+            if (elapsed > maxDelay) console.warn(fnName + " took " + elapsed + "ms, which is more than the warning threshold of " + maxDelay + "ms. \nIf your state or actions are very large, you may want to disable the middleware as it might cause too much of a slowdown in development mode. See https://redux-toolkit.js.org/api/getDefaultMiddleware for instructions.\nIt is disabled in production builds, so you don't need to worry about that.");
+        }
+    };
+}
+var MiddlewareArray1 = function(_super) {
+    __extends(MiddlewareArray2, _super);
+    function MiddlewareArray2() {
+        var args = [];
+        for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
+        var _this = _super.apply(this, args) || this;
+        Object.setPrototypeOf(_this, MiddlewareArray2.prototype);
+        return _this;
+    }
+    Object.defineProperty(MiddlewareArray2, Symbol.species, {
+        get: function() {
+            return MiddlewareArray2;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    MiddlewareArray2.prototype.concat = function() {
+        var arr = [];
+        for(var _i = 0; _i < arguments.length; _i++)arr[_i] = arguments[_i];
+        return _super.prototype.concat.apply(this, arr);
+    };
+    MiddlewareArray2.prototype.prepend = function() {
+        var arr = [];
+        for(var _i = 0; _i < arguments.length; _i++)arr[_i] = arguments[_i];
+        if (arr.length === 1 && Array.isArray(arr[0])) return new (MiddlewareArray2.bind.apply(MiddlewareArray2, __spreadArray([
+            void 0
+        ], arr[0].concat(this))))();
+        return new (MiddlewareArray2.bind.apply(MiddlewareArray2, __spreadArray([
+            void 0
+        ], arr.concat(this))))();
+    };
+    return MiddlewareArray2;
+}(Array);
+// src/immutableStateInvariantMiddleware.ts
+var isProduction = false;
+var prefix = "Invariant failed";
+function invariant(condition, message) {
+    if (condition) return;
+    if (isProduction) throw new Error(prefix);
+    throw new Error(prefix + ": " + (message || ""));
+}
+function stringify(obj, serializer, indent, decycler) {
+    return JSON.stringify(obj, getSerialize(serializer, decycler), indent);
+}
+function getSerialize(serializer, decycler) {
+    var stack = [], keys = [];
+    if (!decycler) decycler = function(_, value) {
+        if (stack[0] === value) return "[Circular ~]";
+        return "[Circular ~." + keys.slice(0, stack.indexOf(value)).join(".") + "]";
+    };
+    return function(key, value) {
+        if (stack.length > 0) {
+            var thisPos = stack.indexOf(this);
+            ~thisPos ? stack.splice(thisPos + 1) : stack.push(this);
+            ~thisPos ? keys.splice(thisPos, Infinity, key) : keys.push(key);
+            if (~stack.indexOf(value)) value = decycler.call(this, key, value);
+        } else stack.push(value);
+        return serializer == null ? value : serializer.call(this, key, value);
+    };
+}
+function isImmutableDefault(value) {
+    return typeof value !== "object" || value === null || typeof value === "undefined" || Object.isFrozen(value);
+}
+function trackForMutations(isImmutable, ignorePaths, obj) {
+    var trackedProperties = trackProperties(isImmutable, ignorePaths, obj);
+    return {
+        detectMutations: function() {
+            return detectMutations(isImmutable, ignorePaths, trackedProperties, obj);
+        }
+    };
+}
+function trackProperties(isImmutable, ignorePaths, obj, path) {
+    if (ignorePaths === void 0) ignorePaths = [];
+    if (path === void 0) path = "";
+    var tracked = {
+        value: obj
+    };
+    if (!isImmutable(obj)) {
+        tracked.children = {
+        };
+        for(var key in obj){
+            var childPath = path ? path + "." + key : key;
+            if (ignorePaths.length && ignorePaths.indexOf(childPath) !== -1) continue;
+            tracked.children[key] = trackProperties(isImmutable, ignorePaths, obj[key], childPath);
+        }
+    }
+    return tracked;
+}
+function detectMutations(isImmutable, ignorePaths, trackedProperty, obj, sameParentRef, path) {
+    if (ignorePaths === void 0) ignorePaths = [];
+    if (sameParentRef === void 0) sameParentRef = false;
+    if (path === void 0) path = "";
+    var prevObj = trackedProperty ? trackedProperty.value : void 0;
+    var sameRef = prevObj === obj;
+    if (sameParentRef && !sameRef && !Number.isNaN(obj)) return {
+        wasMutated: true,
+        path: path
+    };
+    if (isImmutable(prevObj) || isImmutable(obj)) return {
+        wasMutated: false
+    };
+    var keysToDetect = {
+    };
+    for(var key in trackedProperty.children)keysToDetect[key] = true;
+    for(var key in obj)keysToDetect[key] = true;
+    for(var key in keysToDetect){
+        var childPath = path ? path + "." + key : key;
+        if (ignorePaths.length && ignorePaths.indexOf(childPath) !== -1) continue;
+        var result = detectMutations(isImmutable, ignorePaths, trackedProperty.children[key], obj[key], sameRef, childPath);
+        if (result.wasMutated) return result;
+    }
+    return {
+        wasMutated: false
+    };
+}
+function createImmutableStateInvariantMiddleware(options) {
+    if (options === void 0) options = {
+    };
+    var next, action;
+    var _b = options.isImmutable, isImmutable = _b === void 0 ? isImmutableDefault : _b, ignoredPaths = options.ignoredPaths, _c = options.warnAfter, warnAfter = _c === void 0 ? 32 : _c, ignore = options.ignore;
+    ignoredPaths = ignoredPaths || ignore;
+    var track = trackForMutations.bind(null, isImmutable, ignoredPaths);
+    return function(_b1) {
+        var getState = _b1.getState;
+        var state = getState();
+        var tracker = track(state);
+        var result;
+        return function(next1) {
+            return function(action1) {
+                var measureUtils = getTimeMeasureUtils(warnAfter, "ImmutableStateInvariantMiddleware");
+                measureUtils.measureTime(function() {
+                    state = getState();
+                    result = tracker.detectMutations();
+                    tracker = track(state);
+                    invariant(!result.wasMutated, "A state mutation was detected between dispatches, in the path '" + (result.path || "") + "'.  This may cause incorrect behavior. (https://redux.js.org/style-guide/style-guide#do-not-mutate-state)");
+                });
+                var dispatchedAction = next1(action1);
+                measureUtils.measureTime(function() {
+                    state = getState();
+                    result = tracker.detectMutations();
+                    tracker = track(state);
+                    result.wasMutated && invariant(!result.wasMutated, "A state mutation was detected inside a dispatch, in the path: " + (result.path || "") + ". Take a look at the reducer(s) handling the action " + stringify(action1) + ". (https://redux.js.org/style-guide/style-guide#do-not-mutate-state)");
+                });
+                measureUtils.warnIfExceeded();
+                return dispatchedAction;
+            };
+        };
+    };
+}
+// src/serializableStateInvariantMiddleware.ts
+function isPlain(val) {
+    var type = typeof val;
+    return type === "undefined" || val === null || type === "string" || type === "boolean" || type === "number" || Array.isArray(val) || isPlainObject(val);
+}
+function findNonSerializableValue(value, path, isSerializable, getEntries, ignoredPaths) {
+    if (path === void 0) path = "";
+    if (isSerializable === void 0) isSerializable = isPlain;
+    if (ignoredPaths === void 0) ignoredPaths = [];
+    var foundNestedSerializable;
+    if (!isSerializable(value)) return {
+        keyPath: path || "<root>",
+        value: value
+    };
+    if (typeof value !== "object" || value === null) return false;
+    var entries = getEntries != null ? getEntries(value) : Object.entries(value);
+    var hasIgnoredPaths = ignoredPaths.length > 0;
+    for(var _i = 0, entries_1 = entries; _i < entries_1.length; _i++){
+        var _b = entries_1[_i], key = _b[0], nestedValue = _b[1];
+        var nestedPath = path ? path + "." + key : key;
+        if (hasIgnoredPaths && ignoredPaths.indexOf(nestedPath) >= 0) continue;
+        if (!isSerializable(nestedValue)) return {
+            keyPath: nestedPath,
+            value: nestedValue
+        };
+        if (typeof nestedValue === "object") {
+            foundNestedSerializable = findNonSerializableValue(nestedValue, nestedPath, isSerializable, getEntries, ignoredPaths);
+            if (foundNestedSerializable) return foundNestedSerializable;
+        }
+    }
+    return false;
+}
+function createSerializableStateInvariantMiddleware(options) {
+    if (options === void 0) options = {
+    };
+    var next, action;
+    var _b = options.isSerializable, isSerializable = _b === void 0 ? isPlain : _b, getEntries = options.getEntries, _c = options.ignoredActions, ignoredActions = _c === void 0 ? [] : _c, _d = options.ignoredActionPaths, ignoredActionPaths = _d === void 0 ? [
+        "meta.arg",
+        "meta.baseQueryMeta"
+    ] : _d, _e = options.ignoredPaths, ignoredPaths = _e === void 0 ? [] : _e, _f = options.warnAfter, warnAfter = _f === void 0 ? 32 : _f, _g = options.ignoreState, ignoreState = _g === void 0 ? false : _g;
+    return function(storeAPI) {
+        return function(next1) {
+            return function(action1) {
+                if (ignoredActions.length && ignoredActions.indexOf(action1.type) !== -1) return next1(action1);
+                var measureUtils = getTimeMeasureUtils(warnAfter, "SerializableStateInvariantMiddleware");
+                measureUtils.measureTime(function() {
+                    var foundActionNonSerializableValue = findNonSerializableValue(action1, "", isSerializable, getEntries, ignoredActionPaths);
+                    if (foundActionNonSerializableValue) {
+                        var keyPath = foundActionNonSerializableValue.keyPath, value = foundActionNonSerializableValue.value;
+                        console.error("A non-serializable value was detected in an action, in the path: `" + keyPath + "`. Value:", value, "\nTake a look at the logic that dispatched this action: ", action1, "\n(See https://redux.js.org/faq/actions#why-should-type-be-a-string-or-at-least-serializable-why-should-my-action-types-be-constants)", "\n(To allow non-serializable values see: https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data)");
+                    }
+                });
+                var result = next1(action1);
+                if (!ignoreState) {
+                    measureUtils.measureTime(function() {
+                        var state = storeAPI.getState();
+                        var foundStateNonSerializableValue = findNonSerializableValue(state, "", isSerializable, getEntries, ignoredPaths);
+                        if (foundStateNonSerializableValue) {
+                            var keyPath = foundStateNonSerializableValue.keyPath, value = foundStateNonSerializableValue.value;
+                            console.error("A non-serializable value was detected in the state, in the path: `" + keyPath + "`. Value:", value, "\nTake a look at the reducer(s) handling this action type: " + action1.type + ".\n(See https://redux.js.org/faq/organizing-state#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state)");
+                        }
+                    });
+                    measureUtils.warnIfExceeded();
+                }
+                return result;
+            };
+        };
+    };
+}
+// src/getDefaultMiddleware.ts
+function isBoolean(x) {
+    return typeof x === "boolean";
+}
+function curryGetDefaultMiddleware() {
+    return function curriedGetDefaultMiddleware(options) {
+        return getDefaultMiddleware(options);
+    };
+}
+function getDefaultMiddleware(options) {
+    if (options === void 0) options = {
+    };
+    var _b = options.thunk, thunk = _b === void 0 ? true : _b, _c = options.immutableCheck, immutableCheck = _c === void 0 ? true : _c, _d = options.serializableCheck, serializableCheck = _d === void 0 ? true : _d;
+    var middlewareArray = new MiddlewareArray1();
+    if (thunk) {
+        if (isBoolean(thunk)) middlewareArray.push(_reduxThunkDefault.default);
+        else middlewareArray.push(_reduxThunkDefault.default.withExtraArgument(thunk.extraArgument));
+    }
+    if (immutableCheck) {
+        var immutableOptions = {
+        };
+        if (!isBoolean(immutableCheck)) immutableOptions = immutableCheck;
+        middlewareArray.unshift(createImmutableStateInvariantMiddleware(immutableOptions));
+    }
+    if (serializableCheck) {
+        var serializableOptions = {
+        };
+        if (!isBoolean(serializableCheck)) serializableOptions = serializableCheck;
+        middlewareArray.push(createSerializableStateInvariantMiddleware(serializableOptions));
+    }
+    return middlewareArray;
+}
+// src/configureStore.ts
+var IS_PRODUCTION = false;
+function configureStore(options) {
+    var curriedGetDefaultMiddleware = curryGetDefaultMiddleware();
+    var _b = options || {
+    }, _c = _b.reducer, reducer = _c === void 0 ? void 0 : _c, _d = _b.middleware, middleware = _d === void 0 ? curriedGetDefaultMiddleware() : _d, _e = _b.devTools, devTools = _e === void 0 ? true : _e, _f = _b.preloadedState, preloadedState = _f === void 0 ? void 0 : _f, _g = _b.enhancers, enhancers = _g === void 0 ? void 0 : _g;
+    var rootReducer;
+    if (typeof reducer === "function") rootReducer = reducer;
+    else if (isPlainObject(reducer)) rootReducer = _redux.combineReducers(reducer);
+    else throw new Error('"reducer" is a required argument, and must be a function or an object of functions that can be passed to combineReducers');
+    var finalMiddleware = middleware;
+    if (typeof finalMiddleware === "function") {
+        finalMiddleware = finalMiddleware(curriedGetDefaultMiddleware);
+        if (!IS_PRODUCTION && !Array.isArray(finalMiddleware)) throw new Error("when using a middleware builder function, an array of middleware must be returned");
+    }
+    if (!IS_PRODUCTION && finalMiddleware.some(function(item) {
+        return typeof item !== "function";
+    })) throw new Error("each middleware provided to configureStore must be a function");
+    var middlewareEnhancer = _redux.applyMiddleware.apply(void 0, finalMiddleware);
+    var finalCompose = _redux.compose;
+    if (devTools) finalCompose = composeWithDevTools(__objSpread({
+        trace: !IS_PRODUCTION
+    }, typeof devTools === "object" && devTools));
+    var storeEnhancers = [
+        middlewareEnhancer
+    ];
+    if (Array.isArray(enhancers)) storeEnhancers = __spreadArray([
+        middlewareEnhancer
+    ], enhancers);
+    else if (typeof enhancers === "function") storeEnhancers = enhancers(storeEnhancers);
+    var composedEnhancer = finalCompose.apply(void 0, storeEnhancers);
+    return _redux.createStore(rootReducer, preloadedState, composedEnhancer);
+}
+// src/createAction.ts
+function createAction(type, prepareAction) {
+    function actionCreator() {
+        var args = [];
+        for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
+        if (prepareAction) {
+            var prepared = prepareAction.apply(void 0, args);
+            if (!prepared) throw new Error("prepareAction did not return an object");
+            return __objSpread(__objSpread({
+                type: type,
+                payload: prepared.payload
+            }, "meta" in prepared && {
+                meta: prepared.meta
+            }), "error" in prepared && {
+                error: prepared.error
+            });
+        }
+        return {
+            type: type,
+            payload: args[0]
+        };
+    }
+    actionCreator.toString = function() {
+        return "" + type;
+    };
+    actionCreator.type = type;
+    actionCreator.match = function(action) {
+        return action.type === type;
+    };
+    return actionCreator;
+}
+function isFSA(action) {
+    return isPlainObject(action) && typeof action.type === "string" && Object.keys(action).every(isValidKey);
+}
+function isValidKey(key) {
+    return [
+        "type",
+        "payload",
+        "error",
+        "meta"
+    ].indexOf(key) > -1;
+}
+function getType(actionCreator) {
+    return "" + actionCreator;
+}
+// src/mapBuilders.ts
+function executeReducerBuilderCallback(builderCallback) {
+    var actionsMap = {
+    };
+    var actionMatchers = [];
+    var defaultCaseReducer;
+    var builder = {
+        addCase: function(typeOrActionCreator, reducer) {
+            if (actionMatchers.length > 0) throw new Error("`builder.addCase` should only be called before calling `builder.addMatcher`");
+            if (defaultCaseReducer) throw new Error("`builder.addCase` should only be called before calling `builder.addDefaultCase`");
+            var type = typeof typeOrActionCreator === "string" ? typeOrActionCreator : typeOrActionCreator.type;
+            if (type in actionsMap) throw new Error("addCase cannot be called with two reducers for the same action type");
+            actionsMap[type] = reducer;
+            return builder;
+        },
+        addMatcher: function(matcher, reducer) {
+            if (defaultCaseReducer) throw new Error("`builder.addMatcher` should only be called before calling `builder.addDefaultCase`");
+            actionMatchers.push({
+                matcher: matcher,
+                reducer: reducer
+            });
+            return builder;
+        },
+        addDefaultCase: function(reducer) {
+            if (defaultCaseReducer) throw new Error("`builder.addDefaultCase` can only be called once");
+            defaultCaseReducer = reducer;
+            return builder;
+        }
+    };
+    builderCallback(builder);
+    return [
+        actionsMap,
+        actionMatchers,
+        defaultCaseReducer
+    ];
+}
+// src/createReducer.ts
+function createReducer(initialState, mapOrBuilderCallback, actionMatchers, defaultCaseReducer) {
+    if (actionMatchers === void 0) actionMatchers = [];
+    _immer.enableES5();
+    var _b = typeof mapOrBuilderCallback === "function" ? executeReducerBuilderCallback(mapOrBuilderCallback) : [
+        mapOrBuilderCallback,
+        actionMatchers,
+        defaultCaseReducer
+    ], actionsMap = _b[0], finalActionMatchers = _b[1], finalDefaultCaseReducer = _b[2];
+    var frozenInitialState = _immerDefault.default(initialState, function() {
+    });
+    return function(state, action) {
+        if (state === void 0) state = frozenInitialState;
+        var caseReducers = __spreadArray([
+            actionsMap[action.type]
+        ], finalActionMatchers.filter(function(_b1) {
+            var matcher = _b1.matcher;
+            return matcher(action);
+        }).map(function(_b1) {
+            var reducer = _b1.reducer;
+            return reducer;
+        }));
+        if (caseReducers.filter(function(cr) {
+            return !!cr;
+        }).length === 0) caseReducers = [
+            finalDefaultCaseReducer
+        ];
+        return caseReducers.reduce(function(previousState, caseReducer) {
+            if (caseReducer) {
+                if (_immer.isDraft(previousState)) {
+                    var draft = previousState;
+                    var result = caseReducer(draft, action);
+                    if (typeof result === "undefined") return previousState;
+                    return result;
+                } else if (!_immer.isDraftable(previousState)) {
+                    var result = caseReducer(previousState, action);
+                    if (typeof result === "undefined") {
+                        if (previousState === null) return previousState;
+                        throw Error("A case reducer on a non-draftable value must not return undefined");
+                    }
+                    return result;
+                } else return _immerDefault.default(previousState, function(draft) {
+                    return caseReducer(draft, action);
+                });
+            }
+            return previousState;
+        }, state);
+    };
+}
+// src/createSlice.ts
+function getType2(slice, actionKey) {
+    return slice + "/" + actionKey;
+}
+function createSlice(options) {
+    var name = options.name, initialState = options.initialState;
+    if (!name) throw new Error("`name` is a required option for createSlice");
+    var reducers = options.reducers || {
+    };
+    var _b = typeof options.extraReducers === "function" ? executeReducerBuilderCallback(options.extraReducers) : [
+        options.extraReducers
+    ], _c = _b[0], extraReducers = _c === void 0 ? {
+    } : _c, _d = _b[1], actionMatchers = _d === void 0 ? [] : _d, _e = _b[2], defaultCaseReducer = _e === void 0 ? void 0 : _e;
+    var reducerNames = Object.keys(reducers);
+    var sliceCaseReducersByName = {
+    };
+    var sliceCaseReducersByType = {
+    };
+    var actionCreators = {
+    };
+    reducerNames.forEach(function(reducerName) {
+        var maybeReducerWithPrepare = reducers[reducerName];
+        var type = getType2(name, reducerName);
+        var caseReducer;
+        var prepareCallback;
+        if ("reducer" in maybeReducerWithPrepare) {
+            caseReducer = maybeReducerWithPrepare.reducer;
+            prepareCallback = maybeReducerWithPrepare.prepare;
+        } else caseReducer = maybeReducerWithPrepare;
+        sliceCaseReducersByName[reducerName] = caseReducer;
+        sliceCaseReducersByType[type] = caseReducer;
+        actionCreators[reducerName] = prepareCallback ? createAction(type, prepareCallback) : createAction(type);
+    });
+    var finalCaseReducers = __objSpread(__objSpread({
+    }, extraReducers), sliceCaseReducersByType);
+    var reducer = createReducer(initialState, finalCaseReducers, actionMatchers, defaultCaseReducer);
+    return {
+        name: name,
+        reducer: reducer,
+        actions: actionCreators,
+        caseReducers: sliceCaseReducersByName
+    };
+}
+// src/entities/entity_state.ts
+function getInitialEntityState() {
+    return {
+        ids: [],
+        entities: {
+        }
+    };
+}
+function createInitialStateFactory() {
+    function getInitialState(additionalState) {
+        if (additionalState === void 0) additionalState = {
+        };
+        return Object.assign(getInitialEntityState(), additionalState);
+    }
+    return {
+        getInitialState: getInitialState
+    };
+}
+// src/entities/state_selectors.ts
+function createSelectorsFactory() {
+    function getSelectors(selectState) {
+        var selectIds = function(state) {
+            return state.ids;
+        };
+        var selectEntities = function(state) {
+            return state.entities;
+        };
+        var selectAll = createDraftSafeSelector(selectIds, selectEntities, function(ids, entities) {
+            return ids.map(function(id) {
+                return entities[id];
+            });
+        });
+        var selectId = function(_, id) {
+            return id;
+        };
+        var selectById = function(entities, id) {
+            return entities[id];
+        };
+        var selectTotal = createDraftSafeSelector(selectIds, function(ids) {
+            return ids.length;
+        });
+        if (!selectState) return {
+            selectIds: selectIds,
+            selectEntities: selectEntities,
+            selectAll: selectAll,
+            selectTotal: selectTotal,
+            selectById: createDraftSafeSelector(selectEntities, selectId, selectById)
+        };
+        var selectGlobalizedEntities = createDraftSafeSelector(selectState, selectEntities);
+        return {
+            selectIds: createDraftSafeSelector(selectState, selectIds),
+            selectEntities: selectGlobalizedEntities,
+            selectAll: createDraftSafeSelector(selectState, selectAll),
+            selectTotal: createDraftSafeSelector(selectState, selectTotal),
+            selectById: createDraftSafeSelector(selectGlobalizedEntities, selectId, selectById)
+        };
+    }
+    return {
+        getSelectors: getSelectors
+    };
+}
+function createSingleArgumentStateOperator(mutator) {
+    var operator = createStateOperator(function(_, state) {
+        return mutator(state);
+    });
+    return function operation(state) {
+        return operator(state, void 0);
+    };
+}
+function createStateOperator(mutator) {
+    return function operation(state, arg) {
+        function isPayloadActionArgument(arg2) {
+            return isFSA(arg2);
+        }
+        var runMutator = function(draft) {
+            if (isPayloadActionArgument(arg)) mutator(arg.payload, draft);
+            else mutator(arg, draft);
+        };
+        if (_immer.isDraft(state)) {
+            runMutator(state);
+            return state;
+        } else return _immerDefault.default(state, runMutator);
+    };
+}
+// src/entities/utils.ts
+function selectIdValue(entity, selectId) {
+    var key = selectId(entity);
+    if (key === void 0) console.warn("The entity passed to the `selectId` implementation returned undefined.", "You should probably provide your own `selectId` implementation.", "The entity that was passed:", entity, "The `selectId` implementation:", selectId.toString());
+    return key;
+}
+function ensureEntitiesArray(entities) {
+    if (!Array.isArray(entities)) entities = Object.values(entities);
+    return entities;
+}
+function splitAddedUpdatedEntities(newEntities, selectId, state) {
+    newEntities = ensureEntitiesArray(newEntities);
+    var added = [];
+    var updated = [];
+    for(var _i = 0, newEntities_1 = newEntities; _i < newEntities_1.length; _i++){
+        var entity = newEntities_1[_i];
+        var id = selectIdValue(entity, selectId);
+        if (id in state.entities) updated.push({
+            id: id,
+            changes: entity
+        });
+        else added.push(entity);
+    }
+    return [
+        added,
+        updated
+    ];
+}
+// src/entities/unsorted_state_adapter.ts
+function createUnsortedStateAdapter(selectId) {
+    function addOneMutably(entity, state) {
+        var key = selectIdValue(entity, selectId);
+        if (key in state.entities) return;
+        state.ids.push(key);
+        state.entities[key] = entity;
+    }
+    function addManyMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        for(var _i = 0, newEntities_2 = newEntities; _i < newEntities_2.length; _i++){
+            var entity = newEntities_2[_i];
+            addOneMutably(entity, state);
+        }
+    }
+    function setOneMutably(entity, state) {
+        var key = selectIdValue(entity, selectId);
+        if (!(key in state.entities)) state.ids.push(key);
+        state.entities[key] = entity;
+    }
+    function setManyMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        for(var _i = 0, newEntities_3 = newEntities; _i < newEntities_3.length; _i++){
+            var entity = newEntities_3[_i];
+            setOneMutably(entity, state);
+        }
+    }
+    function setAllMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        state.ids = [];
+        state.entities = {
+        };
+        addManyMutably(newEntities, state);
+    }
+    function removeOneMutably(key, state) {
+        return removeManyMutably([
+            key
+        ], state);
+    }
+    function removeManyMutably(keys, state) {
+        var didMutate = false;
+        keys.forEach(function(key) {
+            if (key in state.entities) {
+                delete state.entities[key];
+                didMutate = true;
+            }
+        });
+        if (didMutate) state.ids = state.ids.filter(function(id) {
+            return id in state.entities;
+        });
+    }
+    function removeAllMutably(state) {
+        Object.assign(state, {
+            ids: [],
+            entities: {
+            }
+        });
+    }
+    function takeNewKey(keys, update, state) {
+        var original2 = state.entities[update.id];
+        var updated = Object.assign({
+        }, original2, update.changes);
+        var newKey = selectIdValue(updated, selectId);
+        var hasNewKey = newKey !== update.id;
+        if (hasNewKey) {
+            keys[update.id] = newKey;
+            delete state.entities[update.id];
+        }
+        state.entities[newKey] = updated;
+        return hasNewKey;
+    }
+    function updateOneMutably(update, state) {
+        return updateManyMutably([
+            update
+        ], state);
+    }
+    function updateManyMutably(updates, state) {
+        var newKeys = {
+        };
+        var updatesPerEntity = {
+        };
+        updates.forEach(function(update) {
+            if (update.id in state.entities) updatesPerEntity[update.id] = {
+                id: update.id,
+                changes: __objSpread(__objSpread({
+                }, updatesPerEntity[update.id] ? updatesPerEntity[update.id].changes : null), update.changes)
+            };
+        });
+        updates = Object.values(updatesPerEntity);
+        var didMutateEntities = updates.length > 0;
+        if (didMutateEntities) {
+            var didMutateIds = updates.filter(function(update) {
+                return takeNewKey(newKeys, update, state);
+            }).length > 0;
+            if (didMutateIds) state.ids = state.ids.map(function(id) {
+                return newKeys[id] || id;
+            });
+        }
+    }
+    function upsertOneMutably(entity, state) {
+        return upsertManyMutably([
+            entity
+        ], state);
+    }
+    function upsertManyMutably(newEntities, state) {
+        var _b = splitAddedUpdatedEntities(newEntities, selectId, state), added = _b[0], updated = _b[1];
+        updateManyMutably(updated, state);
+        addManyMutably(added, state);
+    }
+    return {
+        removeAll: createSingleArgumentStateOperator(removeAllMutably),
+        addOne: createStateOperator(addOneMutably),
+        addMany: createStateOperator(addManyMutably),
+        setOne: createStateOperator(setOneMutably),
+        setMany: createStateOperator(setManyMutably),
+        setAll: createStateOperator(setAllMutably),
+        updateOne: createStateOperator(updateOneMutably),
+        updateMany: createStateOperator(updateManyMutably),
+        upsertOne: createStateOperator(upsertOneMutably),
+        upsertMany: createStateOperator(upsertManyMutably),
+        removeOne: createStateOperator(removeOneMutably),
+        removeMany: createStateOperator(removeManyMutably)
+    };
+}
+// src/entities/sorted_state_adapter.ts
+function createSortedStateAdapter(selectId, sort) {
+    var _b = createUnsortedStateAdapter(selectId), removeOne = _b.removeOne, removeMany = _b.removeMany, removeAll = _b.removeAll;
+    function addOneMutably(entity, state) {
+        return addManyMutably([
+            entity
+        ], state);
+    }
+    function addManyMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        var models = newEntities.filter(function(model) {
+            return !(selectIdValue(model, selectId) in state.entities);
+        });
+        if (models.length !== 0) merge(models, state);
+    }
+    function setOneMutably(entity, state) {
+        return setManyMutably([
+            entity
+        ], state);
+    }
+    function setManyMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        if (newEntities.length !== 0) merge(newEntities, state);
+    }
+    function setAllMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        state.entities = {
+        };
+        state.ids = [];
+        addManyMutably(newEntities, state);
+    }
+    function updateOneMutably(update, state) {
+        return updateManyMutably([
+            update
+        ], state);
+    }
+    function takeUpdatedModel(models, update, state) {
+        if (!(update.id in state.entities)) return false;
+        var original2 = state.entities[update.id];
+        var updated = Object.assign({
+        }, original2, update.changes);
+        var newKey = selectIdValue(updated, selectId);
+        delete state.entities[update.id];
+        models.push(updated);
+        return newKey !== update.id;
+    }
+    function updateManyMutably(updates, state) {
+        var models = [];
+        updates.forEach(function(update) {
+            return takeUpdatedModel(models, update, state);
+        });
+        if (models.length !== 0) merge(models, state);
+    }
+    function upsertOneMutably(entity, state) {
+        return upsertManyMutably([
+            entity
+        ], state);
+    }
+    function upsertManyMutably(newEntities, state) {
+        var _b1 = splitAddedUpdatedEntities(newEntities, selectId, state), added = _b1[0], updated = _b1[1];
+        updateManyMutably(updated, state);
+        addManyMutably(added, state);
+    }
+    function areArraysEqual(a, b) {
+        if (a.length !== b.length) return false;
+        for(var i = 0; i < a.length && i < b.length; i++){
+            if (a[i] === b[i]) continue;
+            return false;
+        }
+        return true;
+    }
+    function merge(models, state) {
+        models.forEach(function(model) {
+            state.entities[selectId(model)] = model;
+        });
+        var allEntities = Object.values(state.entities);
+        allEntities.sort(sort);
+        var newSortedIds = allEntities.map(selectId);
+        var ids = state.ids;
+        if (!areArraysEqual(ids, newSortedIds)) state.ids = newSortedIds;
+    }
+    return {
+        removeOne: removeOne,
+        removeMany: removeMany,
+        removeAll: removeAll,
+        addOne: createStateOperator(addOneMutably),
+        updateOne: createStateOperator(updateOneMutably),
+        upsertOne: createStateOperator(upsertOneMutably),
+        setOne: createStateOperator(setOneMutably),
+        setMany: createStateOperator(setManyMutably),
+        setAll: createStateOperator(setAllMutably),
+        addMany: createStateOperator(addManyMutably),
+        updateMany: createStateOperator(updateManyMutably),
+        upsertMany: createStateOperator(upsertManyMutably)
+    };
+}
+// src/entities/create_adapter.ts
+function createEntityAdapter(options) {
+    if (options === void 0) options = {
+    };
+    var _b = __objSpread({
+        sortComparer: false,
+        selectId: function(instance) {
+            return instance.id;
+        }
+    }, options), selectId = _b.selectId, sortComparer = _b.sortComparer;
+    var stateFactory = createInitialStateFactory();
+    var selectorsFactory = createSelectorsFactory();
+    var stateAdapter = sortComparer ? createSortedStateAdapter(selectId, sortComparer) : createUnsortedStateAdapter(selectId);
+    return __objSpread(__objSpread(__objSpread({
+        selectId: selectId,
+        sortComparer: sortComparer
+    }, stateFactory), selectorsFactory), stateAdapter);
+}
+// src/nanoid.ts
+var urlAlphabet = "ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW";
+var nanoid = function(size) {
+    if (size === void 0) size = 21;
+    var id = "";
+    var i = size;
+    while(i--)id += urlAlphabet[Math.random() * 64 | 0];
+    return id;
+};
+// src/createAsyncThunk.ts
+var commonProperties = [
+    "name",
+    "message",
+    "stack",
+    "code"
+];
+var RejectWithValue = function() {
+    function RejectWithValue1(payload, meta) {
+        this.payload = payload;
+        this.meta = meta;
+    }
+    return RejectWithValue1;
+}();
+var FulfillWithMeta = function() {
+    function FulfillWithMeta1(payload, meta) {
+        this.payload = payload;
+        this.meta = meta;
+    }
+    return FulfillWithMeta1;
+}();
+var miniSerializeError = function(value) {
+    if (typeof value === "object" && value !== null) {
+        var simpleError = {
+        };
+        for(var _i = 0, commonProperties_1 = commonProperties; _i < commonProperties_1.length; _i++){
+            var property = commonProperties_1[_i];
+            if (typeof value[property] === "string") simpleError[property] = value[property];
+        }
+        return simpleError;
+    }
+    return {
+        message: String(value)
+    };
+};
+function createAsyncThunk(typePrefix, payloadCreator, options) {
+    var fulfilled = createAction(typePrefix + "/fulfilled", function(payload, requestId, arg, meta) {
+        return {
+            payload: payload,
+            meta: __objSpread(__objSpread({
+            }, meta || {
+            }), {
+                arg: arg,
+                requestId: requestId,
+                requestStatus: "fulfilled"
+            })
+        };
+    });
+    var pending = createAction(typePrefix + "/pending", function(requestId, arg, meta) {
+        return {
+            payload: void 0,
+            meta: __objSpread(__objSpread({
+            }, meta || {
+            }), {
+                arg: arg,
+                requestId: requestId,
+                requestStatus: "pending"
+            })
+        };
+    });
+    var rejected = createAction(typePrefix + "/rejected", function(error, requestId, arg, payload, meta) {
+        return {
+            payload: payload,
+            error: (options && options.serializeError || miniSerializeError)(error || "Rejected"),
+            meta: __objSpread(__objSpread({
+            }, meta || {
+            }), {
+                arg: arg,
+                requestId: requestId,
+                rejectedWithValue: !!payload,
+                requestStatus: "rejected",
+                aborted: (error == null ? void 0 : error.name) === "AbortError",
+                condition: (error == null ? void 0 : error.name) === "ConditionError"
+            })
+        };
+    });
+    var displayedWarning = false;
+    var AC = typeof AbortController !== "undefined" ? AbortController : function() {
+        function class_1() {
+            this.signal = {
+                aborted: false,
+                addEventListener: function() {
+                },
+                dispatchEvent: function() {
+                    return false;
+                },
+                onabort: function() {
+                },
+                removeEventListener: function() {
+                }
+            };
+        }
+        class_1.prototype.abort = function() {
+            if (!displayedWarning) {
+                displayedWarning = true;
+                console.info("This platform does not implement AbortController. \nIf you want to use the AbortController to react to `abort` events, please consider importing a polyfill like 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'.");
+            }
+        };
+        return class_1;
+    }();
+    function actionCreator(arg) {
+        return function(dispatch, getState, extra) {
+            var _a;
+            var requestId = ((_a = options == null ? void 0 : options.idGenerator) != null ? _a : nanoid)();
+            var abortController = new AC();
+            var abortReason;
+            var abortedPromise = new Promise(function(_, reject) {
+                return abortController.signal.addEventListener("abort", function() {
+                    return reject({
+                        name: "AbortError",
+                        message: abortReason || "Aborted"
+                    });
+                });
+            });
+            var started = false;
+            function abort(reason) {
+                if (started) {
+                    abortReason = reason;
+                    abortController.abort();
+                }
+            }
+            var promise = function() {
+                return __async(this, null, function() {
+                    var _a2, finalAction, err_1, skipDispatch;
+                    return __generator(this, function(_b) {
+                        switch(_b.label){
+                            case 0:
+                                _b.trys.push([
+                                    0,
+                                    2,
+                                    ,
+                                    3
+                                ]);
+                                if (options && options.condition && options.condition(arg, {
+                                    getState: getState,
+                                    extra: extra
+                                }) === false) throw {
+                                    name: "ConditionError",
+                                    message: "Aborted due to condition callback returning false."
+                                };
+                                started = true;
+                                dispatch(pending(requestId, arg, (_a2 = options == null ? void 0 : options.getPendingMeta) == null ? void 0 : _a2.call(options, {
+                                    requestId: requestId,
+                                    arg: arg
+                                }, {
+                                    getState: getState,
+                                    extra: extra
+                                })));
+                                return [
+                                    4,
+                                    Promise.race([
+                                        abortedPromise,
+                                        Promise.resolve(payloadCreator(arg, {
+                                            dispatch: dispatch,
+                                            getState: getState,
+                                            extra: extra,
+                                            requestId: requestId,
+                                            signal: abortController.signal,
+                                            rejectWithValue: function(value, meta) {
+                                                return new RejectWithValue(value, meta);
+                                            },
+                                            fulfillWithValue: function(value, meta) {
+                                                return new FulfillWithMeta(value, meta);
+                                            }
+                                        })).then(function(result) {
+                                            if (result instanceof RejectWithValue) throw result;
+                                            if (result instanceof FulfillWithMeta) return fulfilled(result.payload, requestId, arg, result.meta);
+                                            return fulfilled(result, requestId, arg);
+                                        })
+                                    ])
+                                ];
+                            case 1:
+                                finalAction = _b.sent();
+                                return [
+                                    3,
+                                    3
+                                ];
+                            case 2:
+                                err_1 = _b.sent();
+                                finalAction = err_1 instanceof RejectWithValue ? rejected(null, requestId, arg, err_1.payload, err_1.meta) : rejected(err_1, requestId, arg);
+                                return [
+                                    3,
+                                    3
+                                ];
+                            case 3:
+                                skipDispatch = options && !options.dispatchConditionRejection && rejected.match(finalAction) && finalAction.meta.condition;
+                                if (!skipDispatch) dispatch(finalAction);
+                                return [
+                                    2,
+                                    finalAction
+                                ];
+                        }
+                    });
+                });
+            }();
+            return Object.assign(promise, {
+                abort: abort,
+                requestId: requestId,
+                arg: arg,
+                unwrap: function() {
+                    return promise.then(unwrapResult);
+                }
+            });
+        };
+    }
+    return Object.assign(actionCreator, {
+        pending: pending,
+        rejected: rejected,
+        fulfilled: fulfilled,
+        typePrefix: typePrefix
+    });
+}
+function unwrapResult(action) {
+    if (action.meta && action.meta.rejectedWithValue) throw action.payload;
+    if (action.error) throw action.error;
+    return action.payload;
+}
+// src/tsHelpers.ts
+var hasMatchFunction = function(v) {
+    return v && typeof v.match === "function";
+};
+// src/matchers.ts
+var matches = function(matcher, action) {
+    if (hasMatchFunction(matcher)) return matcher.match(action);
+    else return matcher(action);
+};
+function isAnyOf() {
+    var matchers = [];
+    for(var _i = 0; _i < arguments.length; _i++)matchers[_i] = arguments[_i];
+    return function(action) {
+        return matchers.some(function(matcher) {
+            return matches(matcher, action);
+        });
+    };
+}
+function isAllOf() {
+    var matchers = [];
+    for(var _i = 0; _i < arguments.length; _i++)matchers[_i] = arguments[_i];
+    return function(action) {
+        return matchers.every(function(matcher) {
+            return matches(matcher, action);
+        });
+    };
+}
+function hasExpectedRequestMetadata(action, validStatus) {
+    if (!action || !action.meta) return false;
+    var hasValidRequestId = typeof action.meta.requestId === "string";
+    var hasValidRequestStatus = validStatus.indexOf(action.meta.requestStatus) > -1;
+    return hasValidRequestId && hasValidRequestStatus;
+}
+function isAsyncThunkArray(a) {
+    return typeof a[0] === "function" && "pending" in a[0] && "fulfilled" in a[0] && "rejected" in a[0];
+}
+function isPending() {
+    var asyncThunks = [];
+    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
+    if (asyncThunks.length === 0) return function(action) {
+        return hasExpectedRequestMetadata(action, [
+            "pending"
+        ]);
+    };
+    if (!isAsyncThunkArray(asyncThunks)) return isPending()(asyncThunks[0]);
+    return function(action) {
+        var matchers = asyncThunks.map(function(asyncThunk) {
+            return asyncThunk.pending;
+        });
+        var combinedMatcher = isAnyOf.apply(void 0, matchers);
+        return combinedMatcher(action);
+    };
+}
+function isRejected() {
+    var asyncThunks = [];
+    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
+    if (asyncThunks.length === 0) return function(action) {
+        return hasExpectedRequestMetadata(action, [
+            "rejected"
+        ]);
+    };
+    if (!isAsyncThunkArray(asyncThunks)) return isRejected()(asyncThunks[0]);
+    return function(action) {
+        var matchers = asyncThunks.map(function(asyncThunk) {
+            return asyncThunk.rejected;
+        });
+        var combinedMatcher = isAnyOf.apply(void 0, matchers);
+        return combinedMatcher(action);
+    };
+}
+function isRejectedWithValue() {
+    var asyncThunks = [];
+    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
+    var hasFlag = function(action) {
+        return action && action.meta && action.meta.rejectedWithValue;
+    };
+    if (asyncThunks.length === 0) return function(action) {
+        var combinedMatcher = isAllOf(isRejected.apply(void 0, asyncThunks), hasFlag);
+        return combinedMatcher(action);
+    };
+    if (!isAsyncThunkArray(asyncThunks)) return isRejectedWithValue()(asyncThunks[0]);
+    return function(action) {
+        var combinedMatcher = isAllOf(isRejected.apply(void 0, asyncThunks), hasFlag);
+        return combinedMatcher(action);
+    };
+}
+function isFulfilled() {
+    var asyncThunks = [];
+    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
+    if (asyncThunks.length === 0) return function(action) {
+        return hasExpectedRequestMetadata(action, [
+            "fulfilled"
+        ]);
+    };
+    if (!isAsyncThunkArray(asyncThunks)) return isFulfilled()(asyncThunks[0]);
+    return function(action) {
+        var matchers = asyncThunks.map(function(asyncThunk) {
+            return asyncThunk.fulfilled;
+        });
+        var combinedMatcher = isAnyOf.apply(void 0, matchers);
+        return combinedMatcher(action);
+    };
+}
+function isAsyncThunkAction() {
+    var asyncThunks = [];
+    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
+    if (asyncThunks.length === 0) return function(action) {
+        return hasExpectedRequestMetadata(action, [
+            "pending",
+            "fulfilled",
+            "rejected"
+        ]);
+    };
+    if (!isAsyncThunkArray(asyncThunks)) return isAsyncThunkAction()(asyncThunks[0]);
+    return function(action) {
+        var matchers = [];
+        for(var _i1 = 0, asyncThunks_1 = asyncThunks; _i1 < asyncThunks_1.length; _i1++){
+            var asyncThunk = asyncThunks_1[_i1];
+            matchers.push(asyncThunk.pending, asyncThunk.rejected, asyncThunk.fulfilled);
+        }
+        var combinedMatcher = isAnyOf.apply(void 0, matchers);
+        return combinedMatcher(action);
+    };
+}
+
+},{"redux":"an2Qp","immer":"bzXDR","reselect":"AwPih","redux-thunk":"kozXV","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"an2Qp":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
+);
+parcelHelpers.export(exports, "applyMiddleware", ()=>applyMiddleware
+);
+parcelHelpers.export(exports, "bindActionCreators", ()=>bindActionCreators
+);
+parcelHelpers.export(exports, "combineReducers", ()=>combineReducers
+);
+parcelHelpers.export(exports, "compose", ()=>compose
+);
+parcelHelpers.export(exports, "createStore", ()=>createStore
+);
+var _objectSpread2 = require("@babel/runtime/helpers/esm/objectSpread2");
+var _objectSpread2Default = parcelHelpers.interopDefault(_objectSpread2);
+/**
+ * Adapted from React: https://github.com/facebook/react/blob/master/packages/shared/formatProdErrorMessage.js
+ *
+ * Do not require this module directly! Use normal throw error calls. These messages will be replaced with error codes
+ * during build.
+ * @param {number} code
+ */ function formatProdErrorMessage(code) {
+    return "Minified Redux error #" + code + "; visit https://redux.js.org/Errors?code=" + code + " for the full message or " + 'use the non-minified dev environment for full errors. ';
+}
+// Inlined version of the `symbol-observable` polyfill
+var $$observable = function() {
+    return typeof Symbol === 'function' && Symbol.observable || '@@observable';
+}();
+/**
+ * These are private action types reserved by Redux.
+ * For any unknown actions, you must return the current state.
+ * If the current state is undefined, you must return the initial state.
+ * Do not reference these action types directly in your code.
+ */ var randomString = function randomString1() {
+    return Math.random().toString(36).substring(7).split('').join('.');
+};
+var ActionTypes = {
+    INIT: "@@redux/INIT" + randomString(),
+    REPLACE: "@@redux/REPLACE" + randomString(),
+    PROBE_UNKNOWN_ACTION: function PROBE_UNKNOWN_ACTION() {
+        return "@@redux/PROBE_UNKNOWN_ACTION" + randomString();
+    }
+};
+/**
+ * @param {any} obj The object to inspect.
+ * @returns {boolean} True if the argument appears to be a plain object.
+ */ function isPlainObject(obj) {
+    if (typeof obj !== 'object' || obj === null) return false;
+    var proto = obj;
+    while(Object.getPrototypeOf(proto) !== null)proto = Object.getPrototypeOf(proto);
+    return Object.getPrototypeOf(obj) === proto;
+}
+function kindOf(val) {
+    var typeOfVal = typeof val;
+    {
+        // Inlined / shortened version of `kindOf` from https://github.com/jonschlinkert/kind-of
+        function miniKindOf(val1) {
+            if (val1 === void 0) return 'undefined';
+            if (val1 === null) return 'null';
+            var type = typeof val1;
+            switch(type){
+                case 'boolean':
+                case 'string':
+                case 'number':
+                case 'symbol':
+                case 'function':
+                    return type;
+            }
+            if (Array.isArray(val1)) return 'array';
+            if (isDate(val1)) return 'date';
+            if (isError(val1)) return 'error';
+            var constructorName = ctorName(val1);
+            switch(constructorName){
+                case 'Symbol':
+                case 'Promise':
+                case 'WeakMap':
+                case 'WeakSet':
+                case 'Map':
+                case 'Set':
+                    return constructorName;
+            } // other
+            return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
+        }
+        function ctorName(val1) {
+            return typeof val1.constructor === 'function' ? val1.constructor.name : null;
+        }
+        function isError(val1) {
+            return val1 instanceof Error || typeof val1.message === 'string' && val1.constructor && typeof val1.constructor.stackTraceLimit === 'number';
+        }
+        function isDate(val1) {
+            if (val1 instanceof Date) return true;
+            return typeof val1.toDateString === 'function' && typeof val1.getDate === 'function' && typeof val1.setDate === 'function';
+        }
+        typeOfVal = miniKindOf(val);
+    }
+    return typeOfVal;
+}
+/**
+ * Creates a Redux store that holds the state tree.
+ * The only way to change the data in the store is to call `dispatch()` on it.
+ *
+ * There should only be a single store in your app. To specify how different
+ * parts of the state tree respond to actions, you may combine several reducers
+ * into a single reducer function by using `combineReducers`.
+ *
+ * @param {Function} reducer A function that returns the next state tree, given
+ * the current state tree and the action to handle.
+ *
+ * @param {any} [preloadedState] The initial state. You may optionally specify it
+ * to hydrate the state from the server in universal apps, or to restore a
+ * previously serialized user session.
+ * If you use `combineReducers` to produce the root reducer function, this must be
+ * an object with the same shape as `combineReducers` keys.
+ *
+ * @param {Function} [enhancer] The store enhancer. You may optionally specify it
+ * to enhance the store with third-party capabilities such as middleware,
+ * time travel, persistence, etc. The only store enhancer that ships with Redux
+ * is `applyMiddleware()`.
+ *
+ * @returns {Store} A Redux store that lets you read the state, dispatch actions
+ * and subscribe to changes.
+ */ function createStore(reducer, preloadedState, enhancer) {
+    var _ref2;
+    if (typeof preloadedState === 'function' && typeof enhancer === 'function' || typeof enhancer === 'function' && typeof arguments[3] === 'function') throw new Error("It looks like you are passing several store enhancers to createStore(). This is not supported. Instead, compose them together to a single function. See https://redux.js.org/tutorials/fundamentals/part-4-store#creating-a-store-with-enhancers for an example.");
+    if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+        enhancer = preloadedState;
+        preloadedState = undefined;
+    }
+    if (typeof enhancer !== 'undefined') {
+        if (typeof enhancer !== 'function') throw new Error("Expected the enhancer to be a function. Instead, received: '" + kindOf(enhancer) + "'");
+        return enhancer(createStore)(reducer, preloadedState);
+    }
+    if (typeof reducer !== 'function') throw new Error("Expected the root reducer to be a function. Instead, received: '" + kindOf(reducer) + "'");
+    var currentReducer = reducer;
+    var currentState = preloadedState;
+    var currentListeners = [];
+    var nextListeners = currentListeners;
+    var isDispatching = false;
+    /**
+   * This makes a shallow copy of currentListeners so we can use
+   * nextListeners as a temporary list while dispatching.
+   *
+   * This prevents any bugs around consumers calling
+   * subscribe/unsubscribe in the middle of a dispatch.
+   */ function ensureCanMutateNextListeners() {
+        if (nextListeners === currentListeners) nextListeners = currentListeners.slice();
+    }
+    /**
+   * Reads the state tree managed by the store.
+   *
+   * @returns {any} The current state tree of your application.
+   */ function getState() {
+        if (isDispatching) throw new Error("You may not call store.getState() while the reducer is executing. The reducer has already received the state as an argument. Pass it down from the top reducer instead of reading it from the store.");
+        return currentState;
+    }
+    /**
+   * Adds a change listener. It will be called any time an action is dispatched,
+   * and some part of the state tree may potentially have changed. You may then
+   * call `getState()` to read the current state tree inside the callback.
+   *
+   * You may call `dispatch()` from a change listener, with the following
+   * caveats:
+   *
+   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
+   * If you subscribe or unsubscribe while the listeners are being invoked, this
+   * will not have any effect on the `dispatch()` that is currently in progress.
+   * However, the next `dispatch()` call, whether nested or not, will use a more
+   * recent snapshot of the subscription list.
+   *
+   * 2. The listener should not expect to see all state changes, as the state
+   * might have been updated multiple times during a nested `dispatch()` before
+   * the listener is called. It is, however, guaranteed that all subscribers
+   * registered before the `dispatch()` started will be called with the latest
+   * state by the time it exits.
+   *
+   * @param {Function} listener A callback to be invoked on every dispatch.
+   * @returns {Function} A function to remove this change listener.
+   */ function subscribe(listener) {
+        if (typeof listener !== 'function') throw new Error("Expected the listener to be a function. Instead, received: '" + kindOf(listener) + "'");
+        if (isDispatching) throw new Error("You may not call store.subscribe() while the reducer is executing. If you would like to be notified after the store has been updated, subscribe from a component and invoke store.getState() in the callback to access the latest state. See https://redux.js.org/api/store#subscribelistener for more details.");
+        var isSubscribed = true;
+        ensureCanMutateNextListeners();
+        nextListeners.push(listener);
+        return function unsubscribe() {
+            if (!isSubscribed) return;
+            if (isDispatching) throw new Error("You may not unsubscribe from a store listener while the reducer is executing. See https://redux.js.org/api/store#subscribelistener for more details.");
+            isSubscribed = false;
+            ensureCanMutateNextListeners();
+            var index = nextListeners.indexOf(listener);
+            nextListeners.splice(index, 1);
+            currentListeners = null;
+        };
+    }
+    /**
+   * Dispatches an action. It is the only way to trigger a state change.
+   *
+   * The `reducer` function, used to create the store, will be called with the
+   * current state tree and the given `action`. Its return value will
+   * be considered the **next** state of the tree, and the change listeners
+   * will be notified.
+   *
+   * The base implementation only supports plain object actions. If you want to
+   * dispatch a Promise, an Observable, a thunk, or something else, you need to
+   * wrap your store creating function into the corresponding middleware. For
+   * example, see the documentation for the `redux-thunk` package. Even the
+   * middleware will eventually dispatch plain object actions using this method.
+   *
+   * @param {Object} action A plain object representing “what changed”. It is
+   * a good idea to keep actions serializable so you can record and replay user
+   * sessions, or use the time travelling `redux-devtools`. An action must have
+   * a `type` property which may not be `undefined`. It is a good idea to use
+   * string constants for action types.
+   *
+   * @returns {Object} For convenience, the same action object you dispatched.
+   *
+   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
+   * return something else (for example, a Promise you can await).
+   */ function dispatch(action) {
+        if (!isPlainObject(action)) throw new Error("Actions must be plain objects. Instead, the actual type was: '" + kindOf(action) + "'. You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk' to handle dispatching functions. See https://redux.js.org/tutorials/fundamentals/part-4-store#middleware and https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware for examples.");
+        if (typeof action.type === 'undefined') throw new Error('Actions may not have an undefined "type" property. You may have misspelled an action type string constant.');
+        if (isDispatching) throw new Error('Reducers may not dispatch actions.');
+        try {
+            isDispatching = true;
+            currentState = currentReducer(currentState, action);
+        } finally{
+            isDispatching = false;
+        }
+        var listeners = currentListeners = nextListeners;
+        for(var i = 0; i < listeners.length; i++){
+            var listener = listeners[i];
+            listener();
+        }
+        return action;
+    }
+    /**
+   * Replaces the reducer currently used by the store to calculate the state.
+   *
+   * You might need this if your app implements code splitting and you want to
+   * load some of the reducers dynamically. You might also need this if you
+   * implement a hot reloading mechanism for Redux.
+   *
+   * @param {Function} nextReducer The reducer for the store to use instead.
+   * @returns {void}
+   */ function replaceReducer(nextReducer) {
+        if (typeof nextReducer !== 'function') throw new Error("Expected the nextReducer to be a function. Instead, received: '" + kindOf(nextReducer));
+        currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
+        // Any reducers that existed in both the new and old rootReducer
+        // will receive the previous state. This effectively populates
+        // the new state tree with any relevant data from the old one.
+        dispatch({
+            type: ActionTypes.REPLACE
+        });
+    }
+    /**
+   * Interoperability point for observable/reactive libraries.
+   * @returns {observable} A minimal observable of state changes.
+   * For more information, see the observable proposal:
+   * https://github.com/tc39/proposal-observable
+   */ function observable() {
+        var _ref;
+        var outerSubscribe = subscribe;
+        return _ref = {
+            /**
+       * The minimal observable subscription method.
+       * @param {Object} observer Any object that can be used as an observer.
+       * The observer object should have a `next` method.
+       * @returns {subscription} An object with an `unsubscribe` method that can
+       * be used to unsubscribe the observable from the store, and prevent further
+       * emission of values from the observable.
+       */ subscribe: function subscribe1(observer) {
+                if (typeof observer !== 'object' || observer === null) throw new Error("Expected the observer to be an object. Instead, received: '" + kindOf(observer) + "'");
+                function observeState() {
+                    if (observer.next) observer.next(getState());
+                }
+                observeState();
+                var unsubscribe = outerSubscribe(observeState);
+                return {
+                    unsubscribe: unsubscribe
+                };
+            }
+        }, _ref[$$observable] = function() {
+            return this;
+        }, _ref;
+    } // When a store is created, an "INIT" action is dispatched so that every
+    // reducer returns their initial state. This effectively populates
+    // the initial state tree.
+    dispatch({
+        type: ActionTypes.INIT
+    });
+    return _ref2 = {
+        dispatch: dispatch,
+        subscribe: subscribe,
+        getState: getState,
+        replaceReducer: replaceReducer
+    }, _ref2[$$observable] = observable, _ref2;
+}
+/**
+ * Prints a warning in the console if it exists.
+ *
+ * @param {String} message The warning message.
+ * @returns {void}
+ */ function warning(message) {
+    /* eslint-disable no-console */ if (typeof console !== 'undefined' && typeof console.error === 'function') console.error(message);
+    /* eslint-enable no-console */ try {
+        // This error was thrown as a convenience so that if you enable
+        // "break on all exceptions" in your console,
+        // it would pause the execution at this line.
+        throw new Error(message);
+    } catch (e) {
+    } // eslint-disable-line no-empty
+}
+function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
+    var reducerKeys = Object.keys(reducers);
+    var argumentName = action && action.type === ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
+    if (reducerKeys.length === 0) return "Store does not have a valid reducer. Make sure the argument passed to combineReducers is an object whose values are reducers.";
+    if (!isPlainObject(inputState)) return "The " + argumentName + " has unexpected type of \"" + kindOf(inputState) + "\". Expected argument to be an object with the following " + ("keys: \"" + reducerKeys.join('", "') + "\"");
+    var unexpectedKeys = Object.keys(inputState).filter(function(key) {
+        return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
+    });
+    unexpectedKeys.forEach(function(key) {
+        unexpectedKeyCache[key] = true;
+    });
+    if (action && action.type === ActionTypes.REPLACE) return;
+    if (unexpectedKeys.length > 0) return "Unexpected " + (unexpectedKeys.length > 1 ? 'keys' : 'key') + " " + ("\"" + unexpectedKeys.join('", "') + "\" found in " + argumentName + ". ") + "Expected to find one of the known reducer keys instead: " + ("\"" + reducerKeys.join('", "') + "\". Unexpected keys will be ignored.");
+}
+function assertReducerShape(reducers) {
+    Object.keys(reducers).forEach(function(key) {
+        var reducer = reducers[key];
+        var initialState = reducer(undefined, {
+            type: ActionTypes.INIT
+        });
+        if (typeof initialState === 'undefined') throw new Error("The slice reducer for key \"" + key + "\" returned undefined during initialization. " + "If the state passed to the reducer is undefined, you must " + "explicitly return the initial state. The initial state may " + "not be undefined. If you don't want to set a value for this reducer, " + "you can use null instead of undefined.");
+        if (typeof reducer(undefined, {
+            type: ActionTypes.PROBE_UNKNOWN_ACTION()
+        }) === 'undefined') throw new Error("The slice reducer for key \"" + key + "\" returned undefined when probed with a random type. " + ("Don't try to handle '" + ActionTypes.INIT + "' or other actions in \"redux/*\" ") + "namespace. They are considered private. Instead, you must return the " + "current state for any unknown actions, unless it is undefined, " + "in which case you must return the initial state, regardless of the " + "action type. The initial state may not be undefined, but can be null.");
+    });
+}
+/**
+ * Turns an object whose values are different reducer functions, into a single
+ * reducer function. It will call every child reducer, and gather their results
+ * into a single state object, whose keys correspond to the keys of the passed
+ * reducer functions.
+ *
+ * @param {Object} reducers An object whose values correspond to different
+ * reducer functions that need to be combined into one. One handy way to obtain
+ * it is to use ES6 `import * as reducers` syntax. The reducers may never return
+ * undefined for any action. Instead, they should return their initial state
+ * if the state passed to them was undefined, and the current state for any
+ * unrecognized action.
+ *
+ * @returns {Function} A reducer function that invokes every reducer inside the
+ * passed object, and builds a state object with the same shape.
+ */ function combineReducers(reducers) {
+    var reducerKeys = Object.keys(reducers);
+    var finalReducers = {
+    };
+    for(var i = 0; i < reducerKeys.length; i++){
+        var key = reducerKeys[i];
+        if (typeof reducers[key] === 'undefined') warning("No reducer provided for key \"" + key + "\"");
+        if (typeof reducers[key] === 'function') finalReducers[key] = reducers[key];
+    }
+    var finalReducerKeys = Object.keys(finalReducers); // This is used to make sure we don't warn about the same
+    // keys multiple times.
+    var unexpectedKeyCache;
+    unexpectedKeyCache = {
+    };
+    var shapeAssertionError;
+    try {
+        assertReducerShape(finalReducers);
+    } catch (e) {
+        shapeAssertionError = e;
+    }
+    return function combination(state, action) {
+        if (state === void 0) state = {
+        };
+        if (shapeAssertionError) throw shapeAssertionError;
+        var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
+        if (warningMessage) warning(warningMessage);
+        var hasChanged = false;
+        var nextState = {
+        };
+        for(var _i = 0; _i < finalReducerKeys.length; _i++){
+            var _key = finalReducerKeys[_i];
+            var reducer = finalReducers[_key];
+            var previousStateForKey = state[_key];
+            var nextStateForKey = reducer(previousStateForKey, action);
+            if (typeof nextStateForKey === 'undefined') {
+                var actionType = action && action.type;
+                throw new Error("When called with an action of type " + (actionType ? "\"" + String(actionType) + "\"" : '(unknown type)') + ", the slice reducer for key \"" + _key + "\" returned undefined. " + "To ignore an action, you must explicitly return the previous state. " + "If you want this reducer to hold no value, you can return null instead of undefined.");
+            }
+            nextState[_key] = nextStateForKey;
+            hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+        }
+        hasChanged = hasChanged || finalReducerKeys.length !== Object.keys(state).length;
+        return hasChanged ? nextState : state;
+    };
+}
+function bindActionCreator(actionCreator, dispatch) {
+    return function() {
+        return dispatch(actionCreator.apply(this, arguments));
+    };
+}
+/**
+ * Turns an object whose values are action creators, into an object with the
+ * same keys, but with every function wrapped into a `dispatch` call so they
+ * may be invoked directly. This is just a convenience method, as you can call
+ * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
+ *
+ * For convenience, you can also pass an action creator as the first argument,
+ * and get a dispatch wrapped function in return.
+ *
+ * @param {Function|Object} actionCreators An object whose values are action
+ * creator functions. One handy way to obtain it is to use ES6 `import * as`
+ * syntax. You may also pass a single function.
+ *
+ * @param {Function} dispatch The `dispatch` function available on your Redux
+ * store.
+ *
+ * @returns {Function|Object} The object mimicking the original object, but with
+ * every action creator wrapped into the `dispatch` call. If you passed a
+ * function as `actionCreators`, the return value will also be a single
+ * function.
+ */ function bindActionCreators(actionCreators, dispatch) {
+    if (typeof actionCreators === 'function') return bindActionCreator(actionCreators, dispatch);
+    if (typeof actionCreators !== 'object' || actionCreators === null) throw new Error("bindActionCreators expected an object or a function, but instead received: '" + kindOf(actionCreators) + "'. " + "Did you write \"import ActionCreators from\" instead of \"import * as ActionCreators from\"?");
+    var boundActionCreators = {
+    };
+    for(var key in actionCreators){
+        var actionCreator = actionCreators[key];
+        if (typeof actionCreator === 'function') boundActionCreators[key] = bindActionCreator(actionCreator, dispatch);
+    }
+    return boundActionCreators;
+}
+/**
+ * Composes single-argument functions from right to left. The rightmost
+ * function can take multiple arguments as it provides the signature for
+ * the resulting composite function.
+ *
+ * @param {...Function} funcs The functions to compose.
+ * @returns {Function} A function obtained by composing the argument functions
+ * from right to left. For example, compose(f, g, h) is identical to doing
+ * (...args) => f(g(h(...args))).
+ */ function compose() {
+    for(var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++)funcs[_key] = arguments[_key];
+    if (funcs.length === 0) return function(arg) {
+        return arg;
+    };
+    if (funcs.length === 1) return funcs[0];
+    return funcs.reduce(function(a, b) {
+        return function() {
+            return a(b.apply(void 0, arguments));
+        };
+    });
+}
+/**
+ * Creates a store enhancer that applies middleware to the dispatch method
+ * of the Redux store. This is handy for a variety of tasks, such as expressing
+ * asynchronous actions in a concise manner, or logging every action payload.
+ *
+ * See `redux-thunk` package as an example of the Redux middleware.
+ *
+ * Because middleware is potentially asynchronous, this should be the first
+ * store enhancer in the composition chain.
+ *
+ * Note that each middleware will be given the `dispatch` and `getState` functions
+ * as named arguments.
+ *
+ * @param {...Function} middlewares The middleware chain to be applied.
+ * @returns {Function} A store enhancer applying the middleware.
+ */ function applyMiddleware() {
+    for(var _len = arguments.length, middlewares = new Array(_len), _key = 0; _key < _len; _key++)middlewares[_key] = arguments[_key];
+    return function(createStore1) {
+        return function() {
+            var store = createStore1.apply(void 0, arguments);
+            var _dispatch = function dispatch() {
+                throw new Error("Dispatching while constructing your middleware is not allowed. Other middleware would not be applied to this dispatch.");
+            };
+            var middlewareAPI = {
+                getState: store.getState,
+                dispatch: function dispatch1() {
+                    return _dispatch.apply(void 0, arguments);
+                }
+            };
+            var chain = middlewares.map(function(middleware) {
+                return middleware(middlewareAPI);
+            });
+            _dispatch = compose.apply(void 0, chain)(store.dispatch);
+            return _objectSpread2Default.default(_objectSpread2Default.default({
+            }, store), {
+            }, {
+                dispatch: _dispatch
+            });
+        };
+    };
+}
+/*
+ * This is a dummy function to check if the function name has been altered by minification.
+ * If the function has been minified and NODE_ENV !== 'production', warn the user.
+ */ function isCrushed() {
+}
+if (typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') warning("You are currently using minified code outside of NODE_ENV === \"production\". This means that you are running a slower development build of Redux. You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) to ensure you have the correct code for your production build.");
+
+},{"@babel/runtime/helpers/esm/objectSpread2":"hqyYS","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"hqyYS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _definePropertyJs = require("./defineProperty.js");
+var _definePropertyJsDefault = parcelHelpers.interopDefault(_definePropertyJs);
+function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+        var symbols = Object.getOwnPropertySymbols(object);
+        if (enumerableOnly) symbols = symbols.filter(function(sym) {
+            return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+        keys.push.apply(keys, symbols);
+    }
+    return keys;
+}
+function _objectSpread2(target) {
+    for(var i = 1; i < arguments.length; i++){
+        var source = arguments[i] != null ? arguments[i] : {
+        };
+        if (i % 2) ownKeys(Object(source), true).forEach(function(key) {
+            _definePropertyJsDefault.default(target, key, source[key]);
+        });
+        else if (Object.getOwnPropertyDescriptors) Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+        else ownKeys(Object(source)).forEach(function(key) {
+            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+    }
+    return target;
+}
+exports.default = _objectSpread2;
+
+},{"./defineProperty.js":"5luKg","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"5luKg":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function _defineProperty(obj, key, value) {
+    if (key in obj) Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+    });
+    else obj[key] = value;
+    return obj;
+}
+exports.default = _defineProperty;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"bzXDR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Immer", ()=>un
+);
+parcelHelpers.export(exports, "applyPatches", ()=>pn
+);
+parcelHelpers.export(exports, "castDraft", ()=>K
+);
+parcelHelpers.export(exports, "castImmutable", ()=>$
+);
+parcelHelpers.export(exports, "createDraft", ()=>ln
+);
+parcelHelpers.export(exports, "current", ()=>D
+);
+parcelHelpers.export(exports, "enableAllPlugins", ()=>J
+);
+parcelHelpers.export(exports, "enableES5", ()=>N
+);
+parcelHelpers.export(exports, "enableMapSet", ()=>C
+);
+parcelHelpers.export(exports, "enablePatches", ()=>T
+);
+parcelHelpers.export(exports, "finishDraft", ()=>dn
+);
+parcelHelpers.export(exports, "freeze", ()=>d
+);
+parcelHelpers.export(exports, "immerable", ()=>L
+);
+parcelHelpers.export(exports, "isDraft", ()=>t
+);
+parcelHelpers.export(exports, "isDraftable", ()=>r
+);
+parcelHelpers.export(exports, "nothing", ()=>H
+);
+parcelHelpers.export(exports, "original", ()=>e
+);
+parcelHelpers.export(exports, "produce", ()=>fn
+);
+parcelHelpers.export(exports, "produceWithPatches", ()=>cn
+);
+parcelHelpers.export(exports, "setAutoFreeze", ()=>sn
+);
+parcelHelpers.export(exports, "setUseProxies", ()=>vn
+);
+function n(n1) {
+    for(var t = arguments.length, r = Array(t > 1 ? t - 1 : 0), e = 1; e < t; e++)r[e - 1] = arguments[e];
+    var i = Y[n1], o = i ? "function" == typeof i ? i.apply(null, r) : i : "unknown error nr: " + n1;
+    throw Error("[Immer] " + o);
+    throw Error("[Immer] minified error nr: " + n1 + (r.length ? " " + r.map(function(n2) {
+        return "'" + n2 + "'";
+    }).join(",") : "") + ". Find the full error at: https://bit.ly/3cXEKWf");
+}
+function t(n1) {
+    return !!n1 && !!n1[Q];
+}
+function r(n1) {
+    return !!n1 && ((function(n2) {
+        if (!n2 || "object" != typeof n2) return !1;
+        var t1 = Object.getPrototypeOf(n2);
+        if (null === t1) return !0;
+        var r1 = Object.hasOwnProperty.call(t1, "constructor") && t1.constructor;
+        return r1 === Object || "function" == typeof r1 && Function.toString.call(r1) === Z;
+    })(n1) || Array.isArray(n1) || !!n1[L] || !!n1.constructor[L] || s1(n1) || v(n1));
+}
+function e(r1) {
+    return t(r1) || n(23, r1), r1[Q].t;
+}
+function i(n1, t1, r1) {
+    (void 0) === r1 && (r1 = !1), 0 === o3(n1) ? (r1 ? Object.keys : nn)(n1).forEach(function(e1) {
+        r1 && "symbol" == typeof e1 || t1(e1, n1[e1], n1);
+    }) : n1.forEach(function(r2, e1) {
+        return t1(e1, r2, n1);
+    });
+}
+function o3(n1) {
+    var t1 = n1[Q];
+    return t1 ? t1.i > 3 ? t1.i - 4 : t1.i : Array.isArray(n1) ? 1 : s1(n1) ? 2 : v(n1) ? 3 : 0;
+}
+function u(n1, t1) {
+    return 2 === o3(n1) ? n1.has(t1) : Object.prototype.hasOwnProperty.call(n1, t1);
+}
+function a1(n1, t1) {
+    return 2 === o3(n1) ? n1.get(t1) : n1[t1];
+}
+function f1(n1, t1, r1) {
+    var e1 = o3(n1);
+    2 === e1 ? n1.set(t1, r1) : 3 === e1 ? (n1.delete(t1), n1.add(r1)) : n1[t1] = r1;
+}
+function c(n1, t1) {
+    return n1 === t1 ? 0 !== n1 || 1 / n1 == 1 / t1 : n1 != n1 && t1 != t1;
+}
+function s1(n1) {
+    return X && n1 instanceof Map;
+}
+function v(n1) {
+    return q && n1 instanceof Set;
+}
+function p(n1) {
+    return n1.o || n1.t;
+}
+function l(n1) {
+    if (Array.isArray(n1)) return Array.prototype.slice.call(n1);
+    var t1 = tn(n1);
+    delete t1[Q];
+    for(var r1 = nn(t1), e1 = 0; e1 < r1.length; e1++){
+        var i1 = r1[e1], o1 = t1[i1];
+        !1 === o1.writable && (o1.writable = !0, o1.configurable = !0), (o1.get || o1.set) && (t1[i1] = {
+            configurable: !0,
+            writable: !0,
+            enumerable: o1.enumerable,
+            value: n1[i1]
+        });
+    }
+    return Object.create(Object.getPrototypeOf(n1), t1);
+}
+function d(n1, e1) {
+    return (void 0) === e1 && (e1 = !1), y(n1) || t(n1) || !r(n1) ? n1 : (o3(n1) > 1 && (n1.set = n1.add = n1.clear = n1.delete = h), Object.freeze(n1), e1 && i(n1, function(n2, t1) {
+        return d(t1, !0);
+    }, !0), n1);
+}
+function h() {
+    n(2);
+}
+function y(n1) {
+    return null == n1 || "object" != typeof n1 || Object.isFrozen(n1);
+}
+function b(t1) {
+    var r1 = rn[t1];
+    return r1 || n(18, t1), r1;
+}
+function m(n1, t1) {
+    rn[n1] || (rn[n1] = t1);
+}
+function _() {
+    return U || n(0), U;
+}
+function j(n1, t1) {
+    t1 && (b("Patches"), n1.u = [], n1.s = [], n1.v = t1);
+}
+function O(n1) {
+    g(n1), n1.p.forEach(S), n1.p = null;
+}
+function g(n1) {
+    n1 === U && (U = n1.l);
+}
+function w(n1) {
+    return U = {
+        p: [],
+        l: U,
+        h: n1,
+        m: !0,
+        _: 0
+    };
+}
+function S(n1) {
+    var t1 = n1[Q];
+    0 === t1.i || 1 === t1.i ? t1.j() : t1.O = !0;
+}
+function P(t1, e1) {
+    e1._ = e1.p.length;
+    var i2 = e1.p[0], o2 = (void 0) !== t1 && t1 !== i2;
+    return e1.h.g || b("ES5").S(e1, t1, o2), o2 ? (i2[Q].P && (O(e1), n(4)), r(t1) && (t1 = M(e1, t1), e1.l || x(e1, t1)), e1.u && b("Patches").M(i2[Q], t1, e1.u, e1.s)) : t1 = M(e1, i2, []), O(e1), e1.u && e1.v(e1.u, e1.s), t1 !== H ? t1 : void 0;
+}
+function M(n1, t1, r1) {
+    if (y(t1)) return t1;
+    var e1 = t1[Q];
+    if (!e1) return i(t1, function(i2, o2) {
+        return A(n1, e1, t1, i2, o2, r1);
+    }, !0), t1;
+    if (e1.A !== n1) return t1;
+    if (!e1.P) return x(n1, e1.t, !0), e1.t;
+    if (!e1.I) {
+        e1.I = !0, e1.A._--;
+        var o2 = 4 === e1.i || 5 === e1.i ? e1.o = l(e1.k) : e1.o;
+        i(3 === e1.i ? new Set(o2) : o2, function(t2, i2) {
+            return A(n1, e1, o2, t2, i2, r1);
+        }), x(n1, o2, !1), r1 && n1.u && b("Patches").R(e1, r1, n1.u, n1.s);
+    }
+    return e1.o;
+}
+function A(e1, i2, o3, a1, c1, s1) {
+    if (c1 === o3 && n(5), t(c1)) {
+        var v1 = M(e1, c1, s1 && i2 && 3 !== i2.i && !u(i2.D, a1) ? s1.concat(a1) : void 0);
+        if (f1(o3, a1, v1), !t(v1)) return;
+        e1.m = !1;
+    }
+    if (r(c1) && !y(c1)) {
+        if (!e1.h.F && e1._ < 1) return;
+        M(e1, c1), i2 && i2.A.l || x(e1, c1);
+    }
+}
+function x(n1, t1, r1) {
+    (void 0) === r1 && (r1 = !1), n1.h.F && n1.m && d(t1, r1);
+}
+function z(n1, t1) {
+    var r1 = n1[Q];
+    return (r1 ? p(r1) : n1)[t1];
+}
+function I(n1, t1) {
+    if (t1 in n1) for(var r1 = Object.getPrototypeOf(n1); r1;){
+        var e1 = Object.getOwnPropertyDescriptor(r1, t1);
+        if (e1) return e1;
+        r1 = Object.getPrototypeOf(r1);
+    }
+}
+function k(n1) {
+    n1.P || (n1.P = !0, n1.l && k(n1.l));
+}
+function E(n1) {
+    n1.o || (n1.o = l(n1.t));
+}
+function R(n1, t1, r1) {
+    var e2 = s1(t1) ? b("MapSet").N(t1, r1) : v(t1) ? b("MapSet").T(t1, r1) : n1.g ? function(n2, t2) {
+        var r2 = Array.isArray(n2), e3 = {
+            i: r2 ? 1 : 0,
+            A: t2 ? t2.A : _(),
+            P: !1,
+            I: !1,
+            D: {
+            },
+            l: t2,
+            t: n2,
+            k: null,
+            o: null,
+            j: null,
+            C: !1
+        }, i2 = e3, o3 = en;
+        r2 && (i2 = [
+            e3
+        ], o3 = on);
+        var u1 = Proxy.revocable(i2, o3), a1 = u1.revoke, f1 = u1.proxy;
+        return e3.k = f1, e3.j = a1, f1;
+    }(t1, r1) : b("ES5").J(t1, r1);
+    return (r1 ? r1.A : _()).p.push(e2), e2;
+}
+function D(e2) {
+    return t(e2) || n(22, e2), (function n1(t1) {
+        if (!r(t1)) return t1;
+        var e3, u1 = t1[Q], c1 = o3(t1);
+        if (u1) {
+            if (!u1.P && (u1.i < 4 || !b("ES5").K(u1))) return u1.t;
+            u1.I = !0, e3 = F(t1, c1), u1.I = !1;
+        } else e3 = F(t1, c1);
+        return i(e3, function(t2, r1) {
+            u1 && a1(u1.t, t2) === r1 || f1(e3, t2, n1(r1));
+        }), 3 === c1 ? new Set(e3) : e3;
+    })(e2);
+}
+function F(n1, t1) {
+    switch(t1){
+        case 2:
+            return new Map(n1);
+        case 3:
+            return Array.from(n1);
+    }
+    return l(n1);
+}
+function N() {
+    function r1(n1, t1) {
+        var r2 = s3[n1];
+        return r2 ? r2.enumerable = t1 : s3[n1] = r2 = {
+            configurable: !0,
+            enumerable: t1,
+            get: function() {
+                var t2 = this[Q];
+                return f3(t2), en.get(t2, n1);
+            },
+            set: function(t2) {
+                var r3 = this[Q];
+                f3(r3), en.set(r3, n1, t2);
+            }
+        }, r2;
+    }
+    function e2(n1) {
+        for(var t1 = n1.length - 1; t1 >= 0; t1--){
+            var r2 = n1[t1][Q];
+            if (!r2.P) switch(r2.i){
+                case 5:
+                    a3(r2) && k(r2);
+                    break;
+                case 4:
+                    o4(r2) && k(r2);
+            }
+        }
+    }
+    function o4(n1) {
+        for(var t1 = n1.t, r3 = n1.k, e3 = nn(r3), i2 = e3.length - 1; i2 >= 0; i2--){
+            var o5 = e3[i2];
+            if (o5 !== Q) {
+                var a2 = t1[o5];
+                if ((void 0) === a2 && !u(t1, o5)) return !0;
+                var f2 = r3[o5], s2 = f2 && f2[Q];
+                if (s2 ? s2.t !== a2 : !c(f2, a2)) return !0;
+            }
+        }
+        var v2 = !!t1[Q];
+        return e3.length !== nn(t1).length + (v2 ? 0 : 1);
+    }
+    function a3(n1) {
+        var t1 = n1.k;
+        if (t1.length !== n1.t.length) return !0;
+        var r3 = Object.getOwnPropertyDescriptor(t1, t1.length - 1);
+        return !(!r3 || r3.get);
+    }
+    function f3(t1) {
+        t1.O && n(3, JSON.stringify(p(t1)));
+    }
+    var s3 = {
+    };
+    m("ES5", {
+        J: function(n1, t1) {
+            var e3 = Array.isArray(n1), i2 = function(n2, t2) {
+                if (n2) {
+                    for(var e4 = Array(t2.length), i3 = 0; i3 < t2.length; i3++)Object.defineProperty(e4, "" + i3, r1(i3, !0));
+                    return e4;
+                }
+                var o6 = tn(t2);
+                delete o6[Q];
+                for(var u1 = nn(o6), a4 = 0; a4 < u1.length; a4++){
+                    var f4 = u1[a4];
+                    o6[f4] = r1(f4, n2 || !!o6[f4].enumerable);
+                }
+                return Object.create(Object.getPrototypeOf(t2), o6);
+            }(e3, n1), o6 = {
+                i: e3 ? 5 : 4,
+                A: t1 ? t1.A : _(),
+                P: !1,
+                I: !1,
+                D: {
+                },
+                l: t1,
+                t: n1,
+                k: i2,
+                o: null,
+                O: !1,
+                C: !1
+            };
+            return Object.defineProperty(i2, Q, {
+                value: o6,
+                writable: !0
+            }), i2;
+        },
+        S: function(n1, r3, o6) {
+            o6 ? t(r3) && r3[Q].A === n1 && e2(n1.p) : (n1.u && (function n2(t1) {
+                if (t1 && "object" == typeof t1) {
+                    var r4 = t1[Q];
+                    if (r4) {
+                        var e3 = r4.t, o7 = r4.k, f5 = r4.D, c1 = r4.i;
+                        if (4 === c1) i(o7, function(t2) {
+                            t2 !== Q && ((void 0) !== e3[t2] || u(e3, t2) ? f5[t2] || n2(o7[t2]) : (f5[t2] = !0, k(r4)));
+                        }), i(e3, function(n3) {
+                            (void 0) !== o7[n3] || u(o7, n3) || (f5[n3] = !1, k(r4));
+                        });
+                        else if (5 === c1) {
+                            if (a3(r4) && (k(r4), f5.length = !0), o7.length < e3.length) for(var s4 = o7.length; s4 < e3.length; s4++)f5[s4] = !1;
+                            else for(var v2 = e3.length; v2 < o7.length; v2++)f5[v2] = !0;
+                            for(var p1 = Math.min(o7.length, e3.length), l1 = 0; l1 < p1; l1++)(void 0) === f5[l1] && n2(o7[l1]);
+                        }
+                    }
+                }
+            })(n1.p[0]), e2(n1.p));
+        },
+        K: function(n1) {
+            return 4 === n1.i ? o4(n1) : a3(n1);
+        }
+    });
+}
+function T() {
+    function e2(n1) {
+        if (!r(n1)) return n1;
+        if (Array.isArray(n1)) return n1.map(e2);
+        if (s1(n1)) return new Map(Array.from(n1.entries()).map(function(n2) {
+            return [
+                n2[0],
+                e2(n2[1])
+            ];
+        }));
+        if (v(n1)) return new Set(Array.from(n1).map(e2));
+        var t1 = Object.create(Object.getPrototypeOf(n1));
+        for(var i2 in n1)t1[i2] = e2(n1[i2]);
+        return u(n1, L) && (t1[L] = n1[L]), t1;
+    }
+    function f3(n1) {
+        return t(n1) ? e2(n1) : n1;
+    }
+    var c2 = "add";
+    m("Patches", {
+        $: function(t1, r1) {
+            return r1.forEach(function(r3) {
+                for(var i2 = r3.path, u1 = r3.op, f6 = t1, s3 = 0; s3 < i2.length - 1; s3++){
+                    var v3 = o3(f6), p2 = i2[s3];
+                    0 !== v3 && 1 !== v3 || "__proto__" !== p2 && "constructor" !== p2 || n(24), "function" == typeof f6 && "prototype" === p2 && n(24), "object" != typeof (f6 = a1(f6, p2)) && n(15, i2.join("/"));
+                }
+                var l2 = o3(f6), d1 = e2(r3.value), h1 = i2[i2.length - 1];
+                switch(u1){
+                    case "replace":
+                        switch(l2){
+                            case 2:
+                                return f6.set(h1, d1);
+                            case 3:
+                                n(16);
+                            default:
+                                return f6[h1] = d1;
+                        }
+                    case c2:
+                        switch(l2){
+                            case 1:
+                                return f6.splice(h1, 0, d1);
+                            case 2:
+                                return f6.set(h1, d1);
+                            case 3:
+                                return f6.add(d1);
+                            default:
+                                return f6[h1] = d1;
+                        }
+                    case "remove":
+                        switch(l2){
+                            case 1:
+                                return f6.splice(h1, 1);
+                            case 2:
+                                return f6.delete(h1);
+                            case 3:
+                                return f6.delete(r3.value);
+                            default:
+                                return delete f6[h1];
+                        }
+                    default:
+                        n(17, u1);
+                }
+            }), t1;
+        },
+        R: function(n1, t1, r1, e5) {
+            switch(n1.i){
+                case 0:
+                case 4:
+                case 2:
+                    return (function(n2, t2, r3, e6) {
+                        var o4 = n2.t, s3 = n2.o;
+                        i(n2.D, function(n3, i2) {
+                            var v4 = a1(o4, n3), p3 = a1(s3, n3), l2 = i2 ? u(o4, n3) ? "replace" : c2 : "remove";
+                            if (v4 !== p3 || "replace" !== l2) {
+                                var d1 = t2.concat(n3);
+                                r3.push("remove" === l2 ? {
+                                    op: l2,
+                                    path: d1
+                                } : {
+                                    op: l2,
+                                    path: d1,
+                                    value: p3
+                                }), e6.push(l2 === c2 ? {
+                                    op: "remove",
+                                    path: d1
+                                } : "remove" === l2 ? {
+                                    op: c2,
+                                    path: d1,
+                                    value: f3(v4)
+                                } : {
+                                    op: "replace",
+                                    path: d1,
+                                    value: f3(v4)
+                                });
+                            }
+                        });
+                    })(n1, t1, r1, e5);
+                case 5:
+                case 1:
+                    return (function(n2, t2, r3, e6) {
+                        var i2 = n2.t, o4 = n2.D, u1 = n2.o;
+                        if (u1.length < i2.length) {
+                            var a3 = [
+                                u1,
+                                i2
+                            ];
+                            i2 = a3[0], u1 = a3[1];
+                            var s3 = [
+                                e6,
+                                r3
+                            ];
+                            r3 = s3[0], e6 = s3[1];
+                        }
+                        for(var v4 = 0; v4 < i2.length; v4++)if (o4[v4] && u1[v4] !== i2[v4]) {
+                            var p3 = t2.concat([
+                                v4
+                            ]);
+                            r3.push({
+                                op: "replace",
+                                path: p3,
+                                value: f3(u1[v4])
+                            }), e6.push({
+                                op: "replace",
+                                path: p3,
+                                value: f3(i2[v4])
+                            });
+                        }
+                        for(var l2 = i2.length; l2 < u1.length; l2++){
+                            var d2 = t2.concat([
+                                l2
+                            ]);
+                            r3.push({
+                                op: c2,
+                                path: d2,
+                                value: f3(u1[l2])
+                            });
+                        }
+                        i2.length < u1.length && e6.push({
+                            op: "replace",
+                            path: t2.concat([
+                                "length"
+                            ]),
+                            value: i2.length
+                        });
+                    })(n1, t1, r1, e5);
+                case 3:
+                    return (function(n2, t2, r3, e6) {
+                        var i2 = n2.t, o4 = n2.o, u1 = 0;
+                        i2.forEach(function(n3) {
+                            if (!o4.has(n3)) {
+                                var i4 = t2.concat([
+                                    u1
+                                ]);
+                                r3.push({
+                                    op: "remove",
+                                    path: i4,
+                                    value: n3
+                                }), e6.unshift({
+                                    op: c2,
+                                    path: i4,
+                                    value: n3
+                                });
+                            }
+                            u1++;
+                        }), u1 = 0, o4.forEach(function(n3) {
+                            if (!i2.has(n3)) {
+                                var o6 = t2.concat([
+                                    u1
+                                ]);
+                                r3.push({
+                                    op: c2,
+                                    path: o6,
+                                    value: n3
+                                }), e6.unshift({
+                                    op: "remove",
+                                    path: o6,
+                                    value: n3
+                                });
+                            }
+                            u1++;
+                        });
+                    })(n1, t1, r1, e5);
+            }
+        },
+        M: function(n1, t1, r1, e5) {
+            r1.push({
+                op: "replace",
+                path: [],
+                value: t1
+            }), e5.push({
+                op: "replace",
+                path: [],
+                value: n1.t
+            });
+        }
+    });
+}
+function C() {
+    function t1(n1, t2) {
+        function r1() {
+            this.constructor = n1;
+        }
+        a4(n1, t2), n1.prototype = (r1.prototype = t2.prototype, new r1);
+    }
+    function e2(n1) {
+        n1.o || (n1.D = new Map, n1.o = new Map(n1.t));
+    }
+    function o4(n1) {
+        n1.o || (n1.o = new Set, n1.t.forEach(function(t2) {
+            if (r(t2)) {
+                var e5 = R(n1.A.h, t2, n1);
+                n1.p.set(t2, e5), n1.o.add(e5);
+            } else n1.o.add(t2);
+        }));
+    }
+    function u1(t2) {
+        t2.O && n(3, JSON.stringify(p(t2)));
+    }
+    var a4 = function(n1, t2) {
+        return (a4 = Object.setPrototypeOf || ({
+            __proto__: []
+        }) instanceof Array && function(n2, t3) {
+            n2.__proto__ = t3;
+        } || function(n2, t3) {
+            for(var r1 in t3)t3.hasOwnProperty(r1) && (n2[r1] = t3[r1]);
+        })(n1, t2);
+    }, f3 = function() {
+        function n1(n2, t2) {
+            return this[Q] = {
+                i: 2,
+                l: t2,
+                A: t2 ? t2.A : _(),
+                P: !1,
+                I: !1,
+                o: void 0,
+                D: void 0,
+                t: n2,
+                k: this,
+                C: !1,
+                O: !1
+            }, this;
+        }
+        t1(n1, Map);
+        var o8 = n1.prototype;
+        return Object.defineProperty(o8, "size", {
+            get: function() {
+                return p(this[Q]).size;
+            }
+        }), o8.has = function(n2) {
+            return p(this[Q]).has(n2);
+        }, o8.set = function(n2, t2) {
+            var r1 = this[Q];
+            return u1(r1), p(r1).has(n2) && p(r1).get(n2) === t2 || (e2(r1), k(r1), r1.D.set(n2, !0), r1.o.set(n2, t2), r1.D.set(n2, !0)), this;
+        }, o8.delete = function(n2) {
+            if (!this.has(n2)) return !1;
+            var t2 = this[Q];
+            return u1(t2), e2(t2), k(t2), t2.D.set(n2, !1), t2.o.delete(n2), !0;
+        }, o8.clear = function() {
+            var n2 = this[Q];
+            u1(n2), p(n2).size && (e2(n2), k(n2), n2.D = new Map, i(n2.t, function(t2) {
+                n2.D.set(t2, !1);
+            }), n2.o.clear());
+        }, o8.forEach = function(n2, t2) {
+            var r1 = this;
+            p(this[Q]).forEach(function(e6, i2) {
+                n2.call(t2, r1.get(i2), i2, r1);
+            });
+        }, o8.get = function(n2) {
+            var t2 = this[Q];
+            u1(t2);
+            var i2 = p(t2).get(n2);
+            if (t2.I || !r(i2)) return i2;
+            if (i2 !== t2.t.get(n2)) return i2;
+            var o9 = R(t2.A.h, i2, t2);
+            return e2(t2), t2.o.set(n2, o9), o9;
+        }, o8.keys = function() {
+            return p(this[Q]).keys();
+        }, o8.values = function() {
+            var n2, t2 = this, r1 = this.keys();
+            return (n2 = {
+            })[V] = function() {
+                return t2.values();
+            }, n2.next = function() {
+                var n3 = r1.next();
+                return n3.done ? n3 : {
+                    done: !1,
+                    value: t2.get(n3.value)
+                };
+            }, n2;
+        }, o8.entries = function() {
+            var n2, t2 = this, r1 = this.keys();
+            return (n2 = {
+            })[V] = function() {
+                return t2.entries();
+            }, n2.next = function() {
+                var n3 = r1.next();
+                if (n3.done) return n3;
+                var e6 = t2.get(n3.value);
+                return {
+                    done: !1,
+                    value: [
+                        n3.value,
+                        e6
+                    ]
+                };
+            }, n2;
+        }, o8[V] = function() {
+            return this.entries();
+        }, n1;
+    }(), c2 = function() {
+        function n1(n2, t2) {
+            return this[Q] = {
+                i: 3,
+                l: t2,
+                A: t2 ? t2.A : _(),
+                P: !1,
+                I: !1,
+                o: void 0,
+                t: n2,
+                k: this,
+                p: new Map,
+                O: !1,
+                C: !1
+            }, this;
+        }
+        t1(n1, Set);
+        var r1 = n1.prototype;
+        return Object.defineProperty(r1, "size", {
+            get: function() {
+                return p(this[Q]).size;
+            }
+        }), r1.has = function(n2) {
+            var t2 = this[Q];
+            return u1(t2), t2.o ? !!t2.o.has(n2) || !(!t2.p.has(n2) || !t2.o.has(t2.p.get(n2))) : t2.t.has(n2);
+        }, r1.add = function(n2) {
+            var t2 = this[Q];
+            return u1(t2), this.has(n2) || (o4(t2), k(t2), t2.o.add(n2)), this;
+        }, r1.delete = function(n2) {
+            if (!this.has(n2)) return !1;
+            var t2 = this[Q];
+            return u1(t2), o4(t2), k(t2), t2.o.delete(n2) || !!t2.p.has(n2) && t2.o.delete(t2.p.get(n2));
+        }, r1.clear = function() {
+            var n2 = this[Q];
+            u1(n2), p(n2).size && (o4(n2), k(n2), n2.o.clear());
+        }, r1.values = function() {
+            var n2 = this[Q];
+            return u1(n2), o4(n2), n2.o.values();
+        }, r1.entries = function() {
+            var n2 = this[Q];
+            return u1(n2), o4(n2), n2.o.entries();
+        }, r1.keys = function() {
+            return this.values();
+        }, r1[V] = function() {
+            return this.values();
+        }, r1.forEach = function(n2, t2) {
+            for(var r3 = this.values(), e6 = r3.next(); !e6.done;)n2.call(t2, e6.value, e6.value, this), e6 = r3.next();
+        }, n1;
+    }();
+    m("MapSet", {
+        N: function(n1, t2) {
+            return new f3(n1, t2);
+        },
+        T: function(n1, t2) {
+            return new c2(n1, t2);
+        }
+    });
+}
+function J() {
+    N(), C(), T();
+}
+function K(n1) {
+    return n1;
+}
+function $(n1) {
+    return n1;
+}
+var G, U, W = "undefined" != typeof Symbol && "symbol" == typeof Symbol("x"), X = "undefined" != typeof Map, q = "undefined" != typeof Set, B = "undefined" != typeof Proxy && (void 0) !== Proxy.revocable && "undefined" != typeof Reflect, H = W ? Symbol.for("immer-nothing") : ((G = {
+})["immer-nothing"] = !0, G), L = W ? Symbol.for("immer-draftable") : "__$immer_draftable", Q = W ? Symbol.for("immer-state") : "__$immer_state", V = "undefined" != typeof Symbol && Symbol.iterator || "@@iterator", Y = {
+    0: "Illegal state",
+    1: "Immer drafts cannot have computed properties",
+    2: "This object has been frozen and should not be mutated",
+    3: function(n1) {
+        return "Cannot use a proxy that has been revoked. Did you pass an object from inside an immer function to an async process? " + n1;
+    },
+    4: "An immer producer returned a new value *and* modified its draft. Either return a new value *or* modify the draft.",
+    5: "Immer forbids circular references",
+    6: "The first or second argument to `produce` must be a function",
+    7: "The third argument to `produce` must be a function or undefined",
+    8: "First argument to `createDraft` must be a plain object, an array, or an immerable object",
+    9: "First argument to `finishDraft` must be a draft returned by `createDraft`",
+    10: "The given draft is already finalized",
+    11: "Object.defineProperty() cannot be used on an Immer draft",
+    12: "Object.setPrototypeOf() cannot be used on an Immer draft",
+    13: "Immer only supports deleting array indices",
+    14: "Immer only supports setting array indices and the 'length' property",
+    15: function(n1) {
+        return "Cannot apply patch, path doesn't resolve: " + n1;
+    },
+    16: 'Sets cannot have "replace" patches.',
+    17: function(n1) {
+        return "Unsupported patch operation: " + n1;
+    },
+    18: function(n1) {
+        return "The plugin for '" + n1 + "' has not been loaded into Immer. To enable the plugin, import and call `enable" + n1 + "()` when initializing your application.";
+    },
+    20: "Cannot use proxies if Proxy, Proxy.revocable or Reflect are not available",
+    21: function(n1) {
+        return "produce can only be called on things that are draftable: plain objects, arrays, Map, Set or classes that are marked with '[immerable]: true'. Got '" + n1 + "'";
+    },
+    22: function(n1) {
+        return "'current' expects a draft, got: " + n1;
+    },
+    23: function(n1) {
+        return "'original' expects a draft, got: " + n1;
+    },
+    24: "Patching reserved attributes like __proto__, prototype and constructor is not allowed"
+}, Z = "" + Object.prototype.constructor, nn = "undefined" != typeof Reflect && Reflect.ownKeys ? Reflect.ownKeys : (void 0) !== Object.getOwnPropertySymbols ? function(n1) {
+    return Object.getOwnPropertyNames(n1).concat(Object.getOwnPropertySymbols(n1));
+} : Object.getOwnPropertyNames, tn = Object.getOwnPropertyDescriptors || function(n1) {
+    var t1 = {
+    };
+    return nn(n1).forEach(function(r1) {
+        t1[r1] = Object.getOwnPropertyDescriptor(n1, r1);
+    }), t1;
+}, rn = {
+}, en = {
+    get: function(n1, t1) {
+        if (t1 === Q) return n1;
+        var e2 = p(n1);
+        if (!u(e2, t1)) return (function(n2, t2, r1) {
+            var e6, i2 = I(t2, r1);
+            return i2 ? "value" in i2 ? i2.value : null === (e6 = i2.get) || (void 0) === e6 ? void 0 : e6.call(n2.k) : void 0;
+        })(n1, e2, t1);
+        var i2 = e2[t1];
+        return n1.I || !r(i2) ? i2 : i2 === z(n1.t, t1) ? (E(n1), n1.o[t1] = R(n1.A.h, i2, n1)) : i2;
+    },
+    has: function(n1, t1) {
+        return t1 in p(n1);
+    },
+    ownKeys: function(n1) {
+        return Reflect.ownKeys(p(n1));
+    },
+    set: function(n1, t1, r1) {
+        var e2 = I(p(n1), t1);
+        if (null == e2 ? void 0 : e2.set) return e2.set.call(n1.k, r1), !0;
+        if (!n1.P) {
+            var i2 = z(p(n1), t1), o4 = null == i2 ? void 0 : i2[Q];
+            if (o4 && o4.t === r1) return n1.o[t1] = r1, n1.D[t1] = !1, !0;
+            if (c(r1, i2) && ((void 0) !== r1 || u(n1.t, t1))) return !0;
+            E(n1), k(n1);
+        }
+        return n1.o[t1] === r1 && "number" != typeof r1 || (n1.o[t1] = r1, n1.D[t1] = !0, !0);
+    },
+    deleteProperty: function(n1, t1) {
+        return (void 0) !== z(n1.t, t1) || t1 in n1.t ? (n1.D[t1] = !1, E(n1), k(n1)) : delete n1.D[t1], n1.o && delete n1.o[t1], !0;
+    },
+    getOwnPropertyDescriptor: function(n1, t1) {
+        var r1 = p(n1), e2 = Reflect.getOwnPropertyDescriptor(r1, t1);
+        return e2 ? {
+            writable: !0,
+            configurable: 1 !== n1.i || "length" !== t1,
+            enumerable: e2.enumerable,
+            value: r1[t1]
+        } : e2;
+    },
+    defineProperty: function() {
+        n(11);
+    },
+    getPrototypeOf: function(n1) {
+        return Object.getPrototypeOf(n1.t);
+    },
+    setPrototypeOf: function() {
+        n(12);
+    }
+}, on = {
+};
+i(en, function(n1, t1) {
+    on[n1] = function() {
+        return arguments[0] = arguments[0][0], t1.apply(this, arguments);
+    };
+}), on.deleteProperty = function(t1, r1) {
+    return isNaN(parseInt(r1)) && n(13), en.deleteProperty.call(this, t1[0], r1);
+}, on.set = function(t1, r1, e2) {
+    return "length" !== r1 && isNaN(parseInt(r1)) && n(14), en.set.call(this, t1[0], r1, e2, t1[0]);
+};
+var un = function() {
+    function e2(t1) {
+        var e6 = this;
+        this.g = B, this.F = !0, this.produce = function(t2, i5, o8) {
+            if ("function" == typeof t2 && "function" != typeof i5) {
+                var u1 = i5;
+                i5 = t2;
+                var a4 = e6;
+                return function(n1) {
+                    var t3 = this;
+                    (void 0) === n1 && (n1 = u1);
+                    for(var r1 = arguments.length, e7 = Array(r1 > 1 ? r1 - 1 : 0), o9 = 1; o9 < r1; o9++)e7[o9 - 1] = arguments[o9];
+                    return a4.produce(n1, function(n2) {
+                        var r3;
+                        return (r3 = i5).call.apply(r3, [
+                            t3,
+                            n2
+                        ].concat(e7));
+                    });
+                };
+            }
+            var f3;
+            if ("function" != typeof i5 && n(6), (void 0) !== o8 && "function" != typeof o8 && n(7), r(t2)) {
+                var c2 = w(e6), s5 = R(e6, t2, void 0), v4 = !0;
+                try {
+                    f3 = i5(s5), v4 = !1;
+                } finally{
+                    v4 ? O(c2) : g(c2);
+                }
+                return "undefined" != typeof Promise && f3 instanceof Promise ? f3.then(function(n1) {
+                    return j(c2, o8), P(n1, c2);
+                }, function(n1) {
+                    throw O(c2), n1;
+                }) : (j(c2, o8), P(f3, c2));
+            }
+            if (!t2 || "object" != typeof t2) {
+                if ((f3 = i5(t2)) === H) return;
+                return (void 0) === f3 && (f3 = t2), e6.F && d(f3, !0), f3;
+            }
+            n(21, t2);
+        }, this.produceWithPatches = function(n1, t2) {
+            var r1, i5;
+            return "function" == typeof n1 ? function(t3) {
+                for(var r3 = arguments.length, i6 = Array(r3 > 1 ? r3 - 1 : 0), o8 = 1; o8 < r3; o8++)i6[o8 - 1] = arguments[o8];
+                return e6.produceWithPatches(t3, function(t4) {
+                    return n1.apply(void 0, [
+                        t4
+                    ].concat(i6));
+                });
+            } : [
+                e6.produce(n1, t2, function(n2, t3) {
+                    r1 = n2, i5 = t3;
+                }),
+                r1,
+                i5
+            ];
+        }, "boolean" == typeof (null == t1 ? void 0 : t1.useProxies) && this.setUseProxies(t1.useProxies), "boolean" == typeof (null == t1 ? void 0 : t1.autoFreeze) && this.setAutoFreeze(t1.autoFreeze);
+    }
+    var i5 = e2.prototype;
+    return i5.createDraft = function(e6) {
+        r(e6) || n(8), t(e6) && (e6 = D(e6));
+        var i6 = w(this), o8 = R(this, e6, void 0);
+        return o8[Q].C = !0, g(i6), o8;
+    }, i5.finishDraft = function(t1, r1) {
+        var e6 = t1 && t1[Q];
+        e6 && e6.C || n(9), e6.I && n(10);
+        var i6 = e6.A;
+        return j(i6, r1), P(void 0, i6);
+    }, i5.setAutoFreeze = function(n1) {
+        this.F = n1;
+    }, i5.setUseProxies = function(t1) {
+        t1 && !B && n(20), this.g = t1;
+    }, i5.applyPatches = function(n1, r1) {
+        var e6;
+        for(e6 = r1.length - 1; e6 >= 0; e6--){
+            var i6 = r1[e6];
+            if (0 === i6.path.length && "replace" === i6.op) {
+                n1 = i6.value;
+                break;
+            }
+        }
+        var o8 = b("Patches").$;
+        return t(n1) ? o8(n1, r1) : this.produce(n1, function(n2) {
+            return o8(n2, r1.slice(e6 + 1));
+        });
+    }, e2;
+}(), an = new un, fn = an.produce, cn = an.produceWithPatches.bind(an), sn = an.setAutoFreeze.bind(an), vn = an.setUseProxies.bind(an), pn = an.applyPatches.bind(an), ln = an.createDraft.bind(an), dn = an.finishDraft.bind(an);
+exports.default = fn;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"AwPih":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "defaultMemoize", ()=>defaultMemoize
+);
+parcelHelpers.export(exports, "createSelectorCreator", ()=>createSelectorCreator
+);
+parcelHelpers.export(exports, "createSelector", ()=>createSelector
+);
+parcelHelpers.export(exports, "createStructuredSelector", ()=>createStructuredSelector
+);
+function defaultEqualityCheck(a, b) {
+    return a === b;
+}
+function areArgumentsShallowlyEqual(equalityCheck, prev, next) {
+    if (prev === null || next === null || prev.length !== next.length) return false;
+    // Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
+    var length = prev.length;
+    for(var i = 0; i < length; i++){
+        if (!equalityCheck(prev[i], next[i])) return false;
+    }
+    return true;
+}
+function defaultMemoize(func) {
+    var equalityCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultEqualityCheck;
+    var lastArgs = null;
+    var lastResult = null;
+    // we reference arguments instead of spreading them for performance reasons
+    return function() {
+        if (!areArgumentsShallowlyEqual(equalityCheck, lastArgs, arguments)) // apply arguments instead of spreading for performance.
+        lastResult = func.apply(null, arguments);
+        lastArgs = arguments;
+        return lastResult;
+    };
+}
+function getDependencies(funcs) {
+    var dependencies = Array.isArray(funcs[0]) ? funcs[0] : funcs;
+    if (!dependencies.every(function(dep) {
+        return typeof dep === 'function';
+    })) {
+        var dependencyTypes = dependencies.map(function(dep) {
+            return typeof dep;
+        }).join(', ');
+        throw new Error('Selector creators expect all input-selectors to be functions, ' + ('instead received the following types: [' + dependencyTypes + ']'));
+    }
+    return dependencies;
+}
+function createSelectorCreator(memoize) {
+    for(var _len = arguments.length, memoizeOptions = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++)memoizeOptions[_key - 1] = arguments[_key];
+    return function() {
+        for(var _len2 = arguments.length, funcs = Array(_len2), _key2 = 0; _key2 < _len2; _key2++)funcs[_key2] = arguments[_key2];
+        var recomputations = 0;
+        var resultFunc = funcs.pop();
+        var dependencies = getDependencies(funcs);
+        var memoizedResultFunc = memoize.apply(undefined, [
+            function() {
+                recomputations++;
+                // apply arguments instead of spreading for performance.
+                return resultFunc.apply(null, arguments);
+            }
+        ].concat(memoizeOptions));
+        // If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
+        var selector = memoize(function() {
+            var params = [];
+            var length = dependencies.length;
+            for(var i = 0; i < length; i++)// apply arguments instead of spreading and mutate a local list of params for performance.
+            params.push(dependencies[i].apply(null, arguments));
+            // apply arguments instead of spreading for performance.
+            return memoizedResultFunc.apply(null, params);
+        });
+        selector.resultFunc = resultFunc;
+        selector.dependencies = dependencies;
+        selector.recomputations = function() {
+            return recomputations;
+        };
+        selector.resetRecomputations = function() {
+            return recomputations = 0;
+        };
+        return selector;
+    };
+}
+var createSelector = createSelectorCreator(defaultMemoize);
+function createStructuredSelector(selectors) {
+    var selectorCreator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : createSelector;
+    if (typeof selectors !== 'object') throw new Error('createStructuredSelector expects first argument to be an object ' + ('where each property is a selector, instead received a ' + typeof selectors));
+    var objectKeys = Object.keys(selectors);
+    return selectorCreator(objectKeys.map(function(key) {
+        return selectors[key];
+    }), function() {
+        for(var _len3 = arguments.length, values = Array(_len3), _key3 = 0; _key3 < _len3; _key3++)values[_key3] = arguments[_key3];
+        return values.reduce(function(composition, value, index) {
+            composition[objectKeys[index]] = value;
+            return composition;
+        }, {
+        });
+    });
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"kozXV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function createThunkMiddleware(extraArgument) {
+    return function(_ref) {
+        var dispatch = _ref.dispatch, getState = _ref.getState;
+        return function(next) {
+            return function(action) {
+                if (typeof action === 'function') return action(dispatch, getState, extraArgument);
+                return next(action);
+            };
+        };
+    };
+}
+var thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+exports.default = thunk;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"flrvd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getCatPhoto", ()=>getCatPhoto
+);
+parcelHelpers.export(exports, "getCatPhotos", ()=>getCatPhotos
+);
+var _ky = require("ky");
+var _kyDefault = parcelHelpers.interopDefault(_ky);
+var _lodash = require("lodash");
+const getCatPhoto = async ()=>{
+    const { url  } = await _kyDefault.default('https://cataas.com/cat?json=true').json();
+    return `https://cataas.com${url}`;
+};
+const getCatPhotos = async (count)=>{
+    const photos = _lodash.times(count, getCatPhoto);
+    return Promise.all(photos);
+};
+
+},{"ky":"2IjXx","lodash":"lxjic","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"2IjXx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "HTTPError", ()=>_httperrorJs.HTTPError
+);
+parcelHelpers.export(exports, "TimeoutError", ()=>_timeoutErrorJs.TimeoutError
+);
+/*! MIT License © Sindre Sorhus */ var _kyJs = require("./core/Ky.js");
+var _constantsJs = require("./core/constants.js");
+var _mergeJs = require("./utils/merge.js");
+var _httperrorJs = require("./errors/HTTPError.js");
+var _timeoutErrorJs = require("./errors/TimeoutError.js");
+const createInstance = (defaults)=>{
+    // eslint-disable-next-line @typescript-eslint/promise-function-async
+    const ky = (input, options)=>_kyJs.Ky.create(input, _mergeJs.validateAndMerge(defaults, options))
+    ;
+    for (const method of _constantsJs.requestMethods)// @ts-expect-error not sure how to properly type this!
+    // eslint-disable-next-line @typescript-eslint/promise-function-async
+    ky[method] = (input, options)=>_kyJs.Ky.create(input, _mergeJs.validateAndMerge(defaults, options, {
+            method
+        }))
+    ;
+    ky.create = (newDefaults)=>createInstance(_mergeJs.validateAndMerge(newDefaults))
+    ;
+    ky.extend = (newDefaults)=>createInstance(_mergeJs.validateAndMerge(defaults, newDefaults))
+    ;
+    ky.stop = _constantsJs.stop;
+    return ky;
+};
+const ky = createInstance();
+exports.default = ky;
+
+},{"./core/Ky.js":"aUuHt","./core/constants.js":"hg78M","./utils/merge.js":"hFViu","./errors/HTTPError.js":"6do8h","./errors/TimeoutError.js":"dpM5q","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"aUuHt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Ky", ()=>Ky
+);
+var _httperrorJs = require("../errors/HTTPError.js");
+var _timeoutErrorJs = require("../errors/TimeoutError.js");
+var _mergeJs = require("../utils/merge.js");
+var _normalizeJs = require("../utils/normalize.js");
+var _timeJs = require("../utils/time.js");
+var _constantsJs = require("./constants.js");
+class Ky {
+    // eslint-disable-next-line complexity
+    constructor(input1, options1 = {
+    }){
+        var _a, _b;
+        this._retryCount = 0;
+        this._input = input1;
+        this._options = {
+            // TODO: credentials can be removed when the spec change is implemented in all browsers. Context: https://www.chromestatus.com/feature/4539473312350208
+            credentials: this._input.credentials || 'same-origin',
+            ...options1,
+            headers: _mergeJs.mergeHeaders(this._input.headers, options1.headers),
+            hooks: _mergeJs.deepMerge({
+                beforeRequest: [],
+                beforeRetry: [],
+                afterResponse: []
+            }, options1.hooks),
+            method: _normalizeJs.normalizeRequestMethod((_a = options1.method) !== null && _a !== void 0 ? _a : this._input.method),
+            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+            prefixUrl: String(options1.prefixUrl || ''),
+            retry: _normalizeJs.normalizeRetryOptions(options1.retry),
+            throwHttpErrors: options1.throwHttpErrors !== false,
+            timeout: typeof options1.timeout === 'undefined' ? 10000 : options1.timeout,
+            fetch: (_b = options1.fetch) !== null && _b !== void 0 ? _b : globalThis.fetch.bind(globalThis)
+        };
+        if (typeof this._input !== 'string' && !(this._input instanceof URL || this._input instanceof globalThis.Request)) throw new TypeError('`input` must be a string, URL, or Request');
+        if (this._options.prefixUrl && typeof this._input === 'string') {
+            if (this._input.startsWith('/')) throw new Error('`input` must not begin with a slash when using `prefixUrl`');
+            if (!this._options.prefixUrl.endsWith('/')) this._options.prefixUrl += '/';
+            this._input = this._options.prefixUrl + this._input;
+        }
+        if (_constantsJs.supportsAbortController) {
+            this.abortController = new globalThis.AbortController();
+            if (this._options.signal) this._options.signal.addEventListener('abort', ()=>{
+                this.abortController.abort();
+            });
+            this._options.signal = this.abortController.signal;
+        }
+        this.request = new globalThis.Request(this._input, this._options);
+        if (this._options.searchParams) {
+            // eslint-disable-next-line unicorn/prevent-abbreviations
+            const textSearchParams = typeof this._options.searchParams === 'string' ? this._options.searchParams.replace(/^\?/, '') : new URLSearchParams(this._options.searchParams).toString();
+            // eslint-disable-next-line unicorn/prevent-abbreviations
+            const searchParams = '?' + textSearchParams;
+            const url = this.request.url.replace(/(?:\?.*?)?(?=#|$)/, searchParams);
+            // To provide correct form boundary, Content-Type header should be deleted each time when new Request instantiated from another one
+            if ((_constantsJs.supportsFormData && this._options.body instanceof globalThis.FormData || this._options.body instanceof URLSearchParams) && !(this._options.headers && this._options.headers['content-type'])) this.request.headers.delete('content-type');
+            this.request = new globalThis.Request(new globalThis.Request(url, this.request), this._options);
+        }
+        if (this._options.json !== undefined) {
+            this._options.body = JSON.stringify(this._options.json);
+            this.request.headers.set('content-type', 'application/json');
+            this.request = new globalThis.Request(this.request, {
+                body: this._options.body
+            });
+        }
+    }
+    // eslint-disable-next-line @typescript-eslint/promise-function-async
+    static create(input, options) {
+        const ky = new Ky(input, options);
+        const fn = async ()=>{
+            if (ky._options.timeout > _constantsJs.maxSafeTimeout) throw new RangeError(`The \`timeout\` option cannot be greater than ${_constantsJs.maxSafeTimeout}`);
+            // Delay the fetch so that body method shortcuts can set the Accept header
+            await Promise.resolve();
+            let response = await ky._fetch();
+            for (const hook of ky._options.hooks.afterResponse){
+                // eslint-disable-next-line no-await-in-loop
+                const modifiedResponse = await hook(ky.request, ky._options, ky._decorateResponse(response.clone()));
+                if (modifiedResponse instanceof globalThis.Response) response = modifiedResponse;
+            }
+            ky._decorateResponse(response);
+            if (!response.ok && ky._options.throwHttpErrors) throw new _httperrorJs.HTTPError(response, ky.request, ky._options);
+            // If `onDownloadProgress` is passed, it uses the stream API internally
+            /* istanbul ignore next */ if (ky._options.onDownloadProgress) {
+                if (typeof ky._options.onDownloadProgress !== 'function') throw new TypeError('The `onDownloadProgress` option must be a function');
+                if (!_constantsJs.supportsStreams) throw new Error('Streams are not supported in your environment. `ReadableStream` is missing.');
+                return ky._stream(response.clone(), ky._options.onDownloadProgress);
+            }
+            return response;
+        };
+        const isRetriableMethod = ky._options.retry.methods.includes(ky.request.method.toLowerCase());
+        const result = isRetriableMethod ? ky._retry(fn) : fn();
+        for (const [type, mimeType] of Object.entries(_constantsJs.responseTypes))// @ts-expect-error not sure how to properly type this!
+        result[type] = async ()=>{
+            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+            ky.request.headers.set('accept', ky.request.headers.get('accept') || mimeType);
+            const response = (await result).clone();
+            if (type === 'json') {
+                if (response.status === 204) return '';
+                if (options.parseJson) return options.parseJson(await response.text());
+            }
+            // @ts-expect-error not sure how to properly type this!
+            return response[type]();
+        };
+        return result;
+    }
+    _calculateRetryDelay(error) {
+        this._retryCount++;
+        if (this._retryCount < this._options.retry.limit && !(error instanceof _timeoutErrorJs.TimeoutError)) {
+            if (error instanceof _httperrorJs.HTTPError) {
+                if (!this._options.retry.statusCodes.includes(error.response.status)) return 0;
+                const retryAfter = error.response.headers.get('Retry-After');
+                if (retryAfter && this._options.retry.afterStatusCodes.includes(error.response.status)) {
+                    let after = Number(retryAfter);
+                    if (Number.isNaN(after)) after = Date.parse(retryAfter) - Date.now();
+                    else after *= 1000;
+                    if (typeof this._options.retry.maxRetryAfter !== 'undefined' && after > this._options.retry.maxRetryAfter) return 0;
+                    return after;
+                }
+                if (error.response.status === 413) return 0;
+            }
+            const BACKOFF_FACTOR = 0.3;
+            return BACKOFF_FACTOR * 2 ** (this._retryCount - 1) * 1000;
+        }
+        return 0;
+    }
+    _decorateResponse(response) {
+        if (this._options.parseJson) response.json = async ()=>{
+            return this._options.parseJson(await response.text());
+        };
+        return response;
+    }
+    async _retry(fn) {
+        try {
+            return await fn();
+        // eslint-disable-next-line @typescript-eslint/no-implicit-any-catch
+        } catch (error) {
+            const ms = Math.min(this._calculateRetryDelay(error), _constantsJs.maxSafeTimeout);
+            if (ms !== 0 && this._retryCount > 0) {
+                await _timeJs.delay(ms);
+                for (const hook of this._options.hooks.beforeRetry){
+                    // @ts-expect-error TODO missing response?
+                    // eslint-disable-next-line no-await-in-loop
+                    const hookResult = await hook({
+                        request: this.request,
+                        options: this._options,
+                        error,
+                        retryCount: this._retryCount
+                    });
+                    // If `stop` is returned from the hook, the retry process is stopped
+                    if (hookResult === _constantsJs.stop) return;
+                }
+                return this._retry(fn);
+            }
+            throw error;
+        }
+    }
+    async _fetch() {
+        for (const hook of this._options.hooks.beforeRequest){
+            // eslint-disable-next-line no-await-in-loop
+            const result = await hook(this.request, this._options);
+            if (result instanceof Request) {
+                this.request = result;
+                break;
+            }
+            if (result instanceof Response) return result;
+        }
+        if (this._options.timeout === false) return this._options.fetch(this.request.clone());
+        return _timeJs.timeout(this.request.clone(), this.abortController, this._options);
+    }
+    /* istanbul ignore next */ _stream(response, onDownloadProgress) {
+        const totalBytes = Number(response.headers.get('content-length')) || 0;
+        let transferredBytes = 0;
+        return new globalThis.Response(new globalThis.ReadableStream({
+            async start (controller) {
+                const reader = response.body.getReader();
+                if (onDownloadProgress) onDownloadProgress({
+                    percent: 0,
+                    transferredBytes: 0,
+                    totalBytes
+                }, new Uint8Array());
+                async function read() {
+                    const { done , value  } = await reader.read();
+                    if (done) {
+                        controller.close();
+                        return;
+                    }
+                    if (onDownloadProgress) {
+                        transferredBytes += value.byteLength;
+                        const percent = totalBytes === 0 ? 0 : transferredBytes / totalBytes;
+                        onDownloadProgress({
+                            percent,
+                            transferredBytes,
+                            totalBytes
+                        }, value);
+                    }
+                    controller.enqueue(value);
+                    await read();
+                }
+                await read();
+            }
+        }));
+    }
+}
+
+},{"../errors/HTTPError.js":"6do8h","../errors/TimeoutError.js":"dpM5q","../utils/merge.js":"hFViu","../utils/normalize.js":"6EuQA","../utils/time.js":"4ulOy","./constants.js":"hg78M","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"6do8h":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "HTTPError", ()=>HTTPError
+);
+class HTTPError extends Error {
+    constructor(response, request, options){
+        const code = response.status || response.status === 0 ? response.status : '';
+        const title = response.statusText || '';
+        const status = `${code} ${title}`.trim();
+        const reason = status ? `status code ${status}` : 'an unknown error';
+        super(`Request failed with ${reason}`);
+        this.name = 'HTTPError';
+        this.response = response;
+        this.request = request;
+        this.options = options;
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"dpM5q":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TimeoutError", ()=>TimeoutError
+);
+class TimeoutError extends Error {
+    constructor(request){
+        super('Request timed out');
+        this.name = 'TimeoutError';
+        this.request = request;
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"hFViu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "validateAndMerge", ()=>validateAndMerge
+);
+parcelHelpers.export(exports, "mergeHeaders", ()=>mergeHeaders
+);
+parcelHelpers.export(exports, "deepMerge", ()=>deepMerge
+);
+var _isJs = require("./is.js");
+const validateAndMerge = (...sources)=>{
+    for (const source of sources){
+        if ((!_isJs.isObject(source) || Array.isArray(source)) && typeof source !== 'undefined') throw new TypeError('The `options` argument must be an object');
+    }
+    return deepMerge({
+    }, ...sources);
+};
+const mergeHeaders = (source1 = {
+}, source2 = {
+})=>{
+    const result = new globalThis.Headers(source1);
+    const isHeadersInstance = source2 instanceof globalThis.Headers;
+    const source = new globalThis.Headers(source2);
+    for (const [key, value] of source.entries())if (isHeadersInstance && value === 'undefined' || value === undefined) result.delete(key);
+    else result.set(key, value);
+    return result;
+};
+const deepMerge = (...sources)=>{
+    let returnValue = {
+    };
+    let headers = {
+    };
+    for (const source of sources){
+        if (Array.isArray(source)) {
+            if (!Array.isArray(returnValue)) returnValue = [];
+            returnValue = [
+                ...returnValue,
+                ...source
+            ];
+        } else if (_isJs.isObject(source)) {
+            for (let [key, value] of Object.entries(source)){
+                if (_isJs.isObject(value) && key in returnValue) value = deepMerge(returnValue[key], value);
+                returnValue = {
+                    ...returnValue,
+                    [key]: value
+                };
+            }
+            if (_isJs.isObject(source.headers)) {
+                headers = mergeHeaders(headers, source.headers);
+                returnValue.headers = headers;
+            }
+        }
+    }
+    return returnValue;
+};
+
+},{"./is.js":"3tAk8","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"3tAk8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "isObject", ()=>isObject
+);
+const isObject = (value)=>value !== null && typeof value === 'object'
+;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"6EuQA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "normalizeRequestMethod", ()=>normalizeRequestMethod
+);
+parcelHelpers.export(exports, "normalizeRetryOptions", ()=>normalizeRetryOptions
+);
+var _constantsJs = require("../core/constants.js");
+const normalizeRequestMethod = (input)=>_constantsJs.requestMethods.includes(input) ? input.toUpperCase() : input
+;
+const retryMethods = [
+    'get',
+    'put',
+    'head',
+    'delete',
+    'options',
+    'trace'
+];
+const retryStatusCodes = [
+    408,
+    413,
+    429,
+    500,
+    502,
+    503,
+    504
+];
+const retryAfterStatusCodes = [
+    413,
+    429,
+    503
+];
+const defaultRetryOptions = {
+    limit: 2,
+    methods: retryMethods,
+    statusCodes: retryStatusCodes,
+    afterStatusCodes: retryAfterStatusCodes,
+    maxRetryAfter: Number.POSITIVE_INFINITY
+};
+const normalizeRetryOptions = (retry = {
+})=>{
+    if (typeof retry === 'number') return {
+        ...defaultRetryOptions,
+        limit: retry
+    };
+    if (retry.methods && !Array.isArray(retry.methods)) throw new Error('retry.methods must be an array');
+    if (retry.statusCodes && !Array.isArray(retry.statusCodes)) throw new Error('retry.statusCodes must be an array');
+    return {
+        ...defaultRetryOptions,
+        ...retry,
+        afterStatusCodes: retryAfterStatusCodes
+    };
+};
+
+},{"../core/constants.js":"hg78M","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"hg78M":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "supportsAbortController", ()=>supportsAbortController
+);
+parcelHelpers.export(exports, "supportsStreams", ()=>supportsStreams
+);
+parcelHelpers.export(exports, "supportsFormData", ()=>supportsFormData
+);
+parcelHelpers.export(exports, "requestMethods", ()=>requestMethods
+);
+parcelHelpers.export(exports, "responseTypes", ()=>responseTypes
+);
+parcelHelpers.export(exports, "maxSafeTimeout", ()=>maxSafeTimeout
+);
+parcelHelpers.export(exports, "stop", ()=>stop
+);
+const supportsAbortController = typeof globalThis.AbortController === 'function';
+const supportsStreams = typeof globalThis.ReadableStream === 'function';
+const supportsFormData = typeof globalThis.FormData === 'function';
+const requestMethods = [
+    'get',
+    'post',
+    'put',
+    'patch',
+    'head',
+    'delete'
+];
+const responseTypes = {
+    json: 'application/json',
+    text: 'text/*',
+    formData: 'multipart/form-data',
+    arrayBuffer: '*/*',
+    blob: '*/*'
+};
+const maxSafeTimeout = 2147483647;
+const stop = Symbol('stop');
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"4ulOy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "timeout", ()=>timeout
+);
+parcelHelpers.export(exports, "delay", ()=>delay
+);
+var _timeoutErrorJs = require("../errors/TimeoutError.js");
+const timeout = async (request, abortController, options)=>new Promise((resolve, reject)=>{
+        const timeoutID = setTimeout(()=>{
+            if (abortController) abortController.abort();
+            reject(new _timeoutErrorJs.TimeoutError(request));
+        }, options.timeout);
+        options.fetch(request).then(resolve).catch(reject).then(()=>{
+            clearTimeout(timeoutID);
+        });
+    /* eslint-enable promise/prefer-await-to-then */ })
+;
+const delay = async (ms)=>new Promise((resolve)=>{
+        setTimeout(resolve, ms);
+    })
+;
+
+},{"../errors/TimeoutError.js":"dpM5q","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"kc9u0":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42020,7 +42039,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 exports.default = ()=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-        className: "flex content-center my-4 p-4 border-2 border-yellow-600 shadow-md rounded-full",
+        className: "flex content-center my-4 p-4 border-2 border-yellow-600",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/TopBar/index.jsx",
             lineNumber: 5
@@ -42048,7 +42067,34 @@ exports.default = ()=>{
             lineNumber: 11
         },
         __self: undefined
-    }, "GitHub"))));
+    }, "Code on GitHub"))));
+};
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"jUjz4","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"4G701":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+exports.default = ()=>{
+    return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+        className: "h-24",
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/Footer/index.jsx",
+            lineNumber: 5
+        },
+        __self: undefined
+    }));
 };
 
   helpers.postlude(module);
