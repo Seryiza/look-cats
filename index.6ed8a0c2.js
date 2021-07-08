@@ -24017,14 +24017,14 @@ var _lodash = require("lodash");
 const PHOTOS_PER_COLUMN = 2;
 exports.default = ({ block  })=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-        className: "min-h-screen flex flex-col md:flex-row justify-center md:space-x-8 space-y-8 md:space-y-0 p-4",
+        className: "min-h-screen flex flex-col md:flex-row justify-center md:space-x-4 space-y-4 md:space-y-0 p-2",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
             lineNumber: 11
         },
         __self: undefined
     }, _lodash.chunk(block.photos, PHOTOS_PER_COLUMN).map((photos, index)=>/*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "space-y-8",
+            className: "space-y-4",
             key: index,
             __source: {
                 fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
