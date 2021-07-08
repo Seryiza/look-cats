@@ -1,5 +1,7 @@
 # Look, Cats!
 
+![Screenshot](./screenshot.png)
+
 <img
     align="right"
     src="./logo.png"
@@ -7,8 +9,6 @@
 
 [![GitHub Pages Deploy](https://github.com/Seryiza/look-cats/actions/workflows/deploy.yml/badge.svg)](https://github.com/Seryiza/look-cats/actions/workflows/deploy.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fd1bff98d92252dd6fbe/maintainability)](https://codeclimate.com/github/Seryiza/look-cats/maintainability)
-
-![Screenshot](./screenshot.png)
 
 Бесконечная лента с фотографиями кошечек и фактов о них. Помогает отвлечься и расслабиться.
 
@@ -27,4 +27,4 @@ npm run test   # run tests
 
 ## Источники данных
 - Фото: [Cataas](https://cataas.com/)
-- Факты: [Cat Facts](https://alexwohlbruck.github.io/cat-facts/)
+- Факты: [Cat Facts](https://alexwohlbruck.github.io/cat-facts/), [the-cat-fact](https://the-cat-fact.herokuapp.com/)
