@@ -24,10 +24,11 @@ export default () => {
       {blocks.map((block, i) => <MediaBlock block={block} key={i} />)}
 
       {isLoading && <h2>Loading...</h2>}
-
-      <div className='p-2 flex justify-center'>
-        <LoadMoreButton onClick={() => dispatch(fetchBlock({ photosCount: 4 }))} />
-      </div>
+      {!isLoading && (
+        <div className='p-8 flex justify-center'>
+          <LoadMoreButton onClick={() => dispatch(fetchBlock({ photosCount: 4 }))} />
+        </div>
+      )}
     </div>
   )
 }
