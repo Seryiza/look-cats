@@ -24017,10 +24017,25 @@ var _lodash = require("lodash");
 const PHOTOS_PER_COLUMN = 2;
 exports.default = ({ block  })=>{
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-        className: "min-h-screen flex flex-col md:flex-row justify-center md:space-x-4 space-y-4 md:space-y-0 p-2",
+        className: "min-h-screen",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
             lineNumber: 11
+        },
+        __self: undefined
+    }, block.fact && /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        className: "border-l-2 border-yellow-600 p-2",
+        "data-cy": "cat-fact",
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
+            lineNumber: 13
+        },
+        __self: undefined
+    }, block.fact), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        className: "flex flex-col md:flex-row justify-center md:space-x-4 space-y-4 md:space-y-0 p-2",
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
+            lineNumber: 21
         },
         __self: undefined
     }, _lodash.chunk(block.photos, PHOTOS_PER_COLUMN).map((photos, index)=>/*#__PURE__*/ _reactDefault.default.createElement("div", {
@@ -24028,7 +24043,7 @@ exports.default = ({ block  })=>{
             key: index,
             __source: {
                 fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
-                lineNumber: 14
+                lineNumber: 24
             },
             __self: undefined
         }, photos.map((photo)=>/*#__PURE__*/ _reactDefault.default.createElement("img", {
@@ -24036,14 +24051,15 @@ exports.default = ({ block  })=>{
                 src: photo,
                 key: photo,
                 crossOrigin: "anonymous",
+                "data-cy": "cat-photo",
                 __source: {
                     fileName: "/home/runner/work/look-cats/look-cats/src/Feed/MediaBlock/index.jsx",
-                    lineNumber: 19
+                    lineNumber: 29
                 },
                 __self: undefined
             })
         ))
-    )));
+    ))));
 };
 
   helpers.postlude(module);
@@ -38452,6 +38468,7 @@ exports.default = ({ onClick , children  })=>{
         className: "p-4 px-16 text-lg text-yellow-600 border-2 border-yellow-600 transition-colors hover:text-white hover:bg-yellow-600",
         onClick: (event)=>onClick(event)
         ,
+        "data-cy": "load-more-button",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/Feed/LoadMoreButton/index.jsx",
             lineNumber: 5
@@ -38475,12 +38492,14 @@ parcelHelpers.export(exports, "mediaBlockSlice", ()=>mediaBlockSlice
 parcelHelpers.export(exports, "increment", ()=>increment
 );
 var _toolkit = require("@reduxjs/toolkit");
+var _factsAPI = require("./FactsAPI");
 var _photosAPI = require("./PhotosAPI");
 const fetchBlock = _toolkit.createAsyncThunk('mediaBlock/fetchBlock', async ({ photosCount  })=>{
-    // TODO: Add facts
     const photos = await _photosAPI.getCatPhotos(photosCount);
+    const fact = await _factsAPI.getCatFact();
     return {
-        photos
+        photos,
+        fact
     };
 });
 const mediaBlockSlice = _toolkit.createSlice({
@@ -38496,7 +38515,8 @@ const mediaBlockSlice = _toolkit.createSlice({
         });
         builder.addCase(fetchBlock.fulfilled, (state, { payload  })=>{
             state.blocks.push({
-                photos: payload.photos
+                photos: payload.photos,
+                fact: payload.fact
             });
             state.loadingState = 'idle';
         });
@@ -38505,7 +38525,7 @@ const mediaBlockSlice = _toolkit.createSlice({
 const { increment  } = mediaBlockSlice.actions;
 exports.default = mediaBlockSlice.reducer;
 
-},{"@reduxjs/toolkit":"diJsx","./PhotosAPI":"flrvd","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"diJsx":[function(require,module,exports) {
+},{"@reduxjs/toolkit":"diJsx","./FactsAPI":"j8qXl","./PhotosAPI":"flrvd","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"diJsx":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MiddlewareArray", ()=>MiddlewareArray1
@@ -41558,26 +41578,19 @@ var thunk = createThunkMiddleware();
 thunk.withExtraArgument = createThunkMiddleware;
 exports.default = thunk;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"flrvd":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"j8qXl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getCatPhoto", ()=>getCatPhoto
-);
-parcelHelpers.export(exports, "getCatPhotos", ()=>getCatPhotos
+parcelHelpers.export(exports, "getCatFact", ()=>getCatFact
 );
 var _ky = require("ky");
 var _kyDefault = parcelHelpers.interopDefault(_ky);
-var _lodash = require("lodash");
-const getCatPhoto = async ()=>{
-    const { url  } = await _kyDefault.default('https://cataas.com/cat?json=true').json();
-    return `https://cataas.com${url}`;
-};
-const getCatPhotos = async (count)=>{
-    const photos = _lodash.times(count, getCatPhoto);
-    return Promise.all(photos);
+const getCatFact = async ()=>{
+    const { fact  } = await _kyDefault.default('https://cat-facts-proxy.seryiza.xyz/random-fact').json();
+    return fact;
 };
 
-},{"ky":"2IjXx","lodash":"lxjic","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"2IjXx":[function(require,module,exports) {
+},{"ky":"2IjXx","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"2IjXx":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "HTTPError", ()=>_httperrorJs.HTTPError
@@ -42026,7 +42039,26 @@ const delay = async (ms)=>new Promise((resolve)=>{
     })
 ;
 
-},{"../errors/TimeoutError.js":"dpM5q","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"kc9u0":[function(require,module,exports) {
+},{"../errors/TimeoutError.js":"dpM5q","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"flrvd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getCatPhoto", ()=>getCatPhoto
+);
+parcelHelpers.export(exports, "getCatPhotos", ()=>getCatPhotos
+);
+var _ky = require("ky");
+var _kyDefault = parcelHelpers.interopDefault(_ky);
+var _lodash = require("lodash");
+const getCatPhoto = async ()=>{
+    const { url  } = await _kyDefault.default('https://cataas.com/cat?json=true').json();
+    return `https://cataas.com${url}`;
+};
+const getCatPhotos = async (count)=>{
+    const photos = _lodash.times(count, getCatPhoto);
+    return Promise.all(photos);
+};
+
+},{"ky":"2IjXx","lodash":"lxjic","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"kc9u0":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
