@@ -23882,6 +23882,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactHotToast = require("react-hot-toast");
 var _feed = require("../Feed/Feed");
 var _feedDefault = parcelHelpers.interopDefault(_feed);
 var _topBar = require("../TopBar");
@@ -23893,25 +23894,32 @@ exports.default = ()=>{
         className: "container mx-auto p-4",
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
-            lineNumber: 9
+            lineNumber: 10
         },
         __self: undefined
     }, /*#__PURE__*/ _reactDefault.default.createElement(_topBarDefault.default, {
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
-            lineNumber: 10
+            lineNumber: 11
         },
         __self: undefined
     }), /*#__PURE__*/ _reactDefault.default.createElement(_feedDefault.default, {
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
-            lineNumber: 11
+            lineNumber: 12
+        },
+        __self: undefined
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_reactHotToast.Toaster, {
+        position: "bottom-center",
+        __source: {
+            fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
+            lineNumber: 13
         },
         __self: undefined
     }), /*#__PURE__*/ _reactDefault.default.createElement(_footerDefault.default, {
         __source: {
             fileName: "/home/runner/work/look-cats/look-cats/src/App/App.jsx",
-            lineNumber: 12
+            lineNumber: 14
         },
         __self: undefined
     })));
@@ -23922,7 +23930,769 @@ exports.default = ()=>{
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"jUjz4","../Feed/Feed":"icbd7","../TopBar":"kc9u0","../Footer":"4G701","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"icbd7":[function(require,module,exports) {
+},{"react":"jUjz4","react-hot-toast":"cID1I","../Feed/Feed":"icbd7","../TopBar":"kc9u0","../Footer":"4G701","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dzy2P"}],"cID1I":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ToastBar", ()=>ToastBar
+);
+parcelHelpers.export(exports, "ToastIcon", ()=>ToastIcon
+);
+parcelHelpers.export(exports, "Toaster", ()=>Toaster
+);
+parcelHelpers.export(exports, "resolveValue", ()=>resolveValue
+);
+parcelHelpers.export(exports, "toast", ()=>toast
+);
+parcelHelpers.export(exports, "useToaster", ()=>useToaster
+);
+parcelHelpers.export(exports, "useToasterStore", ()=>useStore
+);
+var _react = require("react");
+var _goober = require("goober");
+function _extends() {
+    _extends = Object.assign || function(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+        }
+        return target;
+    };
+    return _extends.apply(this, arguments);
+}
+function _taggedTemplateLiteralLoose(strings, raw) {
+    if (!raw) raw = strings.slice(0);
+    strings.raw = raw;
+    return strings;
+}
+var isFunction = function isFunction1(valOrFunction) {
+    return typeof valOrFunction === 'function';
+};
+var resolveValue = function resolveValue1(valOrFunction, arg) {
+    return isFunction(valOrFunction) ? valOrFunction(arg) : valOrFunction;
+};
+var genId = /*#__PURE__*/ function() {
+    var count = 0;
+    return function() {
+        return (++count).toString();
+    };
+}();
+var createRectRef = function createRectRef1(onRect) {
+    return function(el) {
+        if (el) setTimeout(function() {
+            var boundingRect = el.getBoundingClientRect();
+            onRect(boundingRect);
+        });
+    };
+};
+var prefersReducedMotion = /*#__PURE__*/ function() {
+    // Cache result
+    var shouldReduceMotion = undefined;
+    return function() {
+        if (shouldReduceMotion === undefined) {
+            var mediaQuery = matchMedia('(prefers-reduced-motion: reduce)');
+            shouldReduceMotion = !mediaQuery || mediaQuery.matches;
+        }
+        return shouldReduceMotion;
+    };
+}();
+var TOAST_LIMIT = 20;
+var ActionType;
+(function(ActionType1) {
+    ActionType1[ActionType1["ADD_TOAST"] = 0] = "ADD_TOAST";
+    ActionType1[ActionType1["UPDATE_TOAST"] = 1] = "UPDATE_TOAST";
+    ActionType1[ActionType1["UPSERT_TOAST"] = 2] = "UPSERT_TOAST";
+    ActionType1[ActionType1["DISMISS_TOAST"] = 3] = "DISMISS_TOAST";
+    ActionType1[ActionType1["REMOVE_TOAST"] = 4] = "REMOVE_TOAST";
+    ActionType1[ActionType1["START_PAUSE"] = 5] = "START_PAUSE";
+    ActionType1[ActionType1["END_PAUSE"] = 6] = "END_PAUSE";
+})(ActionType || (ActionType = {
+}));
+var toastTimeouts = /*#__PURE__*/ new Map();
+var addToRemoveQueue = function addToRemoveQueue1(toastId) {
+    if (toastTimeouts.has(toastId)) return;
+    var timeout = setTimeout(function() {
+        toastTimeouts["delete"](toastId);
+        dispatch({
+            type: ActionType.REMOVE_TOAST,
+            toastId: toastId
+        });
+    }, 1000);
+    toastTimeouts.set(toastId, timeout);
+};
+var clearFromRemoveQueue = function clearFromRemoveQueue1(toastId) {
+    var timeout = toastTimeouts.get(toastId);
+    if (timeout) clearTimeout(timeout);
+};
+var reducer = function reducer1(state, action) {
+    switch(action.type){
+        case ActionType.ADD_TOAST:
+            return _extends({
+            }, state, {
+                toasts: [
+                    action.toast
+                ].concat(state.toasts).slice(0, TOAST_LIMIT)
+            });
+        case ActionType.UPDATE_TOAST:
+            //  ! Side effects !
+            if (action.toast.id) clearFromRemoveQueue(action.toast.id);
+            return _extends({
+            }, state, {
+                toasts: state.toasts.map(function(t) {
+                    return t.id === action.toast.id ? _extends({
+                    }, t, action.toast) : t;
+                })
+            });
+        case ActionType.UPSERT_TOAST:
+            var toast = action.toast;
+            return state.toasts.find(function(t) {
+                return t.id === toast.id;
+            }) ? reducer1(state, {
+                type: ActionType.UPDATE_TOAST,
+                toast: toast
+            }) : reducer1(state, {
+                type: ActionType.ADD_TOAST,
+                toast: toast
+            });
+        case ActionType.DISMISS_TOAST:
+            var toastId = action.toastId; // ! Side effects ! - This could be execrated into a dismissToast() action, but I'll keep it here for simplicity
+            if (toastId) addToRemoveQueue(toastId);
+            else state.toasts.forEach(function(toast1) {
+                addToRemoveQueue(toast1.id);
+            });
+            return _extends({
+            }, state, {
+                toasts: state.toasts.map(function(t) {
+                    return t.id === toastId || toastId === undefined ? _extends({
+                    }, t, {
+                        visible: false
+                    }) : t;
+                })
+            });
+        case ActionType.REMOVE_TOAST:
+            if (action.toastId === undefined) return _extends({
+            }, state, {
+                toasts: []
+            });
+            return _extends({
+            }, state, {
+                toasts: state.toasts.filter(function(t) {
+                    return t.id !== action.toastId;
+                })
+            });
+        case ActionType.START_PAUSE:
+            return _extends({
+            }, state, {
+                pausedAt: action.time
+            });
+        case ActionType.END_PAUSE:
+            var diff = action.time - (state.pausedAt || 0);
+            return _extends({
+            }, state, {
+                pausedAt: undefined,
+                toasts: state.toasts.map(function(t) {
+                    return _extends({
+                    }, t, {
+                        pauseDuration: t.pauseDuration + diff
+                    });
+                })
+            });
+    }
+};
+var listeners = [];
+var memoryState = {
+    toasts: [],
+    pausedAt: undefined
+};
+var dispatch = function dispatch1(action) {
+    memoryState = reducer(memoryState, action);
+    listeners.forEach(function(listener) {
+        listener(memoryState);
+    });
+};
+var defaultTimeouts = {
+    blank: 4000,
+    error: 4000,
+    success: 2000,
+    loading: Infinity,
+    custom: 4000
+};
+var useStore = function useStore1(toastOptions) {
+    if (toastOptions === void 0) toastOptions = {
+    };
+    var _useState = _react.useState(memoryState), state = _useState[0], setState = _useState[1];
+    _react.useEffect(function() {
+        listeners.push(setState);
+        return function() {
+            var index = listeners.indexOf(setState);
+            if (index > -1) listeners.splice(index, 1);
+        };
+    }, [
+        state
+    ]);
+    var mergedToasts = state.toasts.map(function(t) {
+        var _toastOptions$t$type, _toastOptions, _toastOptions$t$type2;
+        return _extends({
+        }, toastOptions, toastOptions[t.type], t, {
+            duration: t.duration || ((_toastOptions$t$type = toastOptions[t.type]) == null ? void 0 : _toastOptions$t$type.duration) || ((_toastOptions = toastOptions) == null ? void 0 : _toastOptions.duration) || defaultTimeouts[t.type],
+            style: _extends({
+            }, toastOptions.style, (_toastOptions$t$type2 = toastOptions[t.type]) == null ? void 0 : _toastOptions$t$type2.style, t.style)
+        });
+    });
+    return _extends({
+    }, state, {
+        toasts: mergedToasts
+    });
+};
+var createToast = function createToast1(message, type, opts) {
+    if (type === void 0) type = 'blank';
+    return _extends({
+        createdAt: Date.now(),
+        visible: true,
+        type: type,
+        ariaProps: {
+            role: 'status',
+            'aria-live': 'polite'
+        },
+        message: message,
+        pauseDuration: 0
+    }, opts, {
+        id: (opts == null ? void 0 : opts.id) || genId()
+    });
+};
+var createHandler = function createHandler1(type) {
+    return function(message, options) {
+        var toast = createToast(message, type, options);
+        dispatch({
+            type: ActionType.UPSERT_TOAST,
+            toast: toast
+        });
+        return toast.id;
+    };
+};
+var toast = function toast1(message, opts) {
+    return createHandler('blank')(message, opts);
+};
+toast.error = /*#__PURE__*/ createHandler('error');
+toast.success = /*#__PURE__*/ createHandler('success');
+toast.loading = /*#__PURE__*/ createHandler('loading');
+toast.custom = /*#__PURE__*/ createHandler('custom');
+toast.dismiss = function(toastId) {
+    dispatch({
+        type: ActionType.DISMISS_TOAST,
+        toastId: toastId
+    });
+};
+toast.remove = function(toastId) {
+    return dispatch({
+        type: ActionType.REMOVE_TOAST,
+        toastId: toastId
+    });
+};
+toast.promise = function(promise, msgs, opts) {
+    var id = toast.loading(msgs.loading, _extends({
+    }, opts, opts == null ? void 0 : opts.loading));
+    promise.then(function(p) {
+        toast.success(resolveValue(msgs.success, p), _extends({
+            id: id
+        }, opts, opts == null ? void 0 : opts.success));
+        return p;
+    })["catch"](function(e) {
+        toast.error(resolveValue(msgs.error, e), _extends({
+            id: id
+        }, opts, opts == null ? void 0 : opts.error));
+    });
+    return promise;
+};
+var useToaster = function useToaster1(toastOptions) {
+    var _useStore = useStore(toastOptions), toasts = _useStore.toasts, pausedAt = _useStore.pausedAt;
+    _react.useEffect(function() {
+        if (pausedAt) return;
+        var now = Date.now();
+        var timeouts = toasts.map(function(t) {
+            if (t.duration === Infinity) return;
+            var durationLeft = (t.duration || 0) + t.pauseDuration - (now - t.createdAt);
+            if (durationLeft < 0) {
+                if (t.visible) toast.dismiss(t.id);
+                return;
+            }
+            return setTimeout(function() {
+                return toast.dismiss(t.id);
+            }, durationLeft);
+        });
+        return function() {
+            timeouts.forEach(function(timeout) {
+                return timeout && clearTimeout(timeout);
+            });
+        };
+    }, [
+        toasts,
+        pausedAt
+    ]);
+    var handlers = _react.useMemo(function() {
+        return {
+            startPause: function startPause() {
+                dispatch({
+                    type: ActionType.START_PAUSE,
+                    time: Date.now()
+                });
+            },
+            endPause: function endPause() {
+                if (pausedAt) dispatch({
+                    type: ActionType.END_PAUSE,
+                    time: Date.now()
+                });
+            },
+            updateHeight: function updateHeight(toastId, height) {
+                return dispatch({
+                    type: ActionType.UPDATE_TOAST,
+                    toast: {
+                        id: toastId,
+                        height: height
+                    }
+                });
+            },
+            calculateOffset: function calculateOffset(toast2, opts) {
+                var _relevantToasts$filte;
+                var _ref = opts || {
+                }, _ref$reverseOrder = _ref.reverseOrder, reverseOrder = _ref$reverseOrder === void 0 ? false : _ref$reverseOrder, _ref$gutter = _ref.gutter, gutter = _ref$gutter === void 0 ? 8 : _ref$gutter, defaultPosition = _ref.defaultPosition;
+                var relevantToasts = toasts.filter(function(t) {
+                    return (t.position || defaultPosition) === (toast2.position || defaultPosition) && t.height;
+                });
+                var toastIndex = relevantToasts.findIndex(function(t) {
+                    return t.id === toast2.id;
+                });
+                var toastsBefore = relevantToasts.filter(function(toast3, i) {
+                    return i < toastIndex && toast3.visible;
+                }).length;
+                var offset = (_relevantToasts$filte = relevantToasts.filter(function(t) {
+                    return t.visible;
+                })).slice.apply(_relevantToasts$filte, reverseOrder ? [
+                    toastsBefore + 1
+                ] : [
+                    0,
+                    toastsBefore
+                ]).reduce(function(acc, t) {
+                    return acc + (t.height || 0) + gutter;
+                }, 0);
+                return offset;
+            }
+        };
+    }, [
+        toasts,
+        pausedAt
+    ]);
+    return {
+        toasts: toasts,
+        handlers: handlers
+    };
+};
+function _templateObject4() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n  width: 20px;\n  opacity: 0;\n  height: 20px;\n  border-radius: 10px;\n  background: ",
+        ";\n  position: relative;\n  transform: rotate(45deg);\n\n  animation: ",
+        " 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)\n    forwards;\n  animation-delay: 100ms;\n\n  &:after,\n  &:before {\n    content: '';\n    animation: ",
+        " 0.15s ease-out forwards;\n    animation-delay: 150ms;\n    position: absolute;\n    border-radius: 3px;\n    opacity: 0;\n    background: ",
+        ";\n    bottom: 9px;\n    left: 4px;\n    height: 2px;\n    width: 12px;\n  }\n\n  &:before {\n    animation: ",
+        " 0.15s ease-out forwards;\n    animation-delay: 180ms;\n    transform: rotate(90deg);\n  }\n"
+    ]);
+    _templateObject4 = function _templateObject41() {
+        return data;
+    };
+    return data;
+}
+function _templateObject3() {
+    var data = _taggedTemplateLiteralLoose([
+        "\nfrom {\n  transform: scale(0) rotate(90deg);\n\topacity: 0;\n}\nto {\n  transform: scale(1) rotate(90deg);\n\topacity: 1;\n}"
+    ]);
+    _templateObject3 = function _templateObject31() {
+        return data;
+    };
+    return data;
+}
+function _templateObject2() {
+    var data = _taggedTemplateLiteralLoose([
+        "\nfrom {\n  transform: scale(0);\n  opacity: 0;\n}\nto {\n  transform: scale(1);\n  opacity: 1;\n}"
+    ]);
+    _templateObject2 = function _templateObject21() {
+        return data;
+    };
+    return data;
+}
+function _templateObject() {
+    var data = _taggedTemplateLiteralLoose([
+        "\nfrom {\n  transform: scale(0) rotate(45deg);\n\topacity: 0;\n}\nto {\n transform: scale(1) rotate(45deg);\n  opacity: 1;\n}"
+    ]);
+    _templateObject = function _templateObject1() {
+        return data;
+    };
+    return data;
+}
+var circleAnimation = /*#__PURE__*/ _goober.keyframes(/*#__PURE__*/ _templateObject());
+var firstLineAnimation = /*#__PURE__*/ _goober.keyframes(/*#__PURE__*/ _templateObject2());
+var secondLineAnimation = /*#__PURE__*/ _goober.keyframes(/*#__PURE__*/ _templateObject3());
+var ErrorIcon = /*#__PURE__*/ _goober.styled('div')(/*#__PURE__*/ _templateObject4(), function(p) {
+    return p.primary || '#ff4b4b';
+}, circleAnimation, firstLineAnimation, function(p) {
+    return p.secondary || '#fff';
+}, secondLineAnimation);
+function _templateObject2$1() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n  width: 12px;\n  height: 12px;\n  box-sizing: border-box;\n  border: 2px solid;\n  border-radius: 100%;\n  border-color: ",
+        ";\n  border-right-color: ",
+        ";\n  animation: ",
+        " 1s linear infinite;\n"
+    ]);
+    _templateObject2$1 = function _templateObject21() {
+        return data;
+    };
+    return data;
+}
+function _templateObject$1() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n"
+    ]);
+    _templateObject$1 = function _templateObject1() {
+        return data;
+    };
+    return data;
+}
+var rotate = /*#__PURE__*/ _goober.keyframes(/*#__PURE__*/ _templateObject$1());
+var LoaderIcon = /*#__PURE__*/ _goober.styled('div')(/*#__PURE__*/ _templateObject2$1(), function(p) {
+    return p.secondary || '#e0e0e0';
+}, function(p) {
+    return p.primary || '#616161';
+}, rotate);
+function _templateObject3$1() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n  width: 20px;\n  opacity: 0;\n  height: 20px;\n  border-radius: 10px;\n  background: ",
+        ";\n  position: relative;\n  transform: rotate(45deg);\n\n  animation: ",
+        " 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)\n    forwards;\n  animation-delay: 100ms;\n  &:after {\n    content: '';\n    box-sizing: border-box;\n    animation: ",
+        " 0.2s ease-out forwards;\n    opacity: 0;\n    animation-delay: 200ms;\n    position: absolute;\n    border-right: 2px solid;\n    border-bottom: 2px solid;\n    border-color: ",
+        ";\n    bottom: 6px;\n    left: 6px;\n    height: 10px;\n    width: 6px;\n  }\n"
+    ]);
+    _templateObject3$1 = function _templateObject31() {
+        return data;
+    };
+    return data;
+}
+function _templateObject2$2() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n0% {\n\theight: 0;\n\twidth: 0;\n\topacity: 0;\n}\n40% {\n  height: 0;\n\twidth: 6px;\n\topacity: 1;\n}\n100% {\n  opacity: 1;\n  height: 10px;\n}"
+    ]);
+    _templateObject2$2 = function _templateObject21() {
+        return data;
+    };
+    return data;
+}
+function _templateObject$2() {
+    var data = _taggedTemplateLiteralLoose([
+        "\nfrom {\n  transform: scale(0) rotate(45deg);\n\topacity: 0;\n}\nto {\n  transform: scale(1) rotate(45deg);\n\topacity: 1;\n}"
+    ]);
+    _templateObject$2 = function _templateObject1() {
+        return data;
+    };
+    return data;
+}
+var circleAnimation$1 = /*#__PURE__*/ _goober.keyframes(/*#__PURE__*/ _templateObject$2());
+var checkmarkAnimation = /*#__PURE__*/ _goober.keyframes(/*#__PURE__*/ _templateObject2$2());
+var CheckmarkIcon = /*#__PURE__*/ _goober.styled('div')(/*#__PURE__*/ _templateObject3$1(), function(p) {
+    return p.primary || '#61d345';
+}, circleAnimation$1, checkmarkAnimation, function(p) {
+    return p.secondary || '#fff';
+});
+function _templateObject4$1() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n  position: relative;\n  transform: scale(0.6);\n  opacity: 0.4;\n  min-width: 20px;\n  animation: ",
+        " 0.3s 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.275)\n    forwards;\n"
+    ]);
+    _templateObject4$1 = function _templateObject41() {
+        return data;
+    };
+    return data;
+}
+function _templateObject3$2() {
+    var data = _taggedTemplateLiteralLoose([
+        "\nfrom {\n  transform: scale(0.6);\n  opacity: 0.4;\n}\nto {\n  transform: scale(1);\n  opacity: 1;\n}"
+    ]);
+    _templateObject3$2 = function _templateObject31() {
+        return data;
+    };
+    return data;
+}
+function _templateObject2$3() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-width: 20px;\n  min-height: 20px;\n"
+    ]);
+    _templateObject2$3 = function _templateObject21() {
+        return data;
+    };
+    return data;
+}
+function _templateObject$3() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n  position: absolute;\n"
+    ]);
+    _templateObject$3 = function _templateObject1() {
+        return data;
+    };
+    return data;
+}
+var StatusWrapper = /*#__PURE__*/ _goober.styled('div')(/*#__PURE__*/ _templateObject$3());
+var IndicatorWrapper = /*#__PURE__*/ _goober.styled('div')(/*#__PURE__*/ _templateObject2$3());
+var enter = /*#__PURE__*/ _goober.keyframes(/*#__PURE__*/ _templateObject3$2());
+var AnimatedIconWrapper = /*#__PURE__*/ _goober.styled('div')(/*#__PURE__*/ _templateObject4$1(), enter);
+var ToastIcon = function ToastIcon1(_ref) {
+    var toast2 = _ref.toast;
+    var icon = toast2.icon, type = toast2.type, iconTheme = toast2.iconTheme;
+    if (icon !== undefined) {
+        if (typeof icon === 'string') return _react.createElement(AnimatedIconWrapper, null, icon);
+        else return icon;
+    }
+    if (type === 'blank') return null;
+    return _react.createElement(IndicatorWrapper, null, _react.createElement(LoaderIcon, Object.assign({
+    }, iconTheme)), type !== 'loading' && _react.createElement(StatusWrapper, null, type === 'error' ? _react.createElement(ErrorIcon, Object.assign({
+    }, iconTheme)) : _react.createElement(CheckmarkIcon, Object.assign({
+    }, iconTheme))));
+};
+function _templateObject2$4() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n  display: flex;\n  justify-content: center;\n  margin: 4px 10px;\n  color: inherit;\n  flex: 1 1 auto;\n"
+    ]);
+    _templateObject2$4 = function _templateObject21() {
+        return data;
+    };
+    return data;
+}
+function _templateObject$4() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n  display: flex;\n  align-items: center;\n  background: #fff;\n  color: #363636;\n  line-height: 1.3;\n  will-change: transform;\n  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);\n  max-width: 350px;\n  pointer-events: auto;\n  padding: 8px 10px;\n  border-radius: 8px;\n"
+    ]);
+    _templateObject$4 = function _templateObject1() {
+        return data;
+    };
+    return data;
+}
+var enterAnimation = function enterAnimation1(factor) {
+    return "\n0% {transform: translate3d(0," + factor * -200 + "%,0) scale(.6); opacity:.5;}\n100% {transform: translate3d(0,0,0) scale(1); opacity:1;}\n";
+};
+var exitAnimation = function exitAnimation1(factor) {
+    return "\n0% {transform: translate3d(0,0,-1px) scale(1); opacity:1;}\n100% {transform: translate3d(0," + factor * -150 + "%,-1px) scale(.6); opacity:0;}\n";
+};
+var fadeInAnimation = "0%{opacity:0;} 100%{opacity:1;}";
+var fadeOutAnimation = "0%{opacity:1;} 100%{opacity:0;}";
+var ToastBarBase = /*#__PURE__*/ _goober.styled('div', _react.forwardRef)(/*#__PURE__*/ _templateObject$4());
+var Message = /*#__PURE__*/ _goober.styled('div')(/*#__PURE__*/ _templateObject2$4());
+var getAnimationStyle = function getAnimationStyle1(position, visible) {
+    var top = position.includes('top');
+    var factor = top ? 1 : -1;
+    var _ref = prefersReducedMotion() ? [
+        fadeInAnimation,
+        fadeOutAnimation
+    ] : [
+        enterAnimation(factor),
+        exitAnimation(factor)
+    ], enter1 = _ref[0], exit = _ref[1];
+    return {
+        animation: visible ? _goober.keyframes(enter1) + " 0.35s cubic-bezier(.21,1.02,.73,1) forwards" : _goober.keyframes(exit) + " 0.4s forwards cubic-bezier(.06,.71,.55,1)"
+    };
+};
+var ToastBar = /*#__PURE__*/ _react.memo(function(_ref2) {
+    var toast2 = _ref2.toast, position = _ref2.position, style = _ref2.style, children = _ref2.children;
+    var animationStyle = toast2 != null && toast2.height ? getAnimationStyle(toast2.position || position || 'top-center', toast2.visible) : {
+        opacity: 0
+    };
+    var icon = _react.createElement(ToastIcon, {
+        toast: toast2
+    });
+    var message = _react.createElement(Message, Object.assign({
+    }, toast2.ariaProps), resolveValue(toast2.message, toast2));
+    return _react.createElement(ToastBarBase, {
+        className: toast2.className,
+        style: _extends({
+        }, animationStyle, style, toast2.style)
+    }, typeof children === 'function' ? children({
+        icon: icon,
+        message: message
+    }) : _react.createElement(_react.Fragment, null, icon, message));
+});
+function _templateObject$5() {
+    var data = _taggedTemplateLiteralLoose([
+        "\n  z-index: 9999;\n  > * {\n    pointer-events: auto;\n  }\n"
+    ]);
+    _templateObject$5 = function _templateObject1() {
+        return data;
+    };
+    return data;
+}
+_goober.setup(_react.createElement);
+var getPositionStyle = function getPositionStyle1(position, offset) {
+    var top = position.includes('top');
+    var verticalStyle = top ? {
+        top: 0
+    } : {
+        bottom: 0
+    };
+    var horizontalStyle = position.includes('center') ? {
+        justifyContent: 'center'
+    } : position.includes('right') ? {
+        justifyContent: 'flex-end'
+    } : {
+    };
+    return _extends({
+        left: 0,
+        right: 0,
+        display: 'flex',
+        position: 'absolute',
+        transition: prefersReducedMotion() ? undefined : "all 230ms cubic-bezier(.21,1.02,.73,1)",
+        transform: "translateY(" + offset * (top ? 1 : -1) + "px)"
+    }, verticalStyle, horizontalStyle);
+};
+var activeClass = /*#__PURE__*/ _goober.css(/*#__PURE__*/ _templateObject$5());
+var DEFAULT_OFFSET = 16;
+var Toaster = function Toaster1(_ref) {
+    var reverseOrder = _ref.reverseOrder, _ref$position = _ref.position, position = _ref$position === void 0 ? 'top-center' : _ref$position, toastOptions = _ref.toastOptions, gutter = _ref.gutter, children = _ref.children, containerStyle = _ref.containerStyle, containerClassName = _ref.containerClassName;
+    var _useToaster = useToaster(toastOptions), toasts = _useToaster.toasts, handlers = _useToaster.handlers;
+    return _react.createElement("div", {
+        style: _extends({
+            position: 'fixed',
+            zIndex: 9999,
+            top: DEFAULT_OFFSET,
+            left: DEFAULT_OFFSET,
+            right: DEFAULT_OFFSET,
+            bottom: DEFAULT_OFFSET,
+            pointerEvents: 'none'
+        }, containerStyle),
+        className: containerClassName,
+        onMouseEnter: handlers.startPause,
+        onMouseLeave: handlers.endPause
+    }, toasts.map(function(t) {
+        var toastPosition = t.position || position;
+        var offset = handlers.calculateOffset(t, {
+            reverseOrder: reverseOrder,
+            gutter: gutter,
+            defaultPosition: position
+        });
+        var positionStyle = getPositionStyle(toastPosition, offset);
+        var ref = t.height ? undefined : createRectRef(function(rect) {
+            handlers.updateHeight(t.id, rect.height);
+        });
+        return _react.createElement("div", {
+            ref: ref,
+            className: t.visible ? activeClass : '',
+            key: t.id,
+            style: positionStyle
+        }, t.type === 'custom' ? resolveValue(t.message, t) : children ? children(t) : _react.createElement(ToastBar, {
+            toast: t,
+            position: toastPosition
+        }));
+    }));
+};
+exports.default = toast;
+
+},{"react":"jUjz4","goober":"l9N3a","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"l9N3a":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "css", ()=>p
+);
+parcelHelpers.export(exports, "extractCss", ()=>r
+);
+parcelHelpers.export(exports, "glob", ()=>g
+);
+parcelHelpers.export(exports, "keyframes", ()=>b
+);
+parcelHelpers.export(exports, "setup", ()=>h
+);
+parcelHelpers.export(exports, "styled", ()=>j
+);
+let e = {
+    data: ""
+}, t = (t1)=>"object" == typeof window ? ((t1 ? t1.querySelector("#_goober") : window._goober) || Object.assign((t1 || document.head).appendChild(document.createElement("style")), {
+        innerHTML: " ",
+        id: "_goober"
+    })).firstChild : t1 || e
+, r = (e1)=>{
+    let r1 = t(e1), l = r1.data;
+    return r1.data = "", l;
+}, l = /(?:([\u0080-\uFFFF\w-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/g, a = /\/\*[^]*?\*\/|\s\s+|\n/g, o = (e1, t1)=>{
+    let r1, l1 = "", a1 = "", n = "";
+    for(let c in e1){
+        let s = e1[c];
+        "object" == typeof s ? (r1 = t1 ? t1.replace(/([^,])+/g, (e2)=>c.replace(/([^,])+/g, (t2)=>/&/.test(t2) ? t2.replace(/&/g, e2) : e2 ? e2 + " " + t2 : t2
+            )
+        ) : c, a1 += "@" == c[0] ? "f" == c[1] ? o(s, c) : c + "{" + o(s, "k" == c[1] ? "" : t1) + "}" : o(s, r1)) : "@" == c[0] && "i" == c[1] ? l1 = c + " " + s + ";" : (c = c.replace(/[A-Z]/g, "-$&").toLowerCase(), n += o.p ? o.p(c, s) : c + ":" + s + ";");
+    }
+    return n[0] ? (r1 = t1 ? t1 + "{" + n + "}" : n, l1 + r1 + a1) : l1 + a1;
+}, n = {
+}, c = (e1)=>{
+    let t1 = "";
+    for(let r1 in e1)t1 += r1 + ("object" == typeof e1[r1] ? c(e1[r1]) : e1[r1]);
+    return t1;
+}, s = (e1, t1, r1, s1, i)=>{
+    let p = "object" == typeof e1 ? c(e1) : e1, u = n[p] || (n[p] = ((e2)=>{
+        let t2 = 0, r2 = 11;
+        for(; t2 < e2.length;)r2 = 101 * r2 + e2.charCodeAt(t2++) >>> 0;
+        return "go" + r2;
+    })(p));
+    if (!n[u]) {
+        let t2 = "object" == typeof e1 ? e1 : ((e2)=>{
+            let t3, r2 = [
+                {
+                }
+            ];
+            for(; t3 = l.exec(e2.replace(a, ""));)t3[4] && r2.shift(), t3[3] ? r2.unshift(r2[0][t3[3]] = r2[0][t3[3]] || {
+            }) : t3[4] || (r2[0][t3[1]] = t3[2]);
+            return r2[0];
+        })(e1);
+        n[u] = o(i ? {
+            ["@keyframes " + u]: t2
+        } : t2, r1 ? "" : "." + u);
+    }
+    return ((e2, t2, r2)=>{
+        -1 == t2.data.indexOf(e2) && (t2.data = r2 ? e2 + t2.data : t2.data + e2);
+    })(n[u], t1, s1), u;
+}, i = (e1, t1, r1)=>e1.reduce((e2, l1, a1)=>{
+        let n1 = t1[a1];
+        if (n1 && n1.call) {
+            let e3 = n1(r1), t2 = e3 && e3.props && e3.props.className || /^go/.test(e3) && e3;
+            n1 = t2 ? "." + t2 : e3 && "object" == typeof e3 ? e3.props ? "" : o(e3, "") : e3;
+        }
+        return e2 + l1 + (null == n1 ? "" : n1);
+    }, "")
+;
+function p(e1) {
+    let r1 = this || {
+    }, l1 = e1.call ? e1(r1.p) : e1;
+    return s(l1.unshift ? l1.raw ? i(l1, [].slice.call(arguments, 1), r1.p) : l1.reduce((e2, t1)=>t1 ? Object.assign(e2, t1.call ? t1(r1.p) : t1) : e2
+    , {
+    }) : l1, t(r1.target), r1.g, r1.o, r1.k);
+}
+let u, f, d, g = p.bind({
+    g: 1
+}), b = p.bind({
+    k: 1
+});
+function h(e1, t1, r1, l1) {
+    o.p = t1, u = e1, f = r1, d = l1;
+}
+function j(e1, t1) {
+    let r1 = this || {
+    };
+    return function() {
+        let l1 = arguments;
+        function a1(o1, n1) {
+            let c1 = Object.assign({
+            }, o1), s1 = c1.className || a1.className;
+            r1.p = Object.assign({
+                theme: f && f()
+            }, c1), r1.o = / *go\d+/.test(s1), c1.className = p.apply(r1, l1) + (s1 ? " " + s1 : ""), t1 && (c1.ref = n1);
+            let i1 = c1.as || e1;
+            return d && i1[0] && d(c1), u(i1, c1);
+        }
+        return t1 ? t1(a1) : a1;
+    };
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"icbd7":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -38492,6 +39262,8 @@ parcelHelpers.export(exports, "mediaBlockSlice", ()=>mediaBlockSlice
 parcelHelpers.export(exports, "increment", ()=>increment
 );
 var _toolkit = require("@reduxjs/toolkit");
+var _reactHotToast = require("react-hot-toast");
+var _reactHotToastDefault = parcelHelpers.interopDefault(_reactHotToast);
 var _factsAPI = require("./FactsAPI");
 var _photosAPI = require("./PhotosAPI");
 const fetchBlock = _toolkit.createAsyncThunk('mediaBlock/fetchBlock', async ({ photosCount  })=>{
@@ -38509,7 +39281,6 @@ const mediaBlockSlice = _toolkit.createSlice({
         loadingState: 'idle'
     },
     extraReducers (builder) {
-        // TODO: Add error handle
         builder.addCase(fetchBlock.pending, (state)=>{
             state.loadingState = 'pending';
         });
@@ -38520,12 +39291,18 @@ const mediaBlockSlice = _toolkit.createSlice({
             });
             state.loadingState = 'idle';
         });
+        builder.addCase(fetchBlock.rejected, (state)=>{
+            _reactHotToastDefault.default('Не удалось загрузить кошек, попробуйте снова', {
+                icon: '🤔'
+            });
+            state.loadingState = 'idle';
+        });
     }
 });
 const { increment  } = mediaBlockSlice.actions;
 exports.default = mediaBlockSlice.reducer;
 
-},{"@reduxjs/toolkit":"diJsx","./FactsAPI":"j8qXl","./PhotosAPI":"flrvd","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"diJsx":[function(require,module,exports) {
+},{"@reduxjs/toolkit":"diJsx","react-hot-toast":"cID1I","./FactsAPI":"j8qXl","./PhotosAPI":"flrvd","@parcel/transformer-js/src/esmodule-helpers.js":"obaoz"}],"diJsx":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MiddlewareArray", ()=>MiddlewareArray1
