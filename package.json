@@ -1,6 +1,6 @@
 {
   "name": "look-cats",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Infinity feed with photos of cats and facts about them",
   "scripts": {
     "lint": "standard src/",
