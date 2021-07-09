@@ -5,6 +5,7 @@ export default ({ onClick, children }) => {
     <button
       className='p-4 px-16 text-lg text-yellow-600 border-2 border-yellow-600 transition-colors hover:text-white hover:bg-yellow-600'
       onClick={(event) => onClick(event)}
+      data-cy='load-more-button'
     >
       Load More
     </button>

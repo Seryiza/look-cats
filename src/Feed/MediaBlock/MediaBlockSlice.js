@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { getCatFact } from './FactsAPI'
 import { getCatPhotos } from './PhotosAPI'
 
 export const fetchBlock = createAsyncThunk(
   'mediaBlock/fetchBlock',
   async ({ photosCount }) => {
-    // TODO: Add facts
     const photos = await getCatPhotos(photosCount)
-    return { photos }
+    const fact = await getCatFact()
+    return { photos, fact }
   }
 )
 
@@ -23,7 +24,7 @@ export const mediaBlockSlice = createSlice({
       state.loadingState = 'pending'
     })
     builder.addCase(fetchBlock.fulfilled, (state, { payload }) => {
-      state.blocks.push({ photos: payload.photos })
+      state.blocks.push({ photos: payload.photos, fact: payload.fact })
       state.loadingState = 'idle'
     })
   }
