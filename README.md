@@ -27,4 +27,4 @@ npm run test   # run tests
 
 ## Источники данных
 - Фото: [Cataas](https://cataas.com/)
-- Факты: [Cat Facts](https://alexwohlbruck.github.io/cat-facts/), [the-cat-fact](https://the-cat-fact.herokuapp.com/)
+- Факты: [Cat Facts](https://alexwohlbruck.github.io/cat-facts/), [the-cat-fact](https://the-cat-fact.herokuapp.com/) (посредством [cat-facts-proxy](https://github.com/Seryiza/cat-facts-proxy))
